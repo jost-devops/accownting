@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block main %}
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="{{ path('app_dashboard_index') }}"><b>accownting</b></a>
+        </div>
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Sign in to start your session</p>
+
+                {% if error %}
+                    <div class="alert alert-danger">
+                        {{ error.message }}
+                    </div>
+                {% endif %}
+
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ label }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+
+                {{ form_start(form) }}
+                    <div class="input-group mb-3">
+                        {{ form_widget(form._email, {attr: {placeholder: 'Email'}}) }}
+                        <div class="input-group-append">
+                            <span class="fa fa-envelope input-group-text"></span>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        {{ form_widget(form._password, {attr: {placeholder: 'Password'}}) }}
+                        <div class="input-group-append">
+                            <span class="fa fa-lock input-group-text"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 offset-8">
+                            {{ form_row(form.login, {'attr': {'class': 'btn-primary btn-block btn-flat'}}) }}
+                        </div>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
