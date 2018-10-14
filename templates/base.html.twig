@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}accownting{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+    {% endblock %}
+</head>
+<body class="{% block bodyClass %}hold-transition sidebar-mini route__{{ app.request.attributes.get("_route") }} sidebar-collapse{% endblock %}">
+{% block main %}
+<div class="wrapper">
+    {% include "_partials/header.html.twig" %}
+    {% include "_partials/sidebar.html.twig" %}
+
+    <div class="content-wrapper">
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1>{% block pageTitle %}{% endblock %}</h1>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    {% for label, messages in app.flashes %}
+                        {% for message in messages %}
+                            <div class="alert alert-{{ label }}">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        {% block body %}{% endblock %}
+    </div>
+
+    {% include "_partials/footer.html.twig" %}
+</div>
+
+{% block javascripts %}
+    <script src="{{ asset('build/app.js') }}"></script>
+{% endblock %}
+</body>
+{% endblock %}
+</html>

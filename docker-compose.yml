@@ -1,0 +1,32 @@
+version: "3.6"
+services:
+  "db":
+    image: "mysql:5.7"
+    ports:
+      - "3392:3306"
+    environment:
+      - "MYSQL_ROOT_PASSWORD=root"
+      - "MYSQL_DATABASE=accownting"
+      - "MYSQL_USER=accownting"
+      - "MYSQL_PASSWORD=accownting"
+    volumes:
+      - "mysql:/var/lib/mysql"
+    networks:
+      - "internal"
+
+  "server":
+    ports:
+      - "8083:80"
+    build:
+      context: "./"
+      dockerfile: "./docker/dev.dockerfile"
+    volumes:
+      - "./:/var/www"
+    networks:
+      - "internal"
+
+networks:
+  "internal":
+
+volumes:
+  mysql:
