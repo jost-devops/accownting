@@ -3,7 +3,6 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -16,6 +15,6 @@ class DashboardController extends Controller
      */
     public function indexAction(): Response
     {
-        return new JsonResponse(true);
+        return $this->render('dashboard/index.html.twig');
     }
 }
