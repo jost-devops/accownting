@@ -39,8 +39,13 @@ class AddUserCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $email = (string)$input->getArgument('email');
-        $password = (string)$input->getArgument('password');
+        $email = $input->getArgument('email');
+        $password = $input->getArgument('password');
+
+        if (!is_string($email) || !is_string($password)) {
+            $output->writeln('email and passwords must be strings');
+            return;
+        }
 
         $user = new User();
         $user->setEmail($email);

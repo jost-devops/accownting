@@ -140,7 +140,7 @@ class Company
     private $bankBic;
 
     /**
-     * @var string|null
+     * @var resource|string|null
      *
      * @ORM\Column(type="blob", nullable=true)
      */
@@ -439,7 +439,9 @@ class Company
     public function getLogo(): ?string
     {
         if (is_resource($this->logo)) {
-            return stream_get_contents($this->logo);
+            $logo = stream_get_contents($this->logo);
+
+            $this->logo = ($logo === false) ? null : $logo;
         }
 
         return $this->logo;

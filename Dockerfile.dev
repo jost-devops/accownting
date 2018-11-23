@@ -32,17 +32,4 @@ RUN apt install -y gnupg \
  && apt-get update \
  && apt-get install yarn
 
-RUN curl -o /usr/local/bin/wait-for-it https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh && \
-  chmod +x /usr/local/bin/wait-for-it
-
-RUN cd /var/www ; curl -s https://getcomposer.org/installer | php ; mv composer.phar /usr/local/bin/composer
-
-COPY ./ /var/www
-
-RUN cd /var/www ; APP_ENV=prod composer install --no-progress --no-dev --optimize-autoloader
-RUN cd /var/www ; yarn ; yarn run encore production ; rm -Rf node_modules/
-
 WORKDIR /var/www/public
-
-COPY ./docker/entrypoint.sh /usr/local/bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]

@@ -103,6 +103,7 @@ class CompanyController extends Controller
         return $this->render('company/form.html.twig', [
             'title' => 'Edit company',
             'form' => $form->createView(),
+            'company' => $company,
         ]);
     }
 
@@ -124,6 +125,10 @@ class CompanyController extends Controller
     public function logoAction(
         Company $company
     ): Response {
+        if ($company->getLogo() === null || $company->getLogoMime() === null) {
+            throw $this->createNotFoundException();
+        }
+
         $mimeTypeExtensionGuesser = new MimeTypeExtensionGuesser();
 
         $response = new Response();

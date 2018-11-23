@@ -6,6 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "sensio/framework-extra-bundle": "^5.2",
+        "sensiolabs/security-checker": "^5.0",
         "symfony/apache-pack": "^1.0",
         "symfony/console": "*",
         "symfony/flex": "^1.1",
@@ -20,7 +21,11 @@
         "symfony/yaml": "*"
     },
     "require-dev": {
+        "phpmd/phpmd": "^2.6",
+        "phpstan/phpstan": "^0.10.5",
+        "squizlabs/php_codesniffer": "^3.3",
         "symfony/dotenv": "*",
+        "symfony/phpunit-bridge": "*",
         "symfony/var-dumper": "4.1.*"
     },
     "config": {
@@ -50,7 +55,8 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+            "assets:install %PUBLIC_DIR%": "symfony-cmd",
+            "security-checker security:check": "script"
         },
         "post-install-cmd": [
             "@auto-scripts"
