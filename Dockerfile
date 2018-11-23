@@ -35,13 +35,14 @@ RUN apt install -y gnupg \
 RUN curl -o /usr/local/bin/wait-for-it https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh && \
   chmod +x /usr/local/bin/wait-for-it
 
-RUN cd /var/www ; curl -s https://getcomposer.org/installer | php ; mv composer.phar /usr/local/bin/composer
-RUN cd /var/www ; APP_ENV=prod composer install --no-progress --no-dev --optimize-autoloader
-RUN cd /var/www ; yarn ; yarn run encore production ; rm -Rf node_modules/
+RUN curl -s https://getcomposer.org/installer | php ; mv composer.phar /usr/local/bin/composer
+
+WORKDIR /var/www/public
 
 COPY ./ /var/www
 
-WORKDIR /var/www/public
+RUN cd /var/www ; APP_ENV=prod composer install --no-progress --no-dev --optimize-autoloader
+RUN cd /var/www ; yarn ; yarn run encore production ; rm -Rf node_modules/
 
 COPY ./docker/entrypoint.sh /usr/local/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
