@@ -36,11 +36,10 @@ RUN curl -o /usr/local/bin/wait-for-it https://raw.githubusercontent.com/vishnub
   chmod +x /usr/local/bin/wait-for-it
 
 RUN cd /var/www ; curl -s https://getcomposer.org/installer | php ; mv composer.phar /usr/local/bin/composer
-
-COPY ./ /var/www
-
 RUN cd /var/www ; APP_ENV=prod composer install --no-progress --no-dev --optimize-autoloader
 RUN cd /var/www ; yarn ; yarn run encore production ; rm -Rf node_modules/
+
+COPY ./ /var/www
 
 WORKDIR /var/www/public
 
