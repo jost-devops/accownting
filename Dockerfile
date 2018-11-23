@@ -3,6 +3,7 @@ FROM php:7.2-apache
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
 ENV APACHE_DOCUMENT_ROOT /var/www/public
+ENV APP_ENV prod
 
 VOLUME /var/log
 
@@ -36,12 +37,12 @@ RUN curl -o /usr/local/bin/wait-for-it https://raw.githubusercontent.com/vishnub
 
 RUN curl -s https://getcomposer.org/installer | php ; mv composer.phar /usr/local/bin/composer
 
-WORKDIR /var/www/public
-
 COPY ./ /var/www
 
 RUN cd /var/www ; APP_ENV=prod composer install --no-progress --no-dev --optimize-autoloader
 RUN cd /var/www ; yarn ; yarn run encore production ; rm -Rf node_modules/
+
+WORKDIR /var/www/public
 
 COPY ./docker/entrypoint.sh /usr/local/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
