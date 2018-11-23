@@ -3,6 +3,7 @@ php:
   - '7.2'
 
 script:
+  - composer install
   - vendor/bin/phpcs --error-severity=1 --warning-severity=8 --extensions=php
   - vendor/bin/phpmd src/ text controversial,design,unusedcode --exclude src/Migrations/
   - vendor/bin/phpstan analyse -l max -c phpstan.neon src
