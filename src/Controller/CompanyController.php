@@ -122,9 +122,10 @@ class CompanyController extends Controller
      * @Route("/{id}/logo")
      */
     public function logoAction(
-        Company $company,
-        MimeTypeExtensionGuesser $mimeTypeExtensionGuesser
+        Company $company
     ): Response {
+        $mimeTypeExtensionGuesser = new MimeTypeExtensionGuesser();
+
         $response = new Response();
         $response->headers->set('Content-Type', $company->getLogoMime());
         $response->headers->set(

@@ -438,6 +438,10 @@ class Company
      */
     public function getLogo(): ?string
     {
+        if (is_resource($this->logo)) {
+            return stream_get_contents($this->logo);
+        }
+
         return $this->logo;
     }
 
