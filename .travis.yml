@@ -1,0 +1,15 @@
+language: php
+php:
+  - '7.2'
+
+.init_app: &init_app |
+  curl -sS https://getcomposer.org/installer | php
+  php composer.phar install --no-progress
+
+script:
+  - *init_app
+  - vendor/bin/phpcs --error-severity=1 --warning-severity=8 --extensions=php
+  - vendor/bin/phpmd src/ text controversial,design,unusedcode --exclude src/Migrations/
+  - vendor/bin/phpstan analyse -l max -c phpstan.neon src
+  - vendor/bin/security-checker security:check composer.lock
+  - SYMFONY_DEPRECATIONS_HELPER=weak bin/phpunit -d memory_limit=-1
