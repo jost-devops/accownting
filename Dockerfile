@@ -25,7 +25,7 @@ RUN apt update && apt install -y mysql-client unzip libzip-dev libc-client-dev l
  && docker-php-source delete
 
 RUN apt install -y gnupg \
- && curl -sL https://deb.nodesource.com/setup_8.x | bash \
+ && curl -sL https://deb.nodesource.com/setup_10.x | bash \
  && apt-get install -y nodejs \
  && curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
  && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
@@ -33,5 +33,10 @@ RUN apt install -y gnupg \
  && apt-get install yarn
 
 RUN cd /var/www ; curl -s https://getcomposer.org/installer | php ; mv composer.phar /usr/local/bin/composer
+
+COPY ./ /var/www
+
+RUN cd /var/www ; APP_ENV=prod composer install --no-progress --no-dev --optimize-autoloader
+RUN cd /var/www ; yarn ; yarn run encore production ; rm -Rf node_modules/
 
 WORKDIR /var/www/public

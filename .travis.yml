@@ -2,20 +2,18 @@ language: php
 php:
   - '7.2'
 
-before_install:
-  - curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
-  - sudo apt-key adv --keyserver pgp.mit.edu --recv D101F7899D41F3C3
-  - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-  - sudo apt-get update -qq
-  - sudo apt-get install -y -qq yarn
-
 jobs:
   include:
     - stage: "Tests"
       script:
+        - curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+        - sudo apt-key adv --keyserver pgp.mit.edu --recv D101F7899D41F3C3
+        - echo "deb http://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+        - sudo apt-get update -qq
+        - sudo apt-get install -y -qq yarn
         - composer install
         - yarn
-        - yarn run encore production
+        - yarn run encore dev
         - vendor/bin/phpcs --error-severity=1 --warning-severity=8 --extensions=php
         - vendor/bin/phpmd src/ text controversial,design,unusedcode --exclude src/Migrations/
         - vendor/bin/phpstan analyse -l max -c phpstan.neon src
@@ -24,5 +22,5 @@ jobs:
     - stage: "Build"
       script:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker build -t "jost-devops/accownting:dev" .
-        - docker push jost-devops/accownting:dev
+        - docker build -t "jostdevops/accownting:dev" .
+        - docker push jostdevops/accownting:dev
