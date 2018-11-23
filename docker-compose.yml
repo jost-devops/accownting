@@ -19,7 +19,6 @@ services:
       - "8083:80"
     build:
       context: "./"
-      dockerfile: "./docker/dev.dockerfile"
     volumes:
       - "./:/var/www"
     networks:
