@@ -1,0 +1,70 @@
+{% extends "base.html.twig" %}
+
+{% block pageTitle %}{{ title }}{% endblock %}
+
+{% block body %}
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">{{ title }}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">General Information</h4>
+                </div>
+                <div class="card-body">
+                    {{ form_row(form.name) }}
+                    {{ form_row(form.street) }}
+                    {{ form_row(form.zip) }}
+                    {{ form_row(form.city) }}
+                    {{ form_row(form.country) }}
+                    {{ form_row(form.phone) }}
+                    {{ form_row(form.fax) }}
+                    {{ form_row(form.website) }}
+                    {{ form_row(form.email) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Legal Information, Bank & Logo</h4>
+                </div>
+                <div class="card-body">
+                    {{ form_row(form.vatNumber) }}
+                    {{ form_row(form.taxNumber) }}
+                    {{ form_row(form.districtCourt) }}
+                    {{ form_row(form.companyRegisterId) }}
+                    {{ form_row(form.managingDirector) }}
+                    {{ form_row(form.bankName) }}
+                    {{ form_row(form.bankIban) }}
+                    {{ form_row(form.bankBic) }}
+                    {{ form_row(form.logo) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-right">
+                        {{ form_row(form.submit) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+</section>
+{% endblock %}

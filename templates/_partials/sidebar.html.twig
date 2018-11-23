@@ -11,6 +11,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ path('app_company_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_company_~' %}active{% endif %}">
+                        <i class="nav-icon fa fa-briefcase"></i>
+                        <p>
+                            Companies
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ path('app_security_logout') }}" class="nav-link">
                         <i class="nav-icon fa fa-sign-out"></i>
                         <p>
