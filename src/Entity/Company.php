@@ -439,7 +439,9 @@ class Company
     public function getLogo(): ?string
     {
         if (is_resource($this->logo)) {
-            $this->logo = stream_get_contents($this->logo);
+            $logo = stream_get_contents($this->logo);
+
+            $this->logo = ($logo === false) ? null : $logo;
         }
 
         return $this->logo;
