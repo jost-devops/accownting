@@ -5,7 +5,6 @@ ENV APACHE_RUN_GROUP www-data
 ENV APACHE_DOCUMENT_ROOT /var/www/public
 
 VOLUME /var/log
-VOLUME /var/www
 
 RUN { \
     echo 'ServerTokens Prod'; \
