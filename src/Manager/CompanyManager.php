@@ -112,8 +112,12 @@ class CompanyManager
     private function handleLogo(Company $company, CompanyDTO $companyDTO): void
     {
         if ($companyDTO->logo !== null) {
-            $company->setLogo(file_get_contents($companyDTO->logo->getPathname()));
-            $company->setLogoMime($companyDTO->logo->getMimeType());
+            $logoContents = file_get_contents($companyDTO->logo->getPathname());
+
+            if ($logoContents !== false && $companyDTO->logo->getMimeType() !== null) {
+                $company->setLogo($logoContents);
+                $company->setLogoMime($companyDTO->logo->getMimeType());
+            }
         }
     }
 }

@@ -49,6 +49,15 @@
                     {{ form_row(form.bankIban) }}
                     {{ form_row(form.bankBic) }}
                     {{ form_row(form.logo) }}
+
+                    <div>
+                        <label>Current Logo:</label>
+                        {% if company is defined and company.logo is not null %}
+                        <img class="img-fluid" src="{{ path('app_company_logo', {id: company.id}) }}" />
+                        {% else %}
+                        <p>No logo uploaded.</p>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
