@@ -324,15 +324,15 @@ class Invoice
         $taxes = [];
 
         foreach ($this->getLineItems() as $lineItem) {
+            if ($lineItem->getVatRate() === null) {
+                continue;
+            }
+
             if (!isset($taxes[$lineItem->getVatRate()->getRate()])) {
                 $taxes[$lineItem->getVatRate()->getRate()] = 0;
             }
 
-            $multiplicator = 0;
-
-            if ($lineItem->getVatRate() !== null) {
-                $multiplicator += $lineItem->getVatRate()->getRate() / 100;
-            }
+            $multiplicator = $lineItem->getVatRate()->getRate() / 100;
 
             $taxes[$lineItem->getVatRate()->getRate()] +=
                 $lineItem->getAmount() * ($lineItem->getPriceSingle() * $multiplicator);
