@@ -16,11 +16,11 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 RUN echo "date.timezone = \"Europe/Berlin\"" > /usr/local/etc/php/conf.d/timezone.ini
 RUN echo "memory_limit = 256M" > /usr/local/etc/php/conf.d/memory_limit.ini
 
-RUN apt update && apt install -y mysql-client unzip libzip-dev libc-client-dev libkrb5-dev zlib1g-dev && apt clean \
+RUN apt update && apt install -y mysql-client unzip libzip-dev libc-client-dev libkrb5-dev zlib1g-dev libpng-dev && apt clean \
  && docker-php-source extract \
  && docker-php-ext-configure imap --with-imap-ssl --with-kerberos \
  && docker-php-ext-install -j$(nproc) \
-    pdo_mysql zip imap \
+    pdo_mysql zip imap gd \
  && a2enmod rewrite \
  && docker-php-source delete
 
