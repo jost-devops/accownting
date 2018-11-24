@@ -11,6 +11,22 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ path('app_customer_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_customer_~' %}active{% endif %}">
+                        <i class="nav-icon fa fa-address-book"></i>
+                        <p>
+                            Customers
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('app_unit_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_unit_~' %}active{% endif %}">
+                        <i class="nav-icon fa fa-balance-scale"></i>
+                        <p>
+                            Units
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ path('app_company_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_company_~' %}active{% endif %}">
                         <i class="nav-icon fa fa-briefcase"></i>
                         <p>
