@@ -252,7 +252,7 @@ mpdf-->
         <tr>
             <td>
                 {% if invoice.creditPeriod is not null %}
-                Zahlungsbedingungen: Zahlbar innerhalb von {{ invoice.creditPeriod }} Tagen ohne Abzüge.
+                Zahlungsbedingungen: Zahlbar innerhalb von {{ invoice.creditPeriod }} Tagen ab Rechnungseingang ohne Abzüge.
                 {% else %}
                 Zahlungsbedingungen: Zahlbar sofort nach Rechnungseingang ohne Abzüge.
                 {% endif %}
