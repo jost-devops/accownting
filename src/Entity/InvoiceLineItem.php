@@ -35,6 +35,13 @@ class InvoiceLineItem
     private $title;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
+    /**
      * @var int
      *
      * @ORM\Column(type="integer")
@@ -56,9 +63,9 @@ class InvoiceLineItem
     private $priceSingle;
 
     /**
-     * @var int
+     * @var VatRate|null
      *
-     * @ORM\Column(type="integer")
+     * @ORM\ManyToOne(targetEntity="App\Entity\VatRate")
      */
     private $vatRate;
 
@@ -100,6 +107,22 @@ class InvoiceLineItem
     public function setTitle(string $title): void
     {
         $this->title = $title;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string|null $description
+     */
+    public function setDescription(?string $description): void
+    {
+        $this->description = $description;
     }
 
     /**
@@ -151,17 +174,17 @@ class InvoiceLineItem
     }
 
     /**
-     * @return int
+     * @return VatRate|null
      */
-    public function getVatRate(): int
+    public function getVatRate(): ?VatRate
     {
         return $this->vatRate;
     }
 
     /**
-     * @param int $vatRate
+     * @param VatRate|null $vatRate
      */
-    public function setVatRate(int $vatRate): void
+    public function setVatRate(?VatRate $vatRate): void
     {
         $this->vatRate = $vatRate;
     }

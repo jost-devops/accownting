@@ -11,6 +11,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ path('app_invoice_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_invoice_~' %}active{% endif %}">
+                        <i class="nav-icon fa fa-envelope"></i>
+                        <p>
+                            Invoices
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ path('app_customer_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_customer_~' %}active{% endif %}">
                         <i class="nav-icon fa fa-address-book"></i>
                         <p>
@@ -23,6 +31,14 @@
                         <i class="nav-icon fa fa-balance-scale"></i>
                         <p>
                             Units
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('app_vatrate_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_vatrate_~' %}active{% endif %}">
+                        <i class="nav-icon fa fa-money"></i>
+                        <p>
+                            VAT Rates
                         </p>
                     </a>
                 </li>

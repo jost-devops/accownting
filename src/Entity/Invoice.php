@@ -250,4 +250,32 @@ class Invoice
     {
         $this->paid = $paid;
     }
+
+    public function getTotalNetPrice(): float
+    {
+        $netPrice = 0;
+
+        foreach ($this->getLineItems() as $lineItem) {
+            $netPrice += $lineItem->getAmount() * $lineItem->getPriceSingle();
+        }
+
+        return $netPrice;
+    }
+
+    public function getTotalGrossPrice(): float
+    {
+        $grossPrice = 0;
+
+        foreach ($this->getLineItems() as $lineItem) {
+            $multiplicator = 1;
+
+            if ($lineItem->getVatRate() !== null) {
+                $multiplicator += $lineItem->getVatRate()->getRate() / 100;
+            }
+
+            $grossPrice += $lineItem->getAmount() * ($lineItem->getPriceSingle() * $multiplicator);
+        }
+
+        return $grossPrice;
+    }
 }

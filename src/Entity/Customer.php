@@ -21,6 +21,13 @@ class Customer
     private $id;
 
     /**
+     * @var Company|null
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\Company")
+     */
+    private $company;
+
+    /**
      * @var string
      *
      * @ORM\Column(type="string")
@@ -68,6 +75,22 @@ class Customer
     public function getId(): int
     {
         return $this->id;
+    }
+
+    /**
+     * @return Company|null
+     */
+    public function getCompany(): ?Company
+    {
+        return $this->company;
+    }
+
+    /**
+     * @param Company|null $company
+     */
+    public function setCompany(?Company $company): void
+    {
+        $this->company = $company;
     }
 
     /**

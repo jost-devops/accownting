@@ -1,0 +1,146 @@
+{% extends "base.html.twig" %}
+
+{% block pageTitle %}{{ title }}{% endblock %}
+
+{% block body %}
+<section class="content">
+    {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
+
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    {{ form_row(form.company) }}
+                    {{ form_row(form.customer) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    {{ form_row(form.invoiceNumber) }}
+                    {{ form_row(form.invoiceDate) }}
+                    {{ form_row(form.timeOfSupply) }}
+                    {{ form_row(form.timeOfSupplyEnd) }}
+                    {{ form_row(form.creditPeriod) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    {{ form_row(form.subject) }}
+
+                    <table class="line-item-table table table-bordered table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>Pos</th>
+                            <th>Title / Description</th>
+                            <th>Amount</th>
+                            <th>Unit</th>
+                            <th>Single Price</th>
+                            <th>VAT Rate</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for lineItem in form.lineItems %}
+                        <tr class="line-item">
+                            <td>{{ loop.index }}</td>
+                            <td>
+                                {{ form_row(lineItem.title) }}
+                                {{ form_row(lineItem.description) }}
+                            </td>
+                            <td>{{ form_row(lineItem.amount, {'attr': {'class': 'line-item--amount'}}) }}</td>
+                            <td>{{ form_row(lineItem.unit) }}</td>
+                            <td>{{ form_row(lineItem.priceSingle, {'attr': {'class': 'line-item--price-single'}}) }}</td>
+                            <td>{{ form_row(lineItem.vatRate, {'attr': {'class': 'line-item--vat-rate'}}) }}</td>
+                            <td class="text-right">
+                                <small>(Net)</small> <span class="line-item--total-net-price"></span><br>
+                                <small>(Gross)</small> <span class="line-item--total-gross-price"></span>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-remove-line-item">
+                                    <i class="fa fa-remove"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        <tr class="prototype line-item d-none">
+                            <td class="line-item--index"></td>
+                            <td>
+                                {{ form_row(form.lineItems.vars.prototype.title) }}
+                                {{ form_row(form.lineItems.vars.prototype.description) }}
+                            </td>
+                            <td>{{ form_row(form.lineItems.vars.prototype.amount, {'attr': {'class': 'line-item--amount'}}) }}</td>
+                            <td>{{ form_row(form.lineItems.vars.prototype.unit) }}</td>
+                            <td>{{ form_row(form.lineItems.vars.prototype.priceSingle, {'attr': {'class': 'line-item--price-single'}}) }}</td>
+                            <td>{{ form_row(form.lineItems.vars.prototype.vatRate, {'attr': {'class': 'line-item--vat-rate'}}) }}</td>
+                            <td class="text-right">
+                                <small>(Net)</small> <span class="line-item--total-net-price"></span><br>
+                                <small>(Gross)</small> <span class="line-item--total-gross-price"></span>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-remove-line-item">
+                                    <i class="fa fa-remove"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <td colspan="8" class="text-right">
+                                <button class="btn btn-primary btn-add-line-item"><i class="fa fa-plus"></i> Add Item</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="6" class="text-right">
+                                Total Net:
+                            </td>
+                            <td colspan="3" class="text-right">
+                                <span class="total-net"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="6" class="text-right">
+                                Taxes:
+                            </td>
+                            <td colspan="3" class="text-right">
+                                <span class="total-taxes"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="6" class="text-right">
+                                Total:
+                            </td>
+                            <td colspan="3" class="text-right">
+                                <span class="total-gross"></span>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-right">
+                        {{ form_row(form.submit) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+</section>
+{% endblock %}

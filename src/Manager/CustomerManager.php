@@ -22,6 +22,7 @@ class CustomerManager
     public function add(CustomerDTO $customerDTO, User $user): Customer
     {
         $customer = new Customer();
+        $customer->setCompany($customerDTO->company);
         $customer->setName($customerDTO->name);
         $customer->setAdditionalName($customerDTO->additionalName);
         $customer->setStreet($customerDTO->street);
@@ -40,6 +41,7 @@ class CustomerManager
     public function getEdit(Customer $customer): CustomerDTO
     {
         $customerDTO = new CustomerDTO();
+        $customerDTO->company = $customer->getCompany();
         $customerDTO->name = $customer->getName();
         $customerDTO->additionalName = $customer->getAdditionalName();
         $customerDTO->street = $customer->getStreet();
@@ -52,6 +54,7 @@ class CustomerManager
 
     public function edit(Customer $customer, CustomerDTO $customerDTO, User $user): Customer
     {
+        $customer->setCompany($customerDTO->company);
         $customer->setName($customerDTO->name);
         $customer->setAdditionalName($customerDTO->additionalName);
         $customer->setStreet($customerDTO->street);

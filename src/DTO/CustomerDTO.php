@@ -2,12 +2,19 @@
 
 namespace App\DTO;
 
+use App\Entity\Company;
+
 class CustomerDTO
 {
     /**
      * @var int
      */
     public $id;
+
+    /**
+     * @var Company|null
+     */
+    public $company;
 
     /**
      * @var string
