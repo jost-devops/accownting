@@ -25,7 +25,7 @@ class UserDTO
     public $password;
 
     /**
-     * @var string
+     * @var string|null
      */
     public $name;
 }
