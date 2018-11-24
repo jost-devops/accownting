@@ -7,6 +7,7 @@ use App\DTO\VatRateDTO;
 use App\Entity\Invoice;
 use App\Entity\User;
 use App\Entity\VatRate;
+use App\Form\InvoiceSetPaidType;
 use App\Form\InvoiceType;
 use App\Form\VatRateType;
 use App\Manager\InvoiceManager;
@@ -119,5 +120,32 @@ class InvoiceController extends Controller
         $invoiceManager->delete($invoice);
 
         return $this->redirectToRoute('app_invoice_index');
+    }
+
+    /**
+     * @Route("/{id}/set-paid")
+     */
+    public function setPaidAction(
+        Request $request,
+        Invoice $invoice,
+        InvoiceManager $invoiceManager
+    ): Response {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        $invoiceDTO = $invoiceManager->getEdit($invoice);
+
+        $form = $this->createForm(InvoiceSetPaidType::class, $invoiceDTO);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $invoiceManager->edit($invoice, $invoiceDTO, $user);
+
+            return $this->redirectToRoute('app_invoice_index');
+        }
+
+        return $this->render('invoice/set-paid.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }

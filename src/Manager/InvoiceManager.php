@@ -37,6 +37,7 @@ class InvoiceManager
         $invoice->setTimeOfSupply($invoiceDTO->timeOfSupply);
         $invoice->setTimeOfSupplyEnd($invoiceDTO->timeOfSupplyEnd);
         $invoice->setCreditPeriod($invoiceDTO->creditPeriod);
+        $invoice->setPaid($invoiceDTO->paid);
         $invoice->setCreated(new \DateTime());
         $invoice->setCreatedBy($user);
 
@@ -61,6 +62,7 @@ class InvoiceManager
         $invoiceDTO->timeOfSupply = $invoice->getTimeOfSupply();
         $invoiceDTO->timeOfSupplyEnd = $invoice->getTimeOfSupplyEnd();
         $invoiceDTO->creditPeriod = $invoice->getCreditPeriod();
+        $invoiceDTO->paid = $invoice->getPaid();
 
         foreach ($invoice->getLineItems() as $lineItem) {
             $invoiceDTO->lineItems[] = $this->invoiceLineItemManager->getEdit($lineItem);
@@ -82,6 +84,7 @@ class InvoiceManager
         $invoice->setTimeOfSupply($invoiceDTO->timeOfSupply);
         $invoice->setTimeOfSupplyEnd($invoiceDTO->timeOfSupplyEnd);
         $invoice->setCreditPeriod($invoiceDTO->creditPeriod);
+        $invoice->setPaid($invoiceDTO->paid);
         $invoice->setUpdated(new \DateTime());
         $invoice->setUpdatedBy($user);
 

@@ -62,4 +62,9 @@ class InvoiceDTO
      * @Assert\Valid()
      */
     public $lineItems;
+
+    /**
+     * @var \DateTime|null
+     */
+    public $paid;
 }
