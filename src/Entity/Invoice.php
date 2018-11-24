@@ -234,4 +234,20 @@ class Invoice
     {
         return $this->lineItems;
     }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getPaid(): ?\DateTime
+    {
+        return $this->paid;
+    }
+
+    /**
+     * @param \DateTime|null $paid
+     */
+    public function setPaid(?\DateTime $paid): void
+    {
+        $this->paid = $paid;
+    }
 }
