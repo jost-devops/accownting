@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block pageTitle %}Manage Invoices{% endblock %}
+{% block pageTitle %}{% trans %}Manage Invoices{% endtrans %}{% endblock %}
 
 {% block body %}
 <section class="content">
@@ -8,40 +8,40 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Manage Invoices</h3>
+                    <h3 class="card-title">{% trans %}Manage Invoices{% endtrans %}</h3>
                 </div>
                 <div class="card-body">
                     <div class="container-fluid mb-3">
                         <div class="text-right">
-                            <a href="{{ path('app_invoice_add') }}" class="btn btn-primary">New Invoice</a>
+                            <a href="{{ path('app_invoice_add') }}" class="btn btn-primary">{% trans %}New Invoice{% endtrans %}</a>
                         </div>
                     </div>
 
                     <table class="table table-sm table-bordered table-striped table-hover invoice--index--table-invoices">
                         <thead>
                         <tr>
-                            <th>No.</th>
-                            <th>Date</th>
-                            <th>Company</th>
-                            <th>Customer</th>
-                            <th>Subject</th>
-                            <th>Total Price</th>
-                            <th>Paid</th>
-                            <th>Actions</th>
+                            <th>{% trans %}No.{% endtrans %}</th>
+                            <th>{% trans %}Date{% endtrans %}</th>
+                            <th>{% trans %}Company{% endtrans %}</th>
+                            <th>{% trans %}Customer{% endtrans %}</th>
+                            <th>{% trans %}Subject{% endtrans %}</th>
+                            <th>{% trans %}Total Price{% endtrans %}</th>
+                            <th>{% trans %}Paid{% endtrans %}</th>
+                            <th>{% trans %}Actions{% endtrans %}</th>
                         </tr>
                         </thead>
                         <tbody>
                         </tbody>
                         <tfoot>
                         <tr>
-                            <th>No.</th>
-                            <th>Date</th>
-                            <th>Company</th>
-                            <th>Customer</th>
-                            <th>Subject</th>
-                            <th>Total Price</th>
-                            <th>Paid</th>
-                            <th>Actions</th>
+                            <th>{% trans %}No.{% endtrans %}</th>
+                            <th>{% trans %}Date{% endtrans %}</th>
+                            <th>{% trans %}Company{% endtrans %}</th>
+                            <th>{% trans %}Customer{% endtrans %}</th>
+                            <th>{% trans %}Subject{% endtrans %}</th>
+                            <th>{% trans %}Total Price{% endtrans %}</th>
+                            <th>{% trans %}Paid{% endtrans %}</th>
+                            <th>{% trans %}Actions{% endtrans %}</th>
                         </tr>
                         </tfoot>
                     </table>

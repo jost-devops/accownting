@@ -71,7 +71,7 @@ class VatRateController extends Controller
         }
 
         return $this->render('vat-rate/form.html.twig', [
-            'title' => 'Add Unit',
+            'title' => 'Add VAT Rate',
             'form' => $form->createView(),
         ]);
     }

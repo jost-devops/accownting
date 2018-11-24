@@ -9,18 +9,18 @@
         </div>
         <div class="card">
             <div class="card-body login-card-body">
-                <p class="login-box-msg">Sign in to start your session</p>
+                <p class="login-box-msg">{% trans %}Sign in to start your session{% endtrans %}</p>
 
                 {% if error %}
                     <div class="alert alert-danger">
-                        {{ error.message }}
+                        {{ error.message|trans }}
                     </div>
                 {% endif %}
 
                 {% for label, messages in app.flashes %}
                     {% for message in messages %}
                         <div class="alert alert-{{ label }}">
-                            {{ message }}
+                            {{ message|trans }}
                         </div>
                     {% endfor %}
                 {% endfor %}

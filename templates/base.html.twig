@@ -6,6 +6,8 @@
     {% block stylesheets %}
         <link rel="stylesheet" href="{{ asset('build/app.css') }}">
     {% endblock %}
+
+    {% include "_partials/translations.html.twig" %}
 </head>
 <body class="{% block bodyClass %}hold-transition sidebar-mini route__{{ app.request.attributes.get("_route") }} sidebar-collapse{% endblock %}">
 {% block main %}

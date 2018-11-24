@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block pageTitle %}{{ title }}{% endblock %}
+{% block pageTitle %}{{ title|trans }}{% endblock %}
 
 {% block body %}
 <section class="content">
@@ -39,13 +39,13 @@
                     <table class="line-item-table table table-bordered table-striped table-hover">
                         <thead>
                         <tr>
-                            <th>Pos</th>
-                            <th>Title / Description</th>
-                            <th>Amount</th>
-                            <th>Unit</th>
-                            <th>Single Price</th>
-                            <th>VAT Rate</th>
-                            <th>Total</th>
+                            <th>{% trans %}Pos{% endtrans %}</th>
+                            <th>{% trans %}Title / Description{% endtrans %}</th>
+                            <th>{% trans %}Amount{% endtrans %}</th>
+                            <th>{% trans %}Unit{% endtrans %}</th>
+                            <th>{% trans %}Single Price{% endtrans %}</th>
+                            <th>{% trans %}VAT Rate{% endtrans %}</th>
+                            <th>{% trans %}Total{% endtrans %}</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -62,8 +62,8 @@
                             <td>{{ form_row(lineItem.priceSingle, {'attr': {'class': 'line-item--price-single'}}) }}</td>
                             <td>{{ form_row(lineItem.vatRate, {'attr': {'class': 'line-item--vat-rate'}}) }}</td>
                             <td class="text-right">
-                                <small>(Net)</small> <span class="line-item--total-net-price"></span><br>
-                                <small>(Gross)</small> <span class="line-item--total-gross-price"></span>
+                                <small>({% trans %}Net{% endtrans %})</small> <span class="line-item--total-net-price"></span><br>
+                                <small>({% trans %}Gross{% endtrans %})</small> <span class="line-item--total-gross-price"></span>
                             </td>
                             <td>
                                 <button class="btn btn-danger btn-remove-line-item">
@@ -83,8 +83,8 @@
                             <td>{{ form_row(form.lineItems.vars.prototype.priceSingle, {'attr': {'class': 'line-item--price-single'}}) }}</td>
                             <td>{{ form_row(form.lineItems.vars.prototype.vatRate, {'attr': {'class': 'line-item--vat-rate'}}) }}</td>
                             <td class="text-right">
-                                <small>(Net)</small> <span class="line-item--total-net-price"></span><br>
-                                <small>(Gross)</small> <span class="line-item--total-gross-price"></span>
+                                <small>({% trans %}Net{% endtrans %})</small> <span class="line-item--total-net-price"></span><br>
+                                <small>({% trans %}Gross{% endtrans %})</small> <span class="line-item--total-gross-price"></span>
                             </td>
                             <td>
                                 <button class="btn btn-danger btn-remove-line-item">
@@ -96,12 +96,12 @@
                         <tfoot>
                         <tr>
                             <td colspan="8" class="text-right">
-                                <button class="btn btn-primary btn-add-line-item"><i class="fa fa-plus"></i> Add Item</button>
+                                <button class="btn btn-primary btn-add-line-item"><i class="fa fa-plus"></i> {% trans %}Add Item{% endtrans %}</button>
                             </td>
                         </tr>
                         <tr>
                             <td colspan="6" class="text-right">
-                                Total Net:
+                                {% trans %}Total Net{% endtrans %}:
                             </td>
                             <td colspan="3" class="text-right">
                                 <span class="total-net"></span>
@@ -109,7 +109,7 @@
                         </tr>
                         <tr>
                             <td colspan="6" class="text-right">
-                                Taxes:
+                                {% trans %}Taxes{% endtrans %}:
                             </td>
                             <td colspan="3" class="text-right">
                                 <span class="total-taxes"></span>
@@ -117,7 +117,7 @@
                         </tr>
                         <tr>
                             <td colspan="6" class="text-right">
-                                <strong>Total:</strong>
+                                <strong>{% trans %}Total Gross{% endtrans %}:</strong>
                             </td>
                             <td colspan="3" class="text-right">
                                 <strong><span class="total-gross"></span></strong>

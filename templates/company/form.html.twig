@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block pageTitle %}{{ title }}{% endblock %}
+{% block pageTitle %}{{ title|trans }}{% endblock %}
 
 {% block body %}
 <section class="content">
@@ -9,7 +9,7 @@
         <div class="col-12 col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">General Information</h4>
+                    <h4 class="card-title">{% trans %}General Information{% endtrans %}</h4>
                 </div>
                 <div class="card-body">
                     {{ form_row(form.name) }}
@@ -28,7 +28,7 @@
         <div class="col-12 col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h4 class="card-title">Legal Information, Bank & Logo</h4>
+                    <h4 class="card-title">{% trans %}Legal Information, Bank & Logo{% endtrans %}</h4>
                 </div>
                 <div class="card-body">
                     {{ form_row(form.vatNumber) }}
@@ -43,11 +43,11 @@
                     {{ form_row(form.logo) }}
 
                     <div>
-                        <label>Current Logo:</label>
+                        <label>{% trans %}Current Logo{% endtrans %}:</label>
                         {% if company is defined and company.logo is not null %}
                         <img class="img-fluid" src="{{ path('app_company_logo', {id: company.id}) }}" />
                         {% else %}
-                        <p>No logo uploaded.</p>
+                        <p>{% trans %}No logo uploaded.{% endtrans %}</p>
                         {% endif %}
                     </div>
                 </div>
