@@ -215,7 +215,7 @@ mpdf-->
                     {% endif %}
                 </td>
                 <td class="number">
-                    {{ lineItem.amount }} {{ lineItem.unit.name }}
+                    {{ lineItem.amount | number_format }} {{ lineItem.unit.name }}
                 </td>
                 <td class="number">
                     {{ lineItem.priceSingle | number_format }} EUR
