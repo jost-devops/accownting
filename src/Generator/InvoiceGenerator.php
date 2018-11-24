@@ -33,7 +33,7 @@ class InvoiceGenerator
             'tempDir' => '/tmp',
         ]);
 
-        $html = $this->twig->render('pdf/invoice.html.twig', [
+        $html = $this->twig->render('pdf/invoice.' . $invoice->getCountry() . '.html.twig', [
             'invoice' => $invoice,
         ]);
 

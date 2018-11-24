@@ -7,6 +7,7 @@ use App\Entity\Company;
 use App\Entity\Customer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -17,6 +18,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class InvoiceType extends AbstractType
 {
+    /**
+     * @var array
+     */
+    private $countries;
+
+    public function __construct(array $countries)
+    {
+        $this->countries = $countries;
+    }
+
     /**
      * @SuppressWarnings("unused")
      */
@@ -33,6 +44,11 @@ class InvoiceType extends AbstractType
                 'class' => Customer::class,
                 'choice_label' => 'name',
                 'label' => 'Customer',
+                'required' => true,
+            ])
+            ->add('country', ChoiceType::class, [
+                'choices' => array_flip($this->countries),
+                'label' => 'Country',
                 'required' => true,
             ])
             ->add('invoiceNumber', TextType::class, [

@@ -31,6 +31,7 @@ class InvoiceManager
         $invoice = new Invoice();
         $invoice->setCompany($invoiceDTO->company);
         $invoice->setCustomer($invoiceDTO->customer);
+        $invoice->setCountry($invoiceDTO->country);
         $invoice->setInvoiceNumber($invoiceDTO->invoiceNumber);
         $invoice->setSubject($invoiceDTO->subject);
         $invoice->setInvoiceDate($invoiceDTO->invoiceDate);
@@ -56,6 +57,7 @@ class InvoiceManager
         $invoiceDTO = new InvoiceDTO();
         $invoiceDTO->company = $invoice->getCompany();
         $invoiceDTO->customer = $invoice->getCustomer();
+        $invoiceDTO->country = $invoice->getCountry();
         $invoiceDTO->invoiceNumber = $invoice->getInvoiceNumber();
         $invoiceDTO->subject = $invoice->getSubject();
         $invoiceDTO->invoiceDate = $invoice->getInvoiceDate();
@@ -78,6 +80,7 @@ class InvoiceManager
     ): Invoice {
         $invoice->setCompany($invoiceDTO->company);
         $invoice->setCustomer($invoiceDTO->customer);
+        $invoice->setCountry($invoiceDTO->country);
         $invoice->setInvoiceNumber($invoiceDTO->invoiceNumber);
         $invoice->setSubject($invoiceDTO->subject);
         $invoice->setInvoiceDate($invoiceDTO->invoiceDate);

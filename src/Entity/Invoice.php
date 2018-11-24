@@ -92,6 +92,13 @@ class Invoice
     private $paid;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", options={"default": "de"})
+     */
+    private $country;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -249,6 +256,22 @@ class Invoice
     public function setPaid(?\DateTime $paid): void
     {
         $this->paid = $paid;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountry(): string
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param string $country
+     */
+    public function setCountry(string $country): void
+    {
+        $this->country = $country;
     }
 
     public function getTotalNetPrice(): float

@@ -67,4 +67,8 @@ class InvoiceDTO
      * @var \DateTime|null
      */
     public $paid;
+    /**
+     * @var string
+     */
+    public $country;
 }
