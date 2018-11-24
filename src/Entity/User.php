@@ -12,6 +12,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
+    use CreatedTrait, UpdatedTrait;
+
     /**
      * @var int
      *
@@ -91,7 +93,7 @@ class User implements UserInterface
     }
 
     /**
-     * @return null|string
+     * @return string|null
      */
     public function getName(): ?string
     {
@@ -99,7 +101,7 @@ class User implements UserInterface
     }
 
     /**
-     * @param null|string $name
+     * @param string|null $name
      */
     public function setName(?string $name): void
     {

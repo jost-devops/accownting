@@ -50,6 +50,7 @@ class AddUserCommand extends Command
         $user = new User();
         $user->setEmail($email);
         $user->setPassword($this->passwordEncoder->encodePassword($user, $password));
+        $user->setCreated(new \DateTime());
 
         $this->entityManager->persist($user);
         $this->entityManager->flush();
