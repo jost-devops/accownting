@@ -116,6 +116,13 @@ class Company
      *
      * @ORM\Column(type="string", nullable=true)
      */
+    private $titleOfManagingDirector;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
     private $managingDirector;
 
     /**
@@ -372,6 +379,22 @@ class Company
     /**
      * @return string|null
      */
+    public function getTitleOfManagingDirector(): ?string
+    {
+        return $this->titleOfManagingDirector;
+    }
+
+    /**
+     * @param string|null $titleOfManagingDirector
+     */
+    public function setTitleOfManagingDirector(?string $titleOfManagingDirector): void
+    {
+        $this->titleOfManagingDirector = $titleOfManagingDirector;
+    }
+
+    /**
+     * @return string|null
+     */
     public function getManagingDirector(): ?string
     {
         return $this->managingDirector;
@@ -469,5 +492,10 @@ class Company
     public function setLogoMime(?string $logoMime): void
     {
         $this->logoMime = $logoMime;
+    }
+
+    public function getLogoEncoded(): string
+    {
+        return base64_encode($this->getLogo());
     }
 }

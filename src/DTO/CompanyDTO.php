@@ -79,6 +79,11 @@ class CompanyDTO
     /**
      * @var string|null
      */
+    public $titleOfManagingDirector;
+
+    /**
+     * @var string|null
+     */
     public $managingDirector;
 
     /**

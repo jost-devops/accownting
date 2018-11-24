@@ -25,6 +25,10 @@ class CustomerType extends AbstractType
                 'label' => 'Company',
                 'required' => true,
             ])
+            ->add('customerNumber', TextType::class, [
+                'label' => 'Customer Number',
+                'required' => true,
+            ])
             ->add('name', TextType::class, [
                 'label' => 'Name',
                 'required' => true,
@@ -47,6 +51,18 @@ class CustomerType extends AbstractType
             ])
             ->add('country', TextType::class, [
                 'label' => 'Country',
+                'required' => false,
+            ])
+            ->add('salutation', TextType::class, [
+                'label' => 'Salutation',
+                'required' => false,
+            ])
+            ->add('firstName', TextType::class, [
+                'label' => 'First Name',
+                'required' => false,
+            ])
+            ->add('lastName', TextType::class, [
+                'label' => 'Last Name',
                 'required' => false,
             ])
             ->add('submit', SubmitType::class, [

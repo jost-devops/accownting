@@ -72,6 +72,10 @@ class CompanyType extends AbstractType
                 'label' => 'Company Register ID',
                 'required' => false,
             ])
+            ->add('titleOfManagingDirector', TextType::class, [
+                'label' => 'Title of Managing Director',
+                'required' => false,
+            ])
             ->add('managingDirector', TextType::class, [
                 'label' => 'Managing Director',
                 'required' => false,

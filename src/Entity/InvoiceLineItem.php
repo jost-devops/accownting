@@ -188,4 +188,9 @@ class InvoiceLineItem
     {
         $this->vatRate = $vatRate;
     }
+
+    public function getPriceTotal(): float
+    {
+        return $this->getAmount() * $this->getPriceSingle();
+    }
 }

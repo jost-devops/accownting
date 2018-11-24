@@ -3,17 +3,13 @@
 namespace App\Controller;
 
 use App\DTO\InvoiceDTO;
-use App\DTO\VatRateDTO;
 use App\Entity\Invoice;
 use App\Entity\User;
-use App\Entity\VatRate;
 use App\Form\InvoiceSetPaidType;
 use App\Form\InvoiceType;
-use App\Form\VatRateType;
+use App\Generator\InvoiceGenerator;
 use App\Manager\InvoiceManager;
-use App\Manager\VatRateManager;
 use App\Normalizer\InvoiceNormalizer;
-use App\Normalizer\VatRateNormalizer;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -147,5 +143,21 @@ class InvoiceController extends Controller
         return $this->render('invoice/set-paid.html.twig', [
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @Route("/{id}/pdf")
+     */
+    public function pdfAction(
+        Invoice $invoice,
+        InvoiceGenerator $invoiceGenerator
+    ): Response {
+        $pdf = $invoiceGenerator->generate($invoice);
+
+        $response = new Response();
+        $response->headers->set('Content-Type', 'application/pdf');
+        $response->setContent($pdf);
+
+        return $response;
     }
 }

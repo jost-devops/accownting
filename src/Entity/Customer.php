@@ -35,6 +35,13 @@ class Customer
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    private $customerNumber;
+
+    /**
      * @var string|null
      *
      * @ORM\Column(type="string", nullable=true)
@@ -70,6 +77,27 @@ class Customer
     private $country;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $salutation;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $firstName;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $lastName;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -91,6 +119,22 @@ class Customer
     public function setCompany(?Company $company): void
     {
         $this->company = $company;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCustomerNumber(): string
+    {
+        return $this->customerNumber;
+    }
+
+    /**
+     * @param string $customerNumber
+     */
+    public function setCustomerNumber(string $customerNumber): void
+    {
+        $this->customerNumber = $customerNumber;
     }
 
     /**
@@ -187,5 +231,53 @@ class Customer
     public function setCountry(?string $country): void
     {
         $this->country = $country;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getSalutation(): ?string
+    {
+        return $this->salutation;
+    }
+
+    /**
+     * @param string|null $salutation
+     */
+    public function setSalutation(?string $salutation): void
+    {
+        $this->salutation = $salutation;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFirstName(): ?string
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * @param string|null $firstName
+     */
+    public function setFirstName(?string $firstName): void
+    {
+        $this->firstName = $firstName;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getLastName(): ?string
+    {
+        return $this->lastName;
+    }
+
+    /**
+     * @param string|null $lastName
+     */
+    public function setLastName(?string $lastName): void
+    {
+        $this->lastName = $lastName;
     }
 }

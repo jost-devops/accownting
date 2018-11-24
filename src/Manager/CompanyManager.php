@@ -35,6 +35,7 @@ class CompanyManager
         $company->setTaxNumber($companyDTO->taxNumber);
         $company->setDistrictCourt($companyDTO->districtCourt);
         $company->setCompanyRegisterId($companyDTO->companyRegisterId);
+        $company->setTitleOfManagingDirector($companyDTO->titleOfManagingDirector);
         $company->setManagingDirector($companyDTO->managingDirector);
         $company->setBankName($companyDTO->bankName);
         $company->setBankIban($companyDTO->bankIban);
@@ -66,6 +67,7 @@ class CompanyManager
         $companyDTO->taxNumber = $company->getTaxNumber();
         $companyDTO->districtCourt = $company->getDistrictCourt();
         $companyDTO->companyRegisterId = $company->getCompanyRegisterId();
+        $companyDTO->titleOfManagingDirector = $company->getTitleOfManagingDirector();
         $companyDTO->managingDirector = $company->getManagingDirector();
         $companyDTO->bankName = $company->getBankName();
         $companyDTO->bankIban = $company->getBankIban();
@@ -89,6 +91,7 @@ class CompanyManager
         $company->setTaxNumber($companyDTO->taxNumber);
         $company->setDistrictCourt($companyDTO->districtCourt);
         $company->setCompanyRegisterId($companyDTO->companyRegisterId);
+        $company->setTitleOfManagingDirector($companyDTO->titleOfManagingDirector);
         $company->setManagingDirector($companyDTO->managingDirector);
         $company->setBankName($companyDTO->bankName);
         $company->setBankIban($companyDTO->bankIban);

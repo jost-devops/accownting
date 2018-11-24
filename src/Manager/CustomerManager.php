@@ -23,12 +23,16 @@ class CustomerManager
     {
         $customer = new Customer();
         $customer->setCompany($customerDTO->company);
+        $customer->setCustomerNumber($customerDTO->customerNumber);
         $customer->setName($customerDTO->name);
         $customer->setAdditionalName($customerDTO->additionalName);
         $customer->setStreet($customerDTO->street);
         $customer->setZip($customerDTO->zip);
         $customer->setCity($customerDTO->city);
         $customer->setCountry($customerDTO->country);
+        $customer->setSalutation($customerDTO->salutation);
+        $customer->setFirstName($customerDTO->firstName);
+        $customer->setLastName($customerDTO->lastName);
         $customer->setCreated(new \DateTime());
         $customer->setCreatedBy($user);
 
@@ -42,12 +46,16 @@ class CustomerManager
     {
         $customerDTO = new CustomerDTO();
         $customerDTO->company = $customer->getCompany();
+        $customerDTO->customerNumber = $customer->getCustomerNumber();
         $customerDTO->name = $customer->getName();
         $customerDTO->additionalName = $customer->getAdditionalName();
         $customerDTO->street = $customer->getStreet();
         $customerDTO->zip = $customer->getZip();
         $customerDTO->city = $customer->getCity();
         $customerDTO->country = $customer->getCountry();
+        $customerDTO->salutation = $customer->getSalutation();
+        $customerDTO->firstName = $customer->getFirstName();
+        $customerDTO->lastName = $customer->getLastName();
 
         return $customerDTO;
     }
@@ -55,12 +63,16 @@ class CustomerManager
     public function edit(Customer $customer, CustomerDTO $customerDTO, User $user): Customer
     {
         $customer->setCompany($customerDTO->company);
+        $customer->setCustomerNumber($customerDTO->customerNumber);
         $customer->setName($customerDTO->name);
         $customer->setAdditionalName($customerDTO->additionalName);
         $customer->setStreet($customerDTO->street);
         $customer->setZip($customerDTO->zip);
         $customer->setCity($customerDTO->city);
         $customer->setCountry($customerDTO->country);
+        $customer->setSalutation($customerDTO->salutation);
+        $customer->setFirstName($customerDTO->firstName);
+        $customer->setLastName($customerDTO->lastName);
         $customer->setUpdated(new \DateTime());
         $customer->setUpdatedBy($user);
 

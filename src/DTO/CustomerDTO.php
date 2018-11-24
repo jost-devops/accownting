@@ -19,6 +19,11 @@ class CustomerDTO
     /**
      * @var string
      */
+    public $customerNumber;
+
+    /**
+     * @var string
+     */
     public $name;
 
     /**
@@ -45,4 +50,19 @@ class CustomerDTO
      * @var string|null
      */
     public $country;
+
+    /**
+     * @var string|null
+     */
+    public $salutation;
+
+    /**
+     * @var string|null
+     */
+    public $firstName;
+
+    /**
+     * @var string|null
+     */
+    public $lastName;
 }

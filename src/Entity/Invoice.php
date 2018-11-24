@@ -262,6 +262,23 @@ class Invoice
         return $netPrice;
     }
 
+    public function getTotalTaxes(): float
+    {
+        $taxes = 0;
+
+        foreach ($this->getLineItems() as $lineItem) {
+            $multiplicator = 0;
+
+            if ($lineItem->getVatRate() !== null) {
+                $multiplicator += $lineItem->getVatRate()->getRate() / 100;
+            }
+
+            $taxes += $lineItem->getAmount() * ($lineItem->getPriceSingle() * $multiplicator);
+        }
+
+        return $taxes;
+    }
+
     public function getTotalGrossPrice(): float
     {
         $grossPrice = 0;
@@ -277,5 +294,35 @@ class Invoice
         }
 
         return $grossPrice;
+    }
+
+    public function getTaxesByRate(): array
+    {
+        $taxes = [];
+
+        foreach ($this->getLineItems() as $lineItem) {
+            if (!isset($taxes[$lineItem->getVatRate()->getRate()])) {
+                $taxes[$lineItem->getVatRate()->getRate()] = 0;
+            }
+
+            $multiplicator = 0;
+
+            if ($lineItem->getVatRate() !== null) {
+                $multiplicator += $lineItem->getVatRate()->getRate() / 100;
+            }
+
+            $taxes[$lineItem->getVatRate()->getRate()] +=
+                $lineItem->getAmount() * ($lineItem->getPriceSingle() * $multiplicator);
+        }
+
+        uksort($taxes, function($a, $b) {
+            if ($a === $b) {
+                return 0;
+            }
+
+            return ($a < $b) ? -1 : 1;
+        });
+
+        return $taxes;
     }
 }
