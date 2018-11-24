@@ -10,3 +10,4 @@ require('admin-lte/plugins/datatables/dataTables.bootstrap4');
 require('moment');
 
 require('./_includes/companies');
+require('./_includes/users');
