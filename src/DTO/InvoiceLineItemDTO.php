@@ -28,7 +28,7 @@ class InvoiceLineItemDTO
     public $amount;
 
     /**
-     * @var Unit
+     * @var Unit|null
      */
     public $unit;
 
@@ -38,7 +38,7 @@ class InvoiceLineItemDTO
     public $priceSingle;
 
     /**
-     * @var VatRate
+     * @var VatRate|null
      */
     public $vatRate;
 }

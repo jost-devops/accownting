@@ -9,12 +9,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 class InvoiceDTO
 {
     /**
-     * @var Company
+     * @var Company|null
      */
     public $company;
 
     /**
-     * @var Customer
+     * @var Customer|null
      */
     public $customer;
 
