@@ -31,8 +31,8 @@ $(function() {
             for (var i = 0; i < $trs.length; i++) {
                 let $tr = $trs.eq(i);
 
-                let amount = parseFloat($tr.find('.line-item--amount').val()) || 0;
-                let priceSingle = parseFloat($tr.find('.line-item--price-single').val()) || 0;
+                let amount = parseFloat($tr.find('.line-item--amount').val().replace(',', '.')) || 0;
+                let priceSingle = parseFloat($tr.find('.line-item--price-single').val().replace(',', '.')) || 0;
                 let vatRate = parseInt($tr.find('.line-item--vat-rate option:selected').data('rate')) || 0;
 
                 let netPrice = (Math.round((amount * priceSingle * 100))  / 100);

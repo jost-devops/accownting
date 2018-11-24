@@ -42,9 +42,9 @@ class InvoiceLineItem
     private $description;
 
     /**
-     * @var int
+     * @var float
      *
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="float")
      */
     private $amount;
 
@@ -126,17 +126,17 @@ class InvoiceLineItem
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getAmount(): int
+    public function getAmount(): float
     {
         return $this->amount;
     }
 
     /**
-     * @param int $amount
+     * @param float $amount
      */
-    public function setAmount(int $amount): void
+    public function setAmount(float $amount): void
     {
         $this->amount = $amount;
     }

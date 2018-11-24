@@ -23,7 +23,7 @@ class InvoiceLineItemDTO
     public $description;
 
     /**
-     * @var int
+     * @var float
      */
     public $amount;
 

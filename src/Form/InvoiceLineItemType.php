@@ -2,21 +2,15 @@
 
 namespace App\Form;
 
-use App\DTO\CompanyDTO;
 use App\DTO\InvoiceLineItemDTO;
-use App\Entity\InvoiceLineItem;
 use App\Entity\Unit;
 use App\Entity\VatRate;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -36,7 +30,7 @@ class InvoiceLineItemType extends AbstractType
                 'label' => 'Description',
                 'required' => false,
             ])
-            ->add('amount', IntegerType::class, [
+            ->add('amount', NumberType::class, [
                 'label' => 'Amount',
                 'required' => true,
             ])
