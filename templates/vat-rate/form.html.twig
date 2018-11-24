@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block pageTitle %}{{ title }}{% endblock %}
+
+{% block body %}
+<section class="content">
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">{{ title }}</h4>
+                </div>
+                <div class="card-body">
+                    {{ form_row(form.name) }}
+                    {{ form_row(form.rate) }}
+                    {{ form_row(form.submit) }}
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+</section>
+{% endblock %}

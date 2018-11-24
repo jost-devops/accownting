@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block pageTitle %}Set Invoice Paid{% endblock %}
+
+{% block body %}
+<section class="content">
+    {{ form_start(form, {attr: {novalidate: 'novalidate'}}) }}
+
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    {{ form_row(form.paid) }}
+                    {{ form_row(form.submit) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{ form_end(form) }}
+</section>
+{% endblock %}

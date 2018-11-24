@@ -2,9 +2,7 @@
 
 namespace App\Manager;
 
-use App\DTO\CompanyDTO;
 use App\DTO\UserDTO;
-use App\Entity\Company;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;

@@ -11,7 +11,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class CompanyType extends AbstractType
 {
@@ -71,6 +70,10 @@ class CompanyType extends AbstractType
             ])
             ->add('companyRegisterId', TextType::class, [
                 'label' => 'Company Register ID',
+                'required' => false,
+            ])
+            ->add('titleOfManagingDirector', TextType::class, [
+                'label' => 'Title of Managing Director',
                 'required' => false,
             ])
             ->add('managingDirector', TextType::class, [
