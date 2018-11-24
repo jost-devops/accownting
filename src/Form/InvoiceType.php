@@ -15,6 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
@@ -26,9 +27,15 @@ class InvoiceType extends AbstractType
      */
     private $countries;
 
-    public function __construct(array $countries)
+    /**
+     * @var TranslatorInterface
+     */
+    private $translator;
+
+    public function __construct(array $countries, TranslatorInterface $translator)
     {
         $this->countries = $countries;
+        $this->translator = $translator;
     }
 
     /**
@@ -66,16 +73,19 @@ class InvoiceType extends AbstractType
                 'label' => 'Invoice Date',
                 'required' => true,
                 'widget' => 'single_text',
+                'format' => $this->translator->trans('date_format_form'),
             ])
             ->add('timeOfSupply', DateType::class, [
                 'label' => 'Time of Supply',
                 'required' => true,
                 'widget' => 'single_text',
+                'format' => $this->translator->trans('date_format_form'),
             ])
             ->add('timeOfSupplyEnd', DateType::class, [
                 'label' => 'End Time of Supply',
                 'required' => false,
                 'widget' => 'single_text',
+                'format' => $this->translator->trans('date_format_form'),
             ])
             ->add('creditPeriod', IntegerType::class, [
                 'label' => 'Credit Period',

@@ -73,7 +73,7 @@ class CompanyController extends Controller
         }
 
         return $this->render('company/form.html.twig', [
-            'title' => 'Add company',
+            'title' => 'Add Company',
             'form' => $form->createView(),
         ]);
     }
@@ -101,7 +101,7 @@ class CompanyController extends Controller
         }
 
         return $this->render('company/form.html.twig', [
-            'title' => 'Edit company',
+            'title' => 'Edit Company',
             'form' => $form->createView(),
             'company' => $company,
         ]);

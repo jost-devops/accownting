@@ -47,7 +47,7 @@ class InvoiceLineItemType extends AbstractType
             ->add('vatRate', EntityType::class, [
                 'class' => VatRate::class,
                 'choice_label' => 'name',
-                'label' => 'VAT',
+                'label' => 'VAT Rate',
                 'required' => true,
                 'choice_attr' => function (VatRate $choiceValue, $key, $value) {
                     return ['data-rate' => $choiceValue->getRate()];

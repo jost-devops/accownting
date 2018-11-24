@@ -14,14 +14,14 @@ $(function() {
                 {
                     "data": "totalNetPrice",
                     "render": function (data, type, row) {
-                        return '<small>(Net)</small> ' + data + ' €<br><small>(Gross)</small> ' + row.totalGrossPrice + ' €';
+                        return '<small>(' + translations['Net'] + ')</small> ' + data + ' €<br><small>(' + translations['Gross'] + ')</small> ' + row.totalGrossPrice + ' €';
                     },
                     'className': 'text-right',
                 },
                 {
                     "data": "paid",
                     "render": function (data, type, row) {
-                        return (data !== null) ? '<span class="badge badge-success">' + data + '</span>' : '<span class="badge badge-danger">no</span>';
+                        return (data !== null) ? '<span class="badge badge-success">' + data + '</span>' : '<span class="badge badge-danger">' + translations.no + '</span>';
                     }
                 },
                 {

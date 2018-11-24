@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block pageTitle %}Manage VAT Rates{% endblock %}
+{% block pageTitle %}{% trans %}Manage VAT Rates{% endtrans %}{% endblock %}
 
 {% block body %}
 <section class="content">
@@ -8,32 +8,32 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Manage VAT Rates</h3>
+                    <h3 class="card-title">{% trans %}Manage VAT Rates{% endtrans %}</h3>
                 </div>
                 <div class="card-body">
                     <div class="container-fluid mb-3">
                         <div class="text-right">
-                            <a href="{{ path('app_vatrate_add') }}" class="btn btn-primary">Add VAT Rate</a>
+                            <a href="{{ path('app_vatrate_add') }}" class="btn btn-primary">{% trans %}Add VAT Rate{% endtrans %}</a>
                         </div>
                     </div>
 
                     <table class="table table-sm table-bordered table-striped table-hover vat-rate--index--table-vat-rates">
                         <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Rate</th>
-                            <th>Actions</th>
+                            <th>{% trans %}ID{% endtrans %}</th>
+                            <th>{% trans %}Name{% endtrans %}</th>
+                            <th>{% trans %}Rate{% endtrans %}</th>
+                            <th>{% trans %}Actions{% endtrans %}</th>
                         </tr>
                         </thead>
                         <tbody>
                         </tbody>
                         <tfoot>
                         <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Rate</th>
-                            <th>Actions</th>
+                            <th>{% trans %}ID{% endtrans %}</th>
+                            <th>{% trans %}Name{% endtrans %}</th>
+                            <th>{% trans %}Rate{% endtrans %}</th>
+                            <th>{% trans %}Actions{% endtrans %}</th>
                         </tr>
                         </tfoot>
                     </table>

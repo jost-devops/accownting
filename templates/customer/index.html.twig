@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block pageTitle %}Manage Customers{% endblock %}
+{% block pageTitle %}{% trans %}Manage Customers{% endtrans %}{% endblock %}
 
 {% block body %}
 <section class="content">
@@ -8,30 +8,30 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Manage Customers</h3>
+                    <h3 class="card-title">{% trans %}Manage Customers{% endtrans %}</h3>
                 </div>
                 <div class="card-body">
                     <div class="container-fluid mb-3">
                         <div class="text-right">
-                            <a href="{{ path('app_customer_add') }}" class="btn btn-primary">Add Customer</a>
+                            <a href="{{ path('app_customer_add') }}" class="btn btn-primary">{% trans %}Add Customer{% endtrans %}</a>
                         </div>
                     </div>
 
                     <table class="table table-sm table-bordered table-striped table-hover customer--index--table-customers">
                         <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Actions</th>
+                            <th>{% trans %}ID{% endtrans %}</th>
+                            <th>{% trans %}Name{% endtrans %}</th>
+                            <th>{% trans %}Actions{% endtrans %}</th>
                         </tr>
                         </thead>
                         <tbody>
                         </tbody>
                         <tfoot>
                         <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Actions</th>
+                            <th>{% trans %}ID{% endtrans %}</th>
+                            <th>{% trans %}Name{% endtrans %}</th>
+                            <th>{% trans %}Actions{% endtrans %}</th>
                         </tr>
                         </tfoot>
                     </table>
