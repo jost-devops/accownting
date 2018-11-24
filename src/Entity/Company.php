@@ -494,8 +494,8 @@ class Company
         $this->logoMime = $logoMime;
     }
 
-    public function getLogoEncoded(): string
+    public function getLogoEncoded(): ?string
     {
-        return base64_encode($this->getLogo());
+        return ($this->getLogo() !== null) ? base64_encode($this->getLogo()) : null;
     }
 }

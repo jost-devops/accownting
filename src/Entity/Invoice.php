@@ -338,7 +338,7 @@ class Invoice
                 $lineItem->getAmount() * ($lineItem->getPriceSingle() * $multiplicator);
         }
 
-        uksort($taxes, function($a, $b) {
+        uksort($taxes, function ($a, $b) {
             if ($a === $b) {
                 return 0;
             }
