@@ -21,7 +21,7 @@
                         </div>
                         <div class="col-6">
                             <div class="text-right">
-                                <a href="{{ path('app_timetracking_add') }}" class="btn btn-primary">{% trans %}Add Time Track Item{% endtrans %}</a>
+                                <a href="{{ path('app_timetracking_add') }}?moment={{ filterForm.vars.value.date|date('Y-m-d') }}" class="btn btn-primary">{% trans %}Add Time Track Item{% endtrans %}</a>
                             </div>
                         </div>
                     </div>
