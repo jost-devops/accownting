@@ -69,7 +69,9 @@ class TimeTrackingController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $timeTrackItemManager->add($timeTrackItemDTO, $user);
 
-            $session->set('lastProject', $timeTrackItemDTO->project->getId());
+            if ($timeTrackItemDTO->project !== null) {
+                $session->set('lastProject', $timeTrackItemDTO->project->getId());
+            }
 
             return $this->redirectToRoute('app_timetracking_index');
         }
