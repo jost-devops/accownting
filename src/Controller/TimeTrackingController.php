@@ -55,8 +55,7 @@ class TimeTrackingController extends Controller
      */
     public function addAction(
         Request $request,
-        TimeTrackItemManager $timeTrackItemManager,
-        SessionInterface $session
+        TimeTrackItemManager $timeTrackItemManager
     ): Response {
         /** @var User $user */
         $user = $this->getUser();
@@ -68,10 +67,6 @@ class TimeTrackingController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $timeTrackItemManager->add($timeTrackItemDTO, $user);
-
-            if ($timeTrackItemDTO->project !== null) {
-                $session->set('lastProject', $timeTrackItemDTO->project->getId());
-            }
 
             return $this->redirectToRoute('app_timetracking_index');
         }

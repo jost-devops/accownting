@@ -28,24 +28,10 @@ class TimeTrackItemType extends AbstractType
      */
     private $translator;
 
-    /**
-     * @var SessionInterface
-     */
-    private $session;
-
-    /**
-     * @var EntityManagerInterface
-     */
-    private $entityManager;
-
     public function __construct(
-        TranslatorInterface $translator,
-        SessionInterface $session,
-        EntityManagerInterface $entityManager
+        TranslatorInterface $translator
     ) {
         $this->translator = $translator;
-        $this->session = $session;
-        $this->entityManager = $entityManager;
     }
 
     /**
@@ -72,9 +58,6 @@ class TimeTrackItemType extends AbstractType
                 },
                 'label' => 'Project',
                 'required' => true,
-                'data' => ($this->session->get('lastProject') !== null)
-                    ? $this->entityManager->getReference(Project::class, $this->session->get('lastProject'))
-                    : null,
             ])
             ->add('moment', DateTimeType::class, [
                 'label' => 'Moment',
@@ -93,7 +76,6 @@ class TimeTrackItemType extends AbstractType
             ->add('chargeable', CheckboxType::class, [
                 'label' => 'Chargeable',
                 'required' => false,
-                'data' => true,
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Save',

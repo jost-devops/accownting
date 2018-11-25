@@ -34,7 +34,7 @@ class TimeTrackItemDTO
     /**
      * @var bool
      */
-    public $chargeable;
+    public $chargeable = true;
 
     public function __construct()
     {
