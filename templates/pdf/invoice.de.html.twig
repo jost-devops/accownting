@@ -148,7 +148,10 @@
                             <td width="24%">
                                 <p class="text-smaller text-muted">
                                     USt-ID: {{ invoice.company.vatNumber }}<br />
-                                    Steuer-Nr.: {{ invoice.company.taxNumber }}<br />
+                                    {% if invoice.company.taxNumber %}Steuer-Nr.: {{ invoice.company.taxNumber }}<br />{% endif %}
+                                    {% if invoice.company.districtCourt %}{{ invoice.company.districtCourt }}, {% endif %}
+                                    {% if invoice.company.companyRegisterId %}{{ invoice.company.companyRegisterId }}<br>{% endif %}
+
                                     {{ invoice.company.titleOfManagingDirector }}: {{ invoice.company.managingDirector }}
                                 </p>
                             </td>
