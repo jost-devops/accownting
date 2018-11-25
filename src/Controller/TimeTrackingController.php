@@ -65,7 +65,11 @@ class TimeTrackingController extends Controller
         $moment = $request->query->get('moment');
 
         if ($moment !== null) {
-            $timeTrackItemDTO->moment = \DateTime::createFromFormat('Y-m-d', $moment);
+            $moment = \DateTime::createFromFormat('Y-m-d', $moment);
+
+            if ($moment !== false) {
+                $timeTrackItemDTO->moment = $moment;
+            }
         }
 
         $form = $this->createForm(TimeTrackItemType::class, $timeTrackItemDTO);
