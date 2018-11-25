@@ -4,17 +4,16 @@ namespace App\Form;
 
 use App\DTO\TimeTrackItemDTO;
 use App\Entity\Project;
-use Doctrine\ORM\EntityManagerInterface;
+use App\Entity\User;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Translation\TranslatorInterface;
 
@@ -59,11 +58,22 @@ class TimeTrackItemType extends AbstractType
                 'label' => 'Project',
                 'required' => true,
             ])
-            ->add('moment', DateTimeType::class, [
+            ->add('person', EntityType::class, [
+                'class' => User::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->orderBy('u.lastUsed', 'DESC')
+                        ;
+                },
+                'choice_label' => 'name',
+                'label' => 'Person',
+                'required' => true,
+            ])
+            ->add('moment', DateType::class, [
                 'label' => 'Moment',
                 'required' => true,
                 'widget' => 'single_text',
-                'format' => $this->translator->trans('datetime_format_form'),
+                'format' => $this->translator->trans('date_format_form'),
             ])
             ->add('duration', NumberType::class, [
                 'label' => 'Duration',

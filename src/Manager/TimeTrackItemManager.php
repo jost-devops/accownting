@@ -23,6 +23,7 @@ class TimeTrackItemManager
     {
         $timeTrackItem = new TimeTrackItem();
         $timeTrackItem->setProject($timeTrackItemDTO->project);
+        $timeTrackItem->setPerson($timeTrackItemDTO->person);
         $timeTrackItem->setMoment($timeTrackItemDTO->moment);
         $timeTrackItem->setDuration($timeTrackItemDTO->duration);
         $timeTrackItem->setDescription($timeTrackItemDTO->description);
@@ -32,6 +33,10 @@ class TimeTrackItemManager
 
         if ($timeTrackItem->getProject() !== null) {
             $timeTrackItem->getProject()->setLastUsed(new \DateTime());
+        }
+
+        if ($timeTrackItem->getPerson() !== null) {
+            $timeTrackItem->getPerson()->setLastUsed(new \DateTime());
         }
 
         $this->entityManager->persist($timeTrackItem);
@@ -44,6 +49,7 @@ class TimeTrackItemManager
     {
         $timeTrackItemDTO = new TimeTrackItemDTO();
         $timeTrackItemDTO->project = $timeTrackItem->getProject();
+        $timeTrackItemDTO->person = $timeTrackItem->getPerson();
         $timeTrackItemDTO->moment = $timeTrackItem->getMoment();
         $timeTrackItemDTO->duration = $timeTrackItem->getDuration();
         $timeTrackItemDTO->description = $timeTrackItem->getDescription();
@@ -58,6 +64,7 @@ class TimeTrackItemManager
         User $user
     ): TimeTrackItem {
         $timeTrackItem->setProject($timeTrackItemDTO->project);
+        $timeTrackItem->setPerson($timeTrackItemDTO->person);
         $timeTrackItem->setMoment($timeTrackItemDTO->moment);
         $timeTrackItem->setDuration($timeTrackItemDTO->duration);
         $timeTrackItem->setDescription($timeTrackItemDTO->description);

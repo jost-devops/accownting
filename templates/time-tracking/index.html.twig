@@ -34,7 +34,7 @@
                             <th>{% trans %}Moment{% endtrans %}</th>
                             <th>{% trans %}Description{% endtrans %}</th>
                             <th>{% trans %}Duration{% endtrans %}</th>
-                            <th>{% trans %}Chargeable{% endtrans %}</th>
+                            <th>{% trans %}Person{% endtrans %}</th>
                             <th>{% trans %}Actions{% endtrans %}</th>
                         </tr>
                         </thead>
@@ -46,10 +46,18 @@
                                 {{ item.project.name }}<br>
                                 <small>{{ item.project.customer.name }}</small>
                             </td>
-                            <td>{{ item.moment|date('d.m.Y H:i') }}</td>
+                            <td>{{ item.moment|date('d.m.Y') }}</td>
                             <td>{{ item.description }}</td>
-                            <td class="text-right">{{ item.duration|number_format }}</td>
-                            <td>{{ (item.chargeable) ? 'yes'|trans : 'no'|trans }}</td>
+                            <td class="text-right">
+                                {% if not item.chargeable %}
+                                    ({{ item.duration|number_format }})
+                                {% else %}
+                                    {{ item.duration|number_format }}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if item.person is not null %}{{ item.person.name }}{% endif %}
+                            </td>
                             <td>
                                 <div class="btn-group">
                                     <a href="{{ path('app_timetracking_edit', {id: item.id}) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
@@ -68,7 +76,7 @@
                             <th>{% trans %}Moment{% endtrans %}</th>
                             <th>{% trans %}Description{% endtrans %}</th>
                             <th>{% trans %}Duration{% endtrans %}</th>
-                            <th>{% trans %}Chargeable{% endtrans %}</th>
+                            <th>{% trans %}Person{% endtrans %}</th>
                             <th>{% trans %}Actions{% endtrans %}</th>
                         </tr>
                         </tfoot>

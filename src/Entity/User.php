@@ -45,6 +45,13 @@ class User implements UserInterface
     private $name;
 
     /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $lastUsed;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -106,6 +113,22 @@ class User implements UserInterface
     public function setName(?string $name): void
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getLastUsed(): ?\DateTime
+    {
+        return $this->lastUsed;
+    }
+
+    /**
+     * @param \DateTime|null $lastUsed
+     */
+    public function setLastUsed(?\DateTime $lastUsed): void
+    {
+        $this->lastUsed = $lastUsed;
     }
 
     /**

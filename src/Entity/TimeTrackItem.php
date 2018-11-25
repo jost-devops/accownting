@@ -29,9 +29,16 @@ class TimeTrackItem
     private $project;
 
     /**
+     * @var User|null
+     *
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
+     */
+    private $person;
+
+    /**
      * @var \DateTime
      *
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $moment;
 
@@ -78,6 +85,22 @@ class TimeTrackItem
     public function setProject(?Project $project): void
     {
         $this->project = $project;
+    }
+
+    /**
+     * @return User|null
+     */
+    public function getPerson(): ?User
+    {
+        return $this->person;
+    }
+
+    /**
+     * @param User|null $person
+     */
+    public function setPerson(?User $person): void
+    {
+        $this->person = $person;
     }
 
     /**

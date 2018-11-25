@@ -3,6 +3,7 @@
 namespace App\DTO;
 
 use App\Entity\Project;
+use App\Entity\User;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class TimeTrackItemDTO
@@ -11,6 +12,11 @@ class TimeTrackItemDTO
      * @var Project|null
      */
     public $project;
+
+    /**
+     * @var User|null
+     */
+    public $person;
 
     /**
      * @var \DateTime
