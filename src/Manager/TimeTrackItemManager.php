@@ -30,6 +30,8 @@ class TimeTrackItemManager
         $timeTrackItem->setCreated(new \DateTime());
         $timeTrackItem->setCreatedBy($user);
 
+        $timeTrackItem->getProject()->setLastUsed(new \DateTime());
+
         $this->entityManager->persist($timeTrackItem);
         $this->entityManager->flush();
 

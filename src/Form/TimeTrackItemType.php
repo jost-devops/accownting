@@ -5,6 +5,7 @@ namespace App\Form;
 use App\DTO\TimeTrackItemDTO;
 use App\Entity\Project;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -55,6 +56,11 @@ class TimeTrackItemType extends AbstractType
         $builder
             ->add('project', EntityType::class, [
                 'class' => Project::class,
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('p')
+                        ->orderBy('p.lastUsed', 'DESC')
+                    ;
+                },
                 'choice_label' => function (Project $project) {
                     $label = $project->getName();
 

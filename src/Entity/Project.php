@@ -64,6 +64,13 @@ class Project
     private $timeTrackItems;
 
     /**
+     * @var \DateTime|null
+     *
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $lastUsed;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -157,5 +164,21 @@ class Project
     public function getTimeTrackItems()
     {
         return $this->timeTrackItems;
+    }
+
+    /**
+     * @return \DateTime|null
+     */
+    public function getLastUsed(): ?\DateTime
+    {
+        return $this->lastUsed;
+    }
+
+    /**
+     * @param \DateTime|null $lastUsed
+     */
+    public function setLastUsed(?\DateTime $lastUsed): void
+    {
+        $this->lastUsed = $lastUsed;
     }
 }
