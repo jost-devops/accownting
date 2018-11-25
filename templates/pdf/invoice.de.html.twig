@@ -130,7 +130,7 @@
                 <td>
                     <table>
                         <tr>
-                            <td width="20%">
+                            <td width="23%">
                                 <p class="text-smaller text-muted">
                                     {{ invoice.company.name }}<br />
                                     {% if invoice.company.additionalName %}{{ invoice.company.additionalName }}<br>{% endif %}
@@ -139,14 +139,14 @@
                                     {{ invoice.company.country }}
                                 </p>
                             </td>
-                            <td width="27%">
+                            <td width="25%">
                                 <p class="text-smaller text-muted">
                                     Tel: {{ invoice.company.phone }}<br />
                                     E-Mail: {{ invoice.company.email }}<br />
                                     {{ invoice.company.website }}
                                 </p>
                             </td>
-                            <td width="24%">
+                            <td width="25%">
                                 <p class="text-smaller text-muted">
                                     USt-ID: {{ invoice.company.vatNumber }}<br />
                                     {% if invoice.company.taxNumber %}Steuer-Nr.: {{ invoice.company.taxNumber }}<br />{% endif %}
@@ -156,7 +156,7 @@
                                     {{ invoice.company.titleOfManagingDirector }}: {{ invoice.company.managingDirector }}
                                 </p>
                             </td>
-                            <td width="28%">
+                            <td width="27%">
                                 <p class="text-smaller text-muted">
                                     {{ invoice.company.bankName }}<br />
                                     IBAN: {{ invoice.company.bankIban }}<br />
