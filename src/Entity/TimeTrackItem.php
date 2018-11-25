@@ -24,6 +24,7 @@ class TimeTrackItem
      * @var Project|null
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Project")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $project;
 

@@ -24,6 +24,7 @@ class InvoiceLineItem
      * @var Invoice|null
      *
      * @ORM\ManyToOne(targetEntity="App\Entity\Invoice")
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $invoice;
 
