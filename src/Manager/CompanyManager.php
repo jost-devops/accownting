@@ -23,6 +23,7 @@ class CompanyManager
     {
         $company = new Company();
         $company->setName($companyDTO->name);
+        $company->setAdditionalName($companyDTO->additionalName);
         $company->setStreet($companyDTO->street);
         $company->setZip($companyDTO->zip);
         $company->setCity($companyDTO->city);
@@ -55,6 +56,7 @@ class CompanyManager
     {
         $companyDTO = new CompanyDTO();
         $companyDTO->name = $company->getName();
+        $companyDTO->additionalName = $company->getAdditionalName();
         $companyDTO->street = $company->getStreet();
         $companyDTO->zip = $company->getZip();
         $companyDTO->city = $company->getCity();
@@ -79,6 +81,7 @@ class CompanyManager
     public function edit(Company $company, CompanyDTO $companyDTO, User $user): Company
     {
         $company->setName($companyDTO->name);
+        $company->setAdditionalName($companyDTO->additionalName);
         $company->setStreet($companyDTO->street);
         $company->setZip($companyDTO->zip);
         $company->setCity($companyDTO->city);

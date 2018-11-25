@@ -32,6 +32,13 @@ class Company
      *
      * @ORM\Column(type="string", nullable=true)
      */
+    private $additionalName;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", nullable=true)
+     */
     private $street;
 
     /**
@@ -182,6 +189,22 @@ class Company
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAdditionalName(): ?string
+    {
+        return $this->additionalName;
+    }
+
+    /**
+     * @param string|null $additionalName
+     */
+    public function setAdditionalName(?string $additionalName): void
+    {
+        $this->additionalName = $additionalName;
     }
 
     /**
