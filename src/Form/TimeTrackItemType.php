@@ -52,7 +52,6 @@ class TimeTrackItemType extends AbstractType
                 'required' => true,
                 'widget' => 'single_text',
                 'format' => $this->translator->trans('datetime_format_form'),
-                'data' => new \DateTime(),
             ])
             ->add('duration', NumberType::class, [
                 'label' => 'Duration',

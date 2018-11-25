@@ -35,4 +35,9 @@ class TimeTrackItemDTO
      * @var bool
      */
     public $chargeable;
+
+    public function __construct()
+    {
+        $this->moment = new \DateTime();
+    }
 }
