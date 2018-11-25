@@ -7,7 +7,12 @@ $(function() {
             "ajax": "/company/data",
             "columns": [
                 {"data": "id"},
-                {"data": "name"},
+                {
+                    "data": "name",
+                    "render": function (data, type, row) {
+                        return data + ' <small>' + row.additionalName + '</small>';
+                    },
+                },
                 {
                     "data": "id",
                     "render": function (data, type, row) {

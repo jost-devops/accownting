@@ -20,6 +20,7 @@ class CompanyNormalizer implements NormalizerInterface
         return [
             'id' => $object->getId(),
             'name' => $object->getName(),
+            'additionalName' => $object->getAdditionalName() ?: '',
         ];
     }
 
