@@ -17,7 +17,7 @@ $(function() {
                     "data": "id",
                     "render": function (data, type, row) {
                         return '<div class="btn-group"><a href="/company/' + data + '/edit" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>' +
-                            '<a href="/company/' + data + '/delete" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i></a></div>';
+                            '<a href="/company/' + data + '/delete" class="btn btn-danger btn-sm btn-delete"><i class="fa fa-remove"></i></a></div>';
                     },
                 },
             ],

@@ -9,6 +9,7 @@ require('datatables');
 require('admin-lte/plugins/datatables/dataTables.bootstrap4');
 require('moment');
 
+require('./_includes/delete');
 require('./_includes/companies');
 require('./_includes/users');
 require('./_includes/customer');

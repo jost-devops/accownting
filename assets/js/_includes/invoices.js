@@ -28,7 +28,7 @@ $(function() {
                     "data": "id",
                     "render": function (data, type, row) {
                         return '<div class="btn-group"><a href="/invoice/' + data + '/edit" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>' +
-                            '<a href="/invoice/' + data + '/delete" class="btn btn-danger btn-sm"><i class="fa fa-remove"></i></a>' +
+                            '<a href="/invoice/' + data + '/delete" class="btn btn-danger btn-sm btn-delete"><i class="fa fa-remove"></i></a>' +
                             '<a href="/invoice/' + data + '/pdf" class="btn btn-primary btn-sm" target="_blank"><i class="fa fa-eye"></i></a>' +
                             '<a href="/invoice/' + data + '/set-paid" class="btn btn-success btn-sm"><i class="fa fa-money"></i></a></div>';
                     },
