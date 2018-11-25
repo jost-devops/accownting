@@ -2,24 +2,19 @@
 
 namespace App\Controller;
 
-use App\DTO\ProjectDTO;
 use App\DTO\TimeTrackingFilterDTO;
 use App\DTO\TimeTrackItemDTO;
-use App\Entity\Project;
 use App\Entity\TimeTrackItem;
 use App\Entity\User;
-use App\Form\ProjectType;
 use App\Form\TimeTrackFilterType;
 use App\Form\TimeTrackItemType;
-use App\Manager\ProjectManager;
 use App\Manager\TimeTrackItemManager;
-use App\Normalizer\ProjectNormalizer;
 use App\Repository\TimeTrackingItemRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -60,7 +55,8 @@ class TimeTrackingController extends Controller
      */
     public function addAction(
         Request $request,
-        TimeTrackItemManager $timeTrackItemManager
+        TimeTrackItemManager $timeTrackItemManager,
+        SessionInterface $session
     ): Response {
         /** @var User $user */
         $user = $this->getUser();
@@ -72,6 +68,8 @@ class TimeTrackingController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $timeTrackItemManager->add($timeTrackItemDTO, $user);
+
+            $session->set('lastProject', $timeTrackItemDTO->project->getId());
 
             return $this->redirectToRoute('app_timetracking_index');
         }
