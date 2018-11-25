@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -54,6 +55,13 @@ class Project
      * @ORM\Column(type="float", nullable=true)
      */
     private $pricePerHour;
+
+    /**
+     * @var TimeTrackItem[]|Collection
+     *
+     * @ORM\OneToMany(targetEntity="App\Entity\TimeTrackItem", mappedBy="project")
+     */
+    private $timeTrackItems;
 
     /**
      * @return int
@@ -141,5 +149,13 @@ class Project
     public function setPricePerHour(?float $pricePerHour): void
     {
         $this->pricePerHour = $pricePerHour;
+    }
+
+    /**
+     * @return TimeTrackItem[]|Collection
+     */
+    public function getTimeTrackItems()
+    {
+        return $this->timeTrackItems;
     }
 }
