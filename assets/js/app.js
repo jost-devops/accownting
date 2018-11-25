@@ -16,3 +16,5 @@ require('./_includes/units');
 require('./_includes/vat-rates');
 require('./_includes/invoices');
 require('./_includes/invoice-form');
+require('./_includes/projects');
+require('./_includes/time-tracking');

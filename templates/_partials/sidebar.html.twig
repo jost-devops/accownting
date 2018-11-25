@@ -11,6 +11,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ path('app_timetracking_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_timetracking_~' %}active{% endif %}">
+                        <i class="nav-icon fa fa-clock-o"></i>
+                        <p>
+                            {% trans %}Time Tracking{% endtrans %}
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ path('app_invoice_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_invoice_~' %}active{% endif %}">
                         <i class="nav-icon fa fa-envelope"></i>
                         <p>
@@ -23,6 +31,14 @@
                         <i class="nav-icon fa fa-address-book"></i>
                         <p>
                             {% trans %}Customers{% endtrans %}
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ path('app_project_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_project_~' %}active{% endif %}">
+                        <i class="nav-icon fa fa-plane"></i>
+                        <p>
+                            {% trans %}Projects{% endtrans %}
                         </p>
                     </a>
                 </li>

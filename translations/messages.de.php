@@ -3,6 +3,7 @@
 return [
     'date_format' => 'd.m.Y',
     'date_format_form' => 'dd.MM.yyyy',
+    'datetime_format_form' => 'dd.MM.yyyy HH:mm',
     'Dashboard' => 'Dashboard',
     'Invoices' => 'Rechnungen',
     'Customers' => 'Kunden',
@@ -96,4 +97,7 @@ return [
     'Sign in to start your session' => 'Melden Sie sich an.',
     'Login' => 'Anmelden',
     'E-Mail or Password is wrong.' => 'Die E-Mail-Adresse oder das Passwort ist falsch.',
+    'Customer / Company' => 'Kunde / Firma',
+    'Budget' => 'Budget',
+    'Price per Hour' => 'Stundensatz',
 ];
