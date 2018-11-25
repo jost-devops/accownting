@@ -24,6 +24,10 @@ class CompanyType extends AbstractType
                 'label' => 'Name',
                 'required' => true,
             ])
+            ->add('additionalName', TextType::class, [
+                'label' => 'Additional Name',
+                'required' => false,
+            ])
             ->add('street', TextType::class, [
                 'label' => 'Street',
                 'required' => false,

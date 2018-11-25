@@ -19,6 +19,11 @@ class CompanyDTO
     /**
      * @var string|null
      */
+    public $additionalName;
+
+    /**
+     * @var string|null
+     */
     public $street;
 
     /**

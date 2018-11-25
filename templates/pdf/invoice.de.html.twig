@@ -133,6 +133,7 @@
                             <td width="20%">
                                 <p class="text-smaller text-muted">
                                     {{ invoice.company.name }}<br />
+                                    {% if invoice.company.additionalName %}{{ invoice.company.additionalName }}<br>{% endif %}
                                     {{ invoice.company.street }}<br />
                                     {{ invoice.company.zip }} {{ invoice.company.city }}<br />
                                     {{ invoice.company.country }}
