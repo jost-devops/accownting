@@ -45,7 +45,7 @@
                             </td>
                             <td>{{ item.moment|date('d.m.Y H:i') }}</td>
                             <td>{{ item.description }}</td>
-                            <td>{{ item.duration|number_format }}</td>
+                            <td class="text-right">{{ item.duration|number_format }}</td>
                             <td>{{ (item.chargeable) ? 'yes'|trans : 'no'|trans }}</td>
                             <td>
                                 <div class="btn-group">
