@@ -50,8 +50,8 @@ class TimeTrackItemType extends AbstractType
                 'choice_label' => function (Project $project) {
                     $label = $project->getName();
 
-                    if ($project->getCompany() !== null) {
-                        $label .= ', ' . $project->getCompany()->getName();
+                    if ($project->getCustomer() !== null) {
+                        $label .= ', ' . $project->getCustomer()->getName();
                     }
 
                     return $label;
