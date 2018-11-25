@@ -40,11 +40,7 @@ $(function() {
                                 bgClass = 'bg-danger';
                             }
 
-                            html += '<div class="progress progress-xs mb-3">' +
-                                '    <div class="progress-bar ' + bgClass + '" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ' + row.hoursUsage + '%">' +
-                                '    <span class="sr-only">' + row.hoursUsage + '% Complete (success)</span>' +
-                                '    </div>' +
-                                '    </div>';
+                            html += '<div class="progress progress-xl mb-2"><div class="progress-bar ' + bgClass + '" role="progressbar" aria-valuenow="' + row.hoursUsage + '" aria-valuemin="0" aria-valuemax="100" style="width: ' + row.hoursUsage + '%"></div></div>';
                         }
 
                         html += '<div>' + row.hoursSpentChargeable + ' (' + row.hoursSpent + ') / ' + ((row.hoursAvailable !== null) ? row.hoursAvailable : '*') + ' ' + translations['Hours spent'];
