@@ -43,7 +43,15 @@ class TimeTrackItemType extends AbstractType
         $builder
             ->add('project', EntityType::class, [
                 'class' => Project::class,
-                'choice_label' => 'name',
+                'choice_label' => function (Project $project) {
+                    $label = $project->getName();
+
+                    if ($project->getCompany() !== null) {
+                        $label .= ', ' . $project->getCompany()->getName();
+                    }
+
+                    return $label;
+                },
                 'label' => 'Project',
                 'required' => true,
             ])

@@ -39,7 +39,10 @@
                         {% for item in timeTrackItems %}
                         <tr>
                             <td>{{ item.id }}</td>
-                            <td>{{ item.project.name }}</td>
+                            <td>
+                                {{ item.project.name }}<br>
+                                <small>{{ item.project.company.name }}</small>
+                            </td>
                             <td>{{ item.moment|date('d.m.Y H:i') }}</td>
                             <td>{{ item.description }}</td>
                             <td>{{ item.duration|number_format }}</td>
