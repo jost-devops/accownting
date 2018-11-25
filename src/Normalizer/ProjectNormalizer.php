@@ -17,6 +17,26 @@ class ProjectNormalizer implements NormalizerInterface
      */
     public function normalize($object, $format = null, array $context = array())
     {
+        $progress = null;
+        $hoursAvailable = null;
+        $hoursSpent = null;
+        $hoursSpentChargeable = null;
+
+        if ($object->getBudget() && $object->getPricePerHour()) {
+            $hoursAvailable = $object->getBudget() / $object->getPricePerHour();
+        }
+
+        $hoursSpent = 0;
+        $hoursSpentChargeable = 0;
+
+        foreach ($object->getTimeTrackItems() as $timeTrackItem) {
+            $hoursSpent += $timeTrackItem->getDuration();
+
+            if ($timeTrackItem->isChargeable()) {
+                $hoursSpentChargeable += $timeTrackItem->getDuration();
+            }
+        }
+
         return [
             'id' => $object->getId(),
             'name' => $object->getName(),
@@ -28,6 +48,12 @@ class ProjectNormalizer implements NormalizerInterface
             'pricePerHour' => ($object->getPricePerHour() !== null)
                 ? number_format($object->getPricePerHour(), 2)
                 : '',
+            'hoursAvailable' => $hoursAvailable,
+            'hoursSpent' => $hoursSpent,
+            'hoursSpentChargeable' => $hoursSpentChargeable,
+            'hoursUsage' => ($hoursAvailable !== null && $hoursSpentChargeable !== null)
+                ? $hoursSpentChargeable / ($hoursAvailable / 100)
+                : null,
         ];
     }
 

@@ -112,4 +112,5 @@ return [
     'Chargeable' => 'Verrechenbar',
     'yes' => 'ja',
     'Edit Time Track Item' => 'Zeiteintrag bearbeiten',
+    'Hours spent' => 'Stunden verwendet',
 ];

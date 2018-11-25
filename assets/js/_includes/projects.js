@@ -26,6 +26,33 @@ $(function() {
                     },
                 },
                 {
+                    "render": function (data, type, row) {
+                        let html = '';
+
+                        if (row.hoursUsage !== null) {
+                            let bgClass = 'bg-success';
+
+                            if (row.hoursUsage > 80) {
+                                bgClass = 'bg-warning';
+                            }
+
+                            if (row.hoursUsage > 100) {
+                                bgClass = 'bg-danger';
+                            }
+
+                            html += '<div class="progress progress-xs mb-3">' +
+                                '    <div class="progress-bar ' + bgClass + '" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ' + row.hoursUsage + '%">' +
+                                '    <span class="sr-only">' + row.hoursUsage + '% Complete (success)</span>' +
+                                '    </div>' +
+                                '    </div>';
+                        }
+
+                        html += '<div>' + row.hoursSpentChargeable + ' (' + row.hoursSpent + ') / ' + ((row.hoursAvailable !== null) ? row.hoursAvailable : '*') + ' ' + translations['Hours spent'];
+
+                        return html;
+                    }
+                },
+                {
                     "data": "id",
                     "render": function (data, type, row) {
                         return '<div class="btn-group"><a href="/project/' + data + '/edit" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>' +
@@ -34,7 +61,8 @@ $(function() {
                 },
             ],
             "stateSave": true,
-            "select": true,
         });
     }
 });
+
+
