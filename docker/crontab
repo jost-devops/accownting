@@ -1,0 +1,2 @@
+# dump database every hour
+1 * * * * root mkdir -p /backups && mysqldump -hdb -uroot -proot accownting > /backups/accownting-$(date '+%H').sql

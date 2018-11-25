@@ -30,17 +30,17 @@ RUN apt install -y gnupg \
  && curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
  && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
  && apt-get update \
- && apt-get install yarn
+ && apt-get install yarn cron
 
 RUN curl -o /usr/local/bin/wait-for-it https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh && \
   chmod +x /usr/local/bin/wait-for-it
 
-RUN curl -s https://getcomposer.org/installer | php ; mv composer.phar /usr/local/bin/composer
-
 COPY ./ /var/www
 
-RUN cd /var/www ; APP_ENV=prod composer install --no-progress --no-dev --optimize-autoloader
-RUN cd /var/www ; yarn ; yarn run encore production ; rm -Rf node_modules/
+RUN cd /var/www ; curl -s https://getcomposer.org/installer | php ; mv composer.phar /usr/local/bin/composer ; APP_ENV=prod composer install --no-progress --no-dev --optimize-autoloader ; yarn ; yarn run encore production ; rm -Rf node_modules/ ; chmod -R 777 /var/www/var/
+
+ADD ./docker/crontab /etc/cron.d/accownting-crontab
+RUN chmod 0644 /etc/cron.d/accownting-crontab
 
 WORKDIR /var/www/public
 
