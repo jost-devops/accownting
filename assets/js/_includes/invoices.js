@@ -1,6 +1,9 @@
+var language = require('../de.json');
+
 $(function() {
     if ($('body').hasClass('route__app_invoice_index')) {
         let invoiceTable = $('.invoice--index--table-invoices').DataTable({
+            "language": language,
             "paging": true,
             "info": true,
             "processing": true,

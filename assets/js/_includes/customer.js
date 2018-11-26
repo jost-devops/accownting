@@ -1,6 +1,9 @@
+var language = require('../de.json');
+
 $(function() {
     if ($('body').hasClass('route__app_customer_index')) {
         let customerTable = $('.customer--index--table-customers').DataTable({
+            "language": language,
             "paging": true,
             "info": true,
             "processing": true,

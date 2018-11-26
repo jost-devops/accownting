@@ -1,6 +1,9 @@
+var language = require('../de.json');
+
 $(function() {
     if ($('body').hasClass('route__app_unit_index')) {
         let unitTable = $('.unit--index--table-units').DataTable({
+            "language": language,
             "paging": true,
             "info": true,
             "processing": true,

@@ -1,6 +1,9 @@
+var language = require('../de.json');
+
 $(function() {
     if ($('body').hasClass('route__app_project_index')) {
         let projectTable = $('.project--index--table-projects').DataTable({
+            "language": language,
             "paging": true,
             "info": true,
             "processing": true,
