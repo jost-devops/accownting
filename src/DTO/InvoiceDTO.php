@@ -71,4 +71,10 @@ class InvoiceDTO
      * @var string
      */
     public $country;
+
+    public function __construct()
+    {
+        $this->invoiceDate = new \DateTime();
+        $this->timeOfSupply = new \DateTime();
+    }
 }
