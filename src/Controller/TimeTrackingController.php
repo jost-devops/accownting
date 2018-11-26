@@ -44,9 +44,22 @@ class TimeTrackingController extends Controller
         /** @var TimeTrackItem[] $timeTrackItems */
         $timeTrackItems = $timeTrackItemRepository->findByDate($timeTrackingFilterDTO->date);
 
+        $totalTime = 0;
+        $totalTimeChargeable = 0;
+
+        foreach ($timeTrackItems as $timeTrackItem) {
+            $totalTime += $timeTrackItem->getDuration();
+
+            if ($timeTrackItem->isChargeable()) {
+                $totalTimeChargeable += $timeTrackItem->getDuration();
+            }
+        }
+
         return $this->render('time-tracking/index.html.twig', [
             'filterForm' => $form->createView(),
             'timeTrackItems' => $timeTrackItems,
+            'totalTime' => $totalTime,
+            'totalTimeChargeable' => $totalTimeChargeable,
         ]);
     }
 

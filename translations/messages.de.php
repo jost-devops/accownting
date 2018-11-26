@@ -114,4 +114,6 @@ return [
     'Edit Time Track Item' => 'Zeiteintrag bearbeiten',
     'Hours spent' => 'Stunden',
     'Are you sure you want to delete this item?' => 'Sind Sie sicher, dass Sie diesen Eintrag entfernen möchten?',
+    'Shortcode Total' => 'G',
+    'Shortcode Chargeable' => 'V',
 ];
