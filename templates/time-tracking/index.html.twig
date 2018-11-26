@@ -29,7 +29,6 @@
                     <table class="table table-sm table-bordered table-striped table-hover">
                         <thead>
                         <tr>
-                            <th>{% trans %}ID{% endtrans %}</th>
                             <th>{% trans %}Project{% endtrans %}</th>
                             <th>{% trans %}Moment{% endtrans %}</th>
                             <th>{% trans %}Description{% endtrans %}</th>
@@ -41,7 +40,6 @@
                         <tbody>
                         {% for item in timeTrackItems %}
                         <tr>
-                            <td>{{ item.id }}</td>
                             <td>
                                 {{ item.project.name }}<br>
                                 <small>{{ item.project.customer.name }}</small>
@@ -71,7 +69,6 @@
                         </tbody>
                         <tfoot>
                         <tr>
-                            <th>{% trans %}ID{% endtrans %}</th>
                             <th>{% trans %}Project{% endtrans %}</th>
                             <th>{% trans %}Moment{% endtrans %}</th>
                             <th>{% trans %}Description{% endtrans %}</th>
