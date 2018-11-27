@@ -40,7 +40,7 @@ COPY ./ /var/www
 RUN cd /var/www ; curl -s https://getcomposer.org/installer | php ; mv composer.phar /usr/local/bin/composer ; APP_ENV=prod composer install --no-progress --no-dev --optimize-autoloader ; yarn ; yarn run encore production ; rm -Rf node_modules/ ; chmod -R 777 /var/www/var/
 
 ADD ./docker/crontab /etc/cron.d/accownting-crontab
-RUN chmod 0644 /etc/cron.d/accownting-crontab
+RUN chmod 0644 /etc/cron.d/accownting-crontab && /usr/bin/crontab /etc/cron.d/accownting-crontab
 
 WORKDIR /var/www/public
 
