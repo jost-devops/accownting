@@ -116,4 +116,6 @@ return [
     'Are you sure you want to delete this item?' => 'Sind Sie sicher, dass Sie diesen Eintrag entfernen möchten?',
     'Shortcode Total' => 'G',
     'Shortcode Chargeable' => 'V',
+    'Time Tracking for %projectName%' => 'Zeiterfassung für %projectName%',
+    'Invoice' => 'Rechnung',
 ];

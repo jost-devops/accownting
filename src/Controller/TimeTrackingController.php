@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\DTO\TimeTrackingFilterDTO;
 use App\DTO\TimeTrackItemDTO;
+use App\Entity\Project;
 use App\Entity\TimeTrackItem;
 use App\Entity\User;
 use App\Form\TimeTrackFilterType;
@@ -12,9 +13,9 @@ use App\Manager\TimeTrackItemManager;
 use App\Repository\TimeTrackingItemRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -138,5 +139,62 @@ class TimeTrackingController extends Controller
         $timeTrackItemManager->delete($timeTrackItem);
 
         return $this->redirectToRoute('app_timetracking_index');
+    }
+
+    /**
+     * @Route("/by-project/{id}")
+     */
+    public function byProjectAction(
+        EntityManagerInterface $entityManager,
+        Project $project
+    ): Response
+    {
+        /** @var TimeTrackingItemRepository $timeTrackItemRepository */
+        $timeTrackItemRepository = $entityManager->getRepository(TimeTrackItem::class);
+
+        /** @var TimeTrackItem[] $items */
+        $items = $timeTrackItemRepository->findOpenByProject($project);
+
+        $totalTime = 0;
+        $totalTimeChargeable = 0;
+
+        foreach ($items as $item) {
+            $totalTime += $item->getDuration();
+
+            if ($item->isChargeable()) {
+                $totalTimeChargeable += $item->getDuration();
+            }
+        }
+
+        return $this->render('time-tracking/by-project.html.twig', [
+            'project' => $project,
+            'items' => $items,
+            'totalTime' => $totalTime,
+            'totalTimeChargeable' => $totalTimeChargeable,
+        ]);
+    }
+
+    /**
+     * @Route("/clear", methods={"POST"})
+     */
+    public function clearAction(
+        EntityManagerInterface $entityManager,
+        Request $request):
+    Response {
+        /** @var TimeTrackingItemRepository $timeTrackItemRepository */
+        $timeTrackItemRepository = $entityManager->getRepository(TimeTrackItem::class);
+
+        /** @var TimeTrackItem[] $items */
+        $items = $timeTrackItemRepository->findMultipleByIds($request->get('items'));
+
+        foreach ($items as $item) {
+            $item->setCleared(true);
+        }
+
+        $entityManager->flush();
+
+        return new JsonResponse([
+            'success' => true,
+        ]);
     }
 }

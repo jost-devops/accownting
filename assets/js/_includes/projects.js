@@ -54,7 +54,8 @@ $(function() {
                 {
                     "data": "id",
                     "render": function (data, type, row) {
-                        return '<div class="btn-group"><a href="/project/' + data + '/edit" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>' +
+                        return '<div class="btn-group"><a href="/time-tracking/by-project/' + data + '" class="btn btn-primary btn-sm"><i class="fa fa-list"></i></a>' +
+                            '<a href="/project/' + data + '/edit" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>' +
                             '<a href="/project/' + data + '/delete" class="btn btn-danger btn-sm btn-delete"><i class="fa fa-remove"></i></a></div>';
                     },
                 },
