@@ -10,11 +10,15 @@ class InvoiceDTO
 {
     /**
      * @var Company|null
+     *
+     * @Assert\NotNull()
      */
     public $company;
 
     /**
      * @var Customer|null
+     *
+     * @Assert\NotNull()
      */
     public $customer;
 
