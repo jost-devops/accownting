@@ -10,11 +10,15 @@ class TimeTrackItemDTO
 {
     /**
      * @var Project|null
+     *
+     * @Assert\NotNull()
      */
     public $project;
 
     /**
      * @var User|null
+     *
+     * @Assert\NotNull()
      */
     public $person;
 

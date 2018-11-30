@@ -64,6 +64,13 @@ class TimeTrackItem
     private $chargeable;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean", options={"default": "0"})
+     */
+    private $cleared = false;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -165,5 +172,21 @@ class TimeTrackItem
     public function setChargeable(bool $chargeable): void
     {
         $this->chargeable = $chargeable;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCleared(): bool
+    {
+        return $this->cleared;
+    }
+
+    /**
+     * @param bool $cleared
+     */
+    public function setCleared(bool $cleared): void
+    {
+        $this->cleared = $cleared;
     }
 }

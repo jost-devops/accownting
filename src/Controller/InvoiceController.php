@@ -16,6 +16,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * @Route("/invoice")
@@ -150,12 +151,17 @@ class InvoiceController extends Controller
      */
     public function pdfAction(
         Invoice $invoice,
-        InvoiceGenerator $invoiceGenerator
+        InvoiceGenerator $invoiceGenerator,
+        TranslatorInterface $translator
     ): Response {
         $pdf = $invoiceGenerator->generate($invoice);
 
         $response = new Response();
         $response->headers->set('Content-Type', 'application/pdf');
+        $response->headers->set(
+            'Content-Disposition',
+            'inline; filename=' . $translator->trans('Invoice') . '-' . $invoice->getInvoiceNumber() . '.pdf'
+        );
         $response->setContent($pdf);
 
         return $response;
