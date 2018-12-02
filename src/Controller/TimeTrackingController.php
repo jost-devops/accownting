@@ -147,8 +147,7 @@ class TimeTrackingController extends Controller
     public function byProjectAction(
         EntityManagerInterface $entityManager,
         Project $project
-    ): Response
-    {
+    ): Response {
         /** @var TimeTrackingItemRepository $timeTrackItemRepository */
         $timeTrackItemRepository = $entityManager->getRepository(TimeTrackItem::class);
 
@@ -179,8 +178,8 @@ class TimeTrackingController extends Controller
      */
     public function clearAction(
         EntityManagerInterface $entityManager,
-        Request $request):
-    Response {
+        Request $request
+    ): Response {
         /** @var TimeTrackingItemRepository $timeTrackItemRepository */
         $timeTrackItemRepository = $entityManager->getRepository(TimeTrackItem::class);
 
