@@ -22,8 +22,6 @@ class OfferItemManager
 
     public function add(OfferItemDTO $offerItemDTO, Offer $offer, User $user): OfferItem
     {
-        dump ($offerItemDTO);
-
         $offerItem = new OfferItem();
         $offerItem->setOffer($offer);
         $offerItem->setTitle($offerItemDTO->title);
