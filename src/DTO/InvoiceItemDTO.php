@@ -4,8 +4,9 @@ namespace App\DTO;
 
 use App\Entity\Unit;
 use App\Entity\VatRate;
+use Symfony\Component\Validator\Constraints as Assert;
 
-class InvoiceLineItemDTO
+class InvoiceItemDTO
 {
     /**
      * @var int|null
@@ -14,6 +15,8 @@ class InvoiceLineItemDTO
 
     /**
      * @var string
+     *
+     * @Assert\NotBlank()
      */
     public $title;
 
@@ -24,21 +27,29 @@ class InvoiceLineItemDTO
 
     /**
      * @var float
+     *
+     * @Assert\NotBlank()
      */
     public $amount;
 
     /**
      * @var Unit|null
+     *
+     * @Assert\NotNull()
      */
     public $unit;
 
     /**
      * @var float
+     *
+     * @Assert\NotBlank()
      */
     public $priceSingle;
 
     /**
      * @var VatRate|null
+     *
+     * @Assert\NotNull()
      */
     public $vatRate;
 }

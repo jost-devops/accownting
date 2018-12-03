@@ -6,7 +6,7 @@ use App\Entity\Company;
 use App\Entity\Customer;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class InvoiceDTO
+class OfferDTO
 {
     /**
      * @var Company|null
@@ -27,7 +27,7 @@ class InvoiceDTO
      *
      * @Assert\NotBlank()
      */
-    public $invoiceNumber;
+    public $offerNumber;
 
     /**
      * @var string
@@ -41,36 +41,15 @@ class InvoiceDTO
      *
      * @Assert\NotBlank()
      */
-    public $invoiceDate;
+    public $offerDate;
 
     /**
-     * @var \DateTime
-     *
-     * @Assert\NotBlank()
-     */
-    public $timeOfSupply;
-
-    /**
-     * @var \DateTime|null
-     */
-    public $timeOfSupplyEnd;
-
-    /**
-     * @var int|null
-     */
-    public $creditPeriod;
-
-    /**
-     * @var InvoiceItemDTO[]
+     * @var OfferItemDTO[]
      *
      * @Assert\Valid()
      */
     public $items;
 
-    /**
-     * @var \DateTime|null
-     */
-    public $paid;
     /**
      * @var string
      */
@@ -78,7 +57,6 @@ class InvoiceDTO
 
     public function __construct()
     {
-        $this->invoiceDate = new \DateTime();
-        $this->timeOfSupply = new \DateTime();
+        $this->offerDate = new \DateTime();
     }
 }

@@ -118,4 +118,11 @@ return [
     'Shortcode Chargeable' => 'V',
     'Time Tracking for %projectName%' => 'Zeiterfassung für %projectName%',
     'Invoice' => 'Rechnung',
+    'Manage Offers' => 'Angebote verwalten',
+    'Offers' => 'Angebote',
+    'Offer' => 'Angebot',
+    'New Offer' => 'Neues Angebot',
+    'Offer Number' => 'Angebots-Nr.',
+    'Offer Date' => 'Angebots-Datum',
+    'Edit Offer' => 'Angebot bearbeiten',
 ];

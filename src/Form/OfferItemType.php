@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\DTO\InvoiceLineItemDTO;
+use App\DTO\OfferItemDTO;
 use App\Entity\Unit;
 use App\Entity\VatRate;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -14,7 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class InvoiceLineItemType extends AbstractType
+class OfferItemType extends AbstractType
 {
     /**
      * @SuppressWarnings("unused")
@@ -59,7 +59,7 @@ class InvoiceLineItemType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => InvoiceLineItemDTO::class,
+            'data_class' => OfferItemDTO::class,
         ]);
     }
 }

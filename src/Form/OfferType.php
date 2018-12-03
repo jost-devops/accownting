@@ -2,7 +2,7 @@
 
 namespace App\Form;
 
-use App\DTO\InvoiceDTO;
+use App\DTO\OfferDTO;
 use App\Entity\Company;
 use App\Entity\Customer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -10,7 +10,6 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,7 +19,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
-class InvoiceType extends AbstractType
+class OfferType extends AbstractType
 {
     /**
      * @var array
@@ -61,38 +60,22 @@ class InvoiceType extends AbstractType
                 'label' => 'Country',
                 'required' => true,
             ])
-            ->add('invoiceNumber', TextType::class, [
-                'label' => 'Invoice Number',
+            ->add('offerNumber', TextType::class, [
+                'label' => 'Offer Number',
                 'required' => true,
             ])
             ->add('subject', TextType::class, [
                 'label' => 'Subject',
                 'required' => true,
             ])
-            ->add('invoiceDate', DateType::class, [
-                'label' => 'Invoice Date',
+            ->add('offerDate', DateType::class, [
+                'label' => 'Offer Date',
                 'required' => true,
                 'widget' => 'single_text',
                 'format' => $this->translator->trans('date_format_form'),
-            ])
-            ->add('timeOfSupply', DateType::class, [
-                'label' => 'Time of Supply',
-                'required' => true,
-                'widget' => 'single_text',
-                'format' => $this->translator->trans('date_format_form'),
-            ])
-            ->add('timeOfSupplyEnd', DateType::class, [
-                'label' => 'End Time of Supply',
-                'required' => false,
-                'widget' => 'single_text',
-                'format' => $this->translator->trans('date_format_form'),
-            ])
-            ->add('creditPeriod', IntegerType::class, [
-                'label' => 'Credit Period',
-                'required' => false,
             ])
             ->add('items', CollectionType::class, [
-                'entry_type' => InvoiceItemType::class,
+                'entry_type' => OfferItemType::class,
                 'entry_options' => ['label' => false],
                 'allow_add' => true,
                 'allow_delete' => true,
@@ -107,7 +90,7 @@ class InvoiceType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => InvoiceDTO::class,
+            'data_class' => OfferDTO::class,
         ]);
     }
 }

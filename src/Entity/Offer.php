@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  */
-class Invoice
+class Offer
 {
     use CreatedTrait, UpdatedTrait;
 
@@ -40,7 +40,7 @@ class Invoice
      *
      * @ORM\Column(type="string")
      */
-    private $invoiceNumber;
+    private $offerNumber;
 
     /**
      * @var string
@@ -54,42 +54,14 @@ class Invoice
      *
      * @ORM\Column(type="date")
      */
-    private $invoiceDate;
+    private $offerDate;
 
     /**
-     * @var \DateTime
+     * @var OfferItem[]|Collection
      *
-     * @ORM\Column(type="date")
-     */
-    private $timeOfSupply;
-
-    /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(type="date", nullable=true)
-     */
-    private $timeOfSupplyEnd;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $creditPeriod;
-
-    /**
-     * @var InvoiceItem[]|Collection
-     *
-     * @ORM\OneToMany(targetEntity="InvoiceItem", mappedBy="invoice")
+     * @ORM\OneToMany(targetEntity="App\Entity\OfferItem", mappedBy="offer")
      */
     private $items;
-
-    /**
-     * @var \DateTime|null
-     *
-     * @ORM\Column(type="date", nullable=true)
-     */
-    private $paid;
 
     /**
      * @var string
@@ -141,17 +113,17 @@ class Invoice
     /**
      * @return string
      */
-    public function getInvoiceNumber(): string
+    public function getOfferNumber(): string
     {
-        return $this->invoiceNumber;
+        return $this->offerNumber;
     }
 
     /**
-     * @param string $invoiceNumber
+     * @param string $offerNumber
      */
-    public function setInvoiceNumber(string $invoiceNumber): void
+    public function setOfferNumber(string $offerNumber): void
     {
-        $this->invoiceNumber = $invoiceNumber;
+        $this->offerNumber = $offerNumber;
     }
 
     /**
@@ -173,89 +145,25 @@ class Invoice
     /**
      * @return \DateTime
      */
-    public function getInvoiceDate(): \DateTime
+    public function getOfferDate(): \DateTime
     {
-        return $this->invoiceDate;
+        return $this->offerDate;
     }
 
     /**
-     * @param \DateTime $invoiceDate
+     * @param \DateTime $offerDate
      */
-    public function setInvoiceDate(\DateTime $invoiceDate): void
+    public function setOfferDate(\DateTime $offerDate): void
     {
-        $this->invoiceDate = $invoiceDate;
+        $this->offerDate = $offerDate;
     }
 
     /**
-     * @return \DateTime
-     */
-    public function getTimeOfSupply(): \DateTime
-    {
-        return $this->timeOfSupply;
-    }
-
-    /**
-     * @param \DateTime $timeOfSupply
-     */
-    public function setTimeOfSupply(\DateTime $timeOfSupply): void
-    {
-        $this->timeOfSupply = $timeOfSupply;
-    }
-
-    /**
-     * @return \DateTime|null
-     */
-    public function getTimeOfSupplyEnd(): ?\DateTime
-    {
-        return $this->timeOfSupplyEnd;
-    }
-
-    /**
-     * @param \DateTime|null $timeOfSupplyEnd
-     */
-    public function setTimeOfSupplyEnd(?\DateTime $timeOfSupplyEnd): void
-    {
-        $this->timeOfSupplyEnd = $timeOfSupplyEnd;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getCreditPeriod(): ?int
-    {
-        return $this->creditPeriod;
-    }
-
-    /**
-     * @param int|null $creditPeriod
-     */
-    public function setCreditPeriod(?int $creditPeriod): void
-    {
-        $this->creditPeriod = $creditPeriod;
-    }
-
-    /**
-     * @return InvoiceItem[]|Collection
+     * @return OfferItem[]|Collection
      */
     public function getItems()
     {
         return $this->items;
-    }
-
-    /**
-     * @return \DateTime|null
-     */
-    public function getPaid(): ?\DateTime
-    {
-        return $this->paid;
-    }
-
-    /**
-     * @param \DateTime|null $paid
-     */
-    public function setPaid(?\DateTime $paid): void
-    {
-        $this->paid = $paid;
     }
 
     /**

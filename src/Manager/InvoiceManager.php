@@ -4,7 +4,7 @@ namespace App\Manager;
 
 use App\DTO\InvoiceDTO;
 use App\Entity\Invoice;
-use App\Entity\InvoiceLineItem;
+use App\Entity\InvoiceItem;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -16,14 +16,14 @@ class InvoiceManager
     private $entityManager;
 
     /**
-     * @var InvoiceLineItemManager
+     * @var InvoiceItemManager
      */
-    private $invoiceLineItemManager;
+    private $invoiceItemManager;
 
-    public function __construct(EntityManagerInterface $entityManager, InvoiceLineItemManager $invoiceLineItemManager)
+    public function __construct(EntityManagerInterface $entityManager, InvoiceItemManager $invoiceItemManager)
     {
         $this->entityManager = $entityManager;
-        $this->invoiceLineItemManager = $invoiceLineItemManager;
+        $this->invoiceItemManager = $invoiceItemManager;
     }
 
     public function add(InvoiceDTO $invoiceDTO, User $user): Invoice
@@ -45,8 +45,8 @@ class InvoiceManager
         $this->entityManager->persist($invoice);
         $this->entityManager->flush();
 
-        foreach ($invoiceDTO->lineItems as $lineItemDTO) {
-            $this->invoiceLineItemManager->add($lineItemDTO, $invoice, $user);
+        foreach ($invoiceDTO->items as $itemDTO) {
+            $this->invoiceItemManager->add($itemDTO, $invoice, $user);
         }
 
         return $invoice;
@@ -66,8 +66,8 @@ class InvoiceManager
         $invoiceDTO->creditPeriod = $invoice->getCreditPeriod();
         $invoiceDTO->paid = $invoice->getPaid();
 
-        foreach ($invoice->getLineItems() as $lineItem) {
-            $invoiceDTO->lineItems[] = $this->invoiceLineItemManager->getEdit($lineItem);
+        foreach ($invoice->getItems() as $item) {
+            $invoiceDTO->items[] = $this->invoiceItemManager->getEdit($item);
         }
 
         return $invoiceDTO;
@@ -91,33 +91,33 @@ class InvoiceManager
         $invoice->setUpdated(new \DateTime());
         $invoice->setUpdatedBy($user);
 
-        foreach ($invoiceDTO->lineItems as $lineItemDTO) {
-            if ($lineItemDTO->id !== null) {
-                /** @var InvoiceLineItem|null $lineItem */
-                $lineItem = $this->entityManager
-                    ->getRepository(InvoiceLineItem::class)
-                    ->findOneBy(['id' => $lineItemDTO->id]);
+        foreach ($invoiceDTO->items as $itemDTO) {
+            if ($itemDTO->id !== null) {
+                /** @var InvoiceItem|null $item */
+                $item = $this->entityManager
+                    ->getRepository(InvoiceItem::class)
+                    ->findOneBy(['id' => $itemDTO->id]);
 
-                if ($lineItem !== null) {
-                    $this->invoiceLineItemManager->edit($lineItem, $lineItemDTO, $user);
+                if ($item !== null) {
+                    $this->invoiceItemManager->edit($item, $itemDTO, $user);
                 }
             } else {
-                $this->invoiceLineItemManager->add($lineItemDTO, $invoice, $user);
+                $this->invoiceItemManager->add($itemDTO, $invoice, $user);
             }
         }
 
-        $lineItemsToDelete = $invoice->getLineItems();
+        $itemsToDelete = $invoice->getItems();
 
-        foreach ($lineItemsToDelete as $key => $item) {
-            foreach ($invoiceDTO->lineItems as $lineItemDTO) {
-                if ($lineItemDTO->id === $item->getId()) {
-                    unset($lineItemsToDelete[$key]);
+        foreach ($itemsToDelete as $key => $item) {
+            foreach ($invoiceDTO->items as $itemDTO) {
+                if ($itemDTO->id === $item->getId()) {
+                    unset($itemsToDelete[$key]);
                 }
             }
         }
 
-        foreach ($lineItemsToDelete as $lineItemToDelete) {
-            $this->entityManager->remove($lineItemToDelete);
+        foreach ($itemsToDelete as $itemToDelete) {
+            $this->entityManager->remove($itemToDelete);
         }
 
         $this->entityManager->flush();
