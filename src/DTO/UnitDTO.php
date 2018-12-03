@@ -13,4 +13,9 @@ class UnitDTO
      * @var string
      */
     public $name;
+
+    /**
+     * @var bool
+     */
+    public $allIn;
 }

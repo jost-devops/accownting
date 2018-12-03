@@ -12,6 +12,12 @@ $(function() {
                 {"data": "id"},
                 {"data": "name"},
                 {
+                    "data": "allIn",
+                    "render": function (data, type, row) {
+                        return (data === true) ? translations['yes'] : translations['no'];
+                    }
+                },
+                {
                     "data": "id",
                     "render": function (data, type, row) {
                         return '<div class="btn-group"><a href="/unit/' + data + '/edit" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>' +

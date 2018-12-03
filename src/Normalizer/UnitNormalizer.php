@@ -21,6 +21,7 @@ class UnitNormalizer implements NormalizerInterface
         return [
             'id' => $object->getId(),
             'name' => $object->getName(),
+            'allIn' => $object->isAllIn(),
         ];
     }
 

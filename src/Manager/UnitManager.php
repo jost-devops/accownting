@@ -23,6 +23,7 @@ class UnitManager
     {
         $unit = new Unit();
         $unit->setName($unitDTO->name);
+        $unit->setAllIn($unitDTO->allIn);
         $unit->setCreated(new \DateTime());
         $unit->setCreatedBy($user);
 
@@ -36,6 +37,7 @@ class UnitManager
     {
         $unitDTO = new UnitDTO();
         $unitDTO->name = $unit->getName();
+        $unitDTO->allIn = $unit->isAllIn();
 
         return $unitDTO;
     }
@@ -43,6 +45,7 @@ class UnitManager
     public function edit(Unit $unit, UnitDTO $unitDTO, User $user): Unit
     {
         $unit->setName($unitDTO->name);
+        $unit->setAllIn($unitDTO->allIn);
         $unit->setUpdated(new \DateTime());
         $unit->setUpdatedBy($user);
 

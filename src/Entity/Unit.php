@@ -28,6 +28,13 @@ class Unit
     private $name;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean", options={"default": "0"})
+     */
+    private $allIn = false;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -49,5 +56,21 @@ class Unit
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAllIn(): bool
+    {
+        return $this->allIn;
+    }
+
+    /**
+     * @param bool $allIn
+     */
+    public function setAllIn(bool $allIn): void
+    {
+        $this->allIn = $allIn;
     }
 }

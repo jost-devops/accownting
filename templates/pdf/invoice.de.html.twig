@@ -209,23 +209,23 @@ mpdf-->
         </tr>
         </thead>
         <tbody>
-        {% for lineItem in invoice.lineItems %}
+        {% for item in invoice.items %}
             <tr>
                 <td>{{ loop.index }}.</td>
                 <td>
-                    <b>{{ lineItem.title }}</b>
-                    {% if lineItem.description %}
-                    <p>{{ lineItem.description }}</p>
+                    <b>{{ item.title }}</b>
+                    {% if item.description %}
+                    <p>{{ item.description }}</p>
                     {% endif %}
                 </td>
                 <td class="number">
-                    {{ lineItem.amount | number_format }} {{ lineItem.unit.name }}
+                    {% if not item.unit.allIn %}{{ item.amount | number_format }} {% endif %}{{ item.unit.name }}
                 </td>
                 <td class="number">
-                    {{ lineItem.priceSingle | number_format }} EUR
+                    {{ item.priceSingle | number_format }} EUR
                 </td>
                 <td class="number">
-                    {{ lineItem.priceTotal | number_format }} EUR
+                    {{ item.priceTotal | number_format }} EUR
                 </td>
             </tr>
         {% endfor %}

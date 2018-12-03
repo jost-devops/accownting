@@ -210,7 +210,7 @@ mpdf-->
                     {% endif %}
                 </td>
                 <td class="number">
-                    {{ item.amount | number_format }} {{ item.unit.name }}
+                    {% if not item.unit.allIn %}{{ item.amount | number_format }} {% endif %}{{ item.unit.name }}
                 </td>
                 <td class="number">
                     {{ item.priceSingle | number_format }} EUR
