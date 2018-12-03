@@ -125,4 +125,5 @@ return [
     'Offer Number' => 'Angebots-Nr.',
     'Offer Date' => 'Angebots-Datum',
     'Edit Offer' => 'Angebot bearbeiten',
+    'All Inclusive' => 'Pauschale',
 ];
