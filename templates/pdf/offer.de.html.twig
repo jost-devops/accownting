@@ -1,0 +1,242 @@
+<style type="text/css">
+    .text-smaller {
+        font-size: 0.7em;
+        font-weight: 400;
+    }
+
+    .text-bigger {
+        font-size: 1.2em;
+        font-weight: 400;
+    }
+
+    .text-muted {
+        color: #666;
+        font-weight: 400;
+    }
+
+    table {
+        border-spacing: 0;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    thead th, thead td {
+        padding: 2mm;
+    }
+    tbody th, tbody td {
+        padding: 1mm 2mm;
+    }
+
+    th,td {
+        font-size: 0.8em;
+        text-align: left;
+        font-family: freesans, sans-serif;
+        vertical-align: top;
+    }
+
+    th.number, td.number {
+        text-align: right;
+    }
+
+    tr.odd th, tr.odd td {
+        background: #efefef;
+    }
+
+    .container {
+        /*font-size: 0.9em;*/
+    }
+
+    #logo {
+        text-align: right;
+    }
+
+    #logo__img {
+        display: inline-block;
+        height: auto;
+        width: 70mm;
+        margin-bottom: 10mm;
+        margin-right: 0;
+    }
+    #header {
+        padding-top: 5mm;
+    }
+    #footer {
+        padding-bottom: 5mm;
+    }
+</style>
+
+<!--mpdf
+<htmlpageheader name="header">
+    <div id="header">
+        <table class="container">
+            <tr>
+                <td id="logo">
+                    <img id="logo__img" src="data:{{ offer.company.logoMime }};base64,{{ offer.company.logoEncoded }}" alt="{{ offer.company.name }}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td width="55%">
+                                <p class="text-muted text-smaller">{{ offer.company.name }}{% if offer.company.additionalName %} - {{ offer.company.additionalName }}{% endif %} - {{ offer.company.street }} - {{ offer.company.zip }} {{ offer.company.city }}</p>
+                                <br />
+                                <br />
+                                <p>
+                                    {% if offer.customer.name %}{{ offer.customer.name }}<br />{% endif %}
+                                    {% if offer.customer.additionalName %}{{ offer.customer.additionalName }}<br />{% endif %}
+                                    {% if offer.customer.salutation %}{{ offer.customer.salutation }} {{ offer.customer.firstName }} {{ offer.customer.lastName }}<br />{% endif %}
+                                    {{ offer.customer.street }}<br />
+                                    {{ offer.customer.zip }} {{ offer.customer.city }}<br />
+                                    {{ offer.customer.country }}
+                                </p>
+                            </td>
+                            <td>
+                                <table style="text-align: right; margin-top: 7mm">
+                                    <tr>
+                                        <td class="text-bigger">Angebots-Nr.</td>
+                                        <td class="number text-bigger">{{ offer.offerNumber }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Datum</td>
+                                        <td class="number">{{ offer.offerDate | date ('d.m.Y') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ihre Kundennummer</td>
+                                        <td class="number">{{ offer.customer.customerNumber }}</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</htmlpageheader>
+<htmlpagefooter name="footer">
+    <div id="footer">
+        <table class="container">
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td width="23%">
+                                <p class="text-smaller text-muted">
+                                    {{ offer.company.name }}<br />
+                                    {% if offer.company.additionalName %}{{ offer.company.additionalName }}<br>{% endif %}
+                                    {{ offer.company.street }}<br />
+                                    {{ offer.company.zip }} {{ offer.company.city }}<br />
+                                    {{ offer.company.country }}
+                                </p>
+                            </td>
+                            <td width="25%">
+                                <p class="text-smaller text-muted">
+                                    Tel: {{ offer.company.phone }}<br />
+                                    E-Mail: {{ offer.company.email }}<br />
+                                    {{ offer.company.website }}
+                                </p>
+                            </td>
+                            <td width="25%">
+                                <p class="text-smaller text-muted">
+                                    USt-ID: {{ offer.company.vatNumber }}<br />
+                                    {% if offer.company.taxNumber %}Steuer-Nr.: {{ offer.company.taxNumber }}<br />{% endif %}
+                                    {% if offer.company.districtCourt %}{{ offer.company.districtCourt }}, {% endif %}
+                                    {% if offer.company.companyRegisterId %}{{ offer.company.companyRegisterId }}<br>{% endif %}
+
+                                    {{ offer.company.titleOfManagingDirector }}: {{ offer.company.managingDirector }}
+                                </p>
+                            </td>
+                            <td width="27%">
+                                <p class="text-smaller text-muted">
+                                    {{ offer.company.bankName }}<br />
+                                    IBAN: {{ offer.company.bankIban }}<br />
+                                    BIC: {{ offer.company.bankBic }}
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</htmlpagefooter>
+mpdf-->
+
+<!--mpdf
+<sethtmlpageheader name="header" page="ALL" value="1" show-this-page="1" />
+<sethtmlpagefooter name="footer" page="ALL" value="1" />
+mpdf-->
+
+<div id="content">
+    <table class="container">
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            <h2>
+                                Angebot {{ offer.offerNumber }}
+                            </h2>
+                        </td>
+                        <td class="number">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+    <table>
+        <thead>
+        <tr class="odd">
+            <th>Pos.</th>
+            <th>Beschreibung</th>
+            <th class="number">Menge</th>
+            <th class="number">Einzelpreis</th>
+            <th class="number">Gesamtpreis</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in offer.items %}
+            <tr>
+                <td>{{ loop.index }}.</td>
+                <td>
+                    <b>{{ item.title }}</b>
+                    {% if item.description %}
+                    <p>{{ item.description }}</p>
+                    {% endif %}
+                </td>
+                <td class="number">
+                    {{ item.amount | number_format }} {{ item.unit.name }}
+                </td>
+                <td class="number">
+                    {{ item.priceSingle | number_format }} EUR
+                </td>
+                <td class="number">
+                    {{ item.priceTotal | number_format }} EUR
+                </td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td colspan="5">&nbsp;</td>
+        </tr>
+        <tr class="odd">
+            <td colspan="4" class="number">Gesamtsumme netto:</td>
+            <td class="number">{{ offer.totalNetPrice | number_format }} EUR</td>
+        </tr>
+        {% for rate, taxes in offer.taxesByRate %}
+        <tr>
+            <td colspan="4" class="number">zzgl. Umsatzsteuer {{ rate }}%:</td>
+            <td class="number">{{ taxes | number_format }} EUR</td>
+        </tr>
+        {% endfor %}
+        <tr class="odd">
+            <th colspan="4" class="number">Gesamtsumme brutto:</th>
+            <th class="number">{{ offer.totalGrossPrice | number_format }} EUR</th>
+        </tr>
+        </tbody>
+    </table>
+</div>

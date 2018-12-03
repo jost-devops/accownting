@@ -19,3 +19,5 @@ require('./_includes/invoices');
 require('./_includes/invoice-form');
 require('./_includes/projects');
 require('./_includes/time-tracking');
+require('./_includes/offers');
+require('./_includes/offer-form');
