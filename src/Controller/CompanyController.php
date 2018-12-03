@@ -153,6 +153,7 @@ class CompanyController extends Controller
             'numbers' => [
                 'nextInvoiceNumber' => $company->getNextInvoiceNumber(),
                 'nextOfferNumber' => $company->getNextOfferNumber(),
+                'nextCustomerNumber' => $company->getNextCustomerNumber(),
             ]
         ]);
     }

@@ -168,18 +168,25 @@ class Company
     private $logoMime;
 
     /**
-     * @var int|null
+     * @var int
      *
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer")
      */
     private $nextOfferNumber = 1;
 
     /**
-     * @var int|null
+     * @var int
      *
-     * @ORM\Column(type="integer", nullable=true)
+     * @ORM\Column(type="integer")
      */
     private $nextInvoiceNumber = 1;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(type="integer")
+     */
+    private $nextCustomerNumber = 1;
 
     /**
      * @return int
@@ -537,34 +544,50 @@ class Company
     }
 
     /**
-     * @return int|null
+     * @return int
      */
-    public function getNextOfferNumber(): ?int
+    public function getNextOfferNumber(): int
     {
         return $this->nextOfferNumber;
     }
 
     /**
-     * @param int|null $nextOfferNumber
+     * @param int $nextOfferNumber
      */
-    public function setNextOfferNumber(?int $nextOfferNumber): void
+    public function setNextOfferNumber(int $nextOfferNumber): void
     {
         $this->nextOfferNumber = $nextOfferNumber;
     }
 
     /**
-     * @return int|null
+     * @return int
      */
-    public function getNextInvoiceNumber(): ?int
+    public function getNextInvoiceNumber(): int
     {
         return $this->nextInvoiceNumber;
     }
 
     /**
-     * @param int|null $nextInvoiceNumber
+     * @param int $nextInvoiceNumber
      */
-    public function setNextInvoiceNumber(?int $nextInvoiceNumber): void
+    public function setNextInvoiceNumber(int $nextInvoiceNumber): void
     {
         $this->nextInvoiceNumber = $nextInvoiceNumber;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNextCustomerNumber(): int
+    {
+        return $this->nextCustomerNumber;
+    }
+
+    /**
+     * @param int $nextCustomerNumber
+     */
+    public function setNextCustomerNumber(int $nextCustomerNumber): void
+    {
+        $this->nextCustomerNumber = $nextCustomerNumber;
     }
 }

@@ -2,8 +2,7 @@ $(function() {
     let $body = $('body');
     let $itemTable = $('.item-table');
 
-    if ($body.hasClass('route__app_offer_add') || $body.hasClass('route__app_offer_edit')) {
-
+    if ($body.hasClass('route__app_offer_add')) {
         let updateOfferNumber = function() {
             let companyId = $('#offer_company').val();
 
@@ -23,6 +22,9 @@ $(function() {
         $('#offer_company').change(function() {
             updateOfferNumber();
         });
+    }
+
+    if ($body.hasClass('route__app_offer_add') || $body.hasClass('route__app_offer_edit')) {
 
         $('.btn-add-item').click(function(e) {
             e.preventDefault();

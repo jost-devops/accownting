@@ -92,8 +92,7 @@ class InvoiceController extends Controller
     public function editAction(
         Request $request,
         Invoice $invoice,
-        InvoiceManager $invoiceManager,
-        EntityManagerInterface $entityManager
+        InvoiceManager $invoiceManager
     ): Response {
         /** @var User $user */
         $user = $this->getUser();
@@ -104,13 +103,7 @@ class InvoiceController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $invoice = $invoiceManager->edit($invoice, $invoiceDTO, $user);
-
-            if ($invoice->getCompany()->getNextInvoiceNumber() === $invoice->getInvoiceNumber()) {
-                $invoice->getCompany()->setNextInvoiceNumber($invoice->getInvoiceNumber() + 1);
-            }
-
-            $entityManager->flush();
+            $invoiceManager->edit($invoice, $invoiceDTO, $user);
 
             return $this->redirectToRoute('app_invoice_index');
         }

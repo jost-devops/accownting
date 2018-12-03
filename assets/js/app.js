@@ -13,6 +13,7 @@ require('./_includes/delete');
 require('./_includes/companies');
 require('./_includes/users');
 require('./_includes/customer');
+require('./_includes/customer-form');
 require('./_includes/units');
 require('./_includes/vat-rates');
 require('./_includes/invoices');

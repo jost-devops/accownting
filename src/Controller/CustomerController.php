@@ -61,7 +61,8 @@ class CustomerController extends Controller
      */
     public function addAction(
         Request $request,
-        CustomerManager $customerManager
+        CustomerManager $customerManager,
+        EntityManagerInterface $entityManager
     ): Response {
         /** @var User $user */
         $user = $this->getUser();
@@ -72,7 +73,13 @@ class CustomerController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $customerManager->add($customerDTO, $user);
+            $customer = $customerManager->add($customerDTO, $user);
+
+            if ($customer->getCompany()->getNextCustomerNumber() === $customer->getCustomerNumber()) {
+                $customer->getCompany()->setNextCustomerNumber($customer->getCustomerNumber() + 1);
+            }
+
+            $entityManager->flush();
 
             return $this->redirectToRoute('app_customer_index');
         }

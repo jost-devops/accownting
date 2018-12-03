@@ -98,8 +98,7 @@ class OfferController extends Controller
     public function editAction(
         Request $request,
         Offer $offer,
-        OfferManager $offerManager,
-        EntityManagerInterface $entityManager
+        OfferManager $offerManager
     ): Response {
         /** @var User $user */
         $user = $this->getUser();
@@ -110,13 +109,7 @@ class OfferController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $offer = $offerManager->edit($offer, $offerDTO, $user);
-
-            if ($offer->getCompany()->getNextOfferNumber() === $offer->getOfferNumber()) {
-                $offer->getCompany()->setNextOfferNumber($offer->getOfferNumber() + 1);
-            }
-
-            $entityManager->flush();
+            $offerManager->edit($offer, $offerDTO, $user);
 
             return $this->redirectToRoute('app_offer_index');
         }
