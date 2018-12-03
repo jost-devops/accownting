@@ -75,8 +75,10 @@ class CustomerController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $customer = $customerManager->add($customerDTO, $user);
 
-            if ($customer->getCompany()->getNextCustomerNumber() === $customer->getCustomerNumber()) {
-                $customer->getCompany()->setNextCustomerNumber($customer->getCustomerNumber() + 1);
+            if ($customer->getCompany() !== null) {
+                if ($customer->getCompany()->getNextCustomerNumber() === $customer->getCustomerNumber()) {
+                    $customer->getCompany()->setNextCustomerNumber($customer->getCustomerNumber() + 1);
+                }
             }
 
             $entityManager->flush();

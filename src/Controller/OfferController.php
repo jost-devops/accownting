@@ -77,8 +77,10 @@ class OfferController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $offer = $offerManager->add($offerDTO, $user);
 
-            if ($offer->getCompany()->getNextOfferNumber() === $offer->getOfferNumber()) {
-                $offer->getCompany()->setNextOfferNumber($offer->getOfferNumber() + 1);
+            if ($offer->getCompany() !== null) {
+                if ($offer->getCompany()->getNextOfferNumber() === $offer->getOfferNumber()) {
+                    $offer->getCompany()->setNextOfferNumber($offer->getOfferNumber() + 1);
+                }
             }
 
             $entityManager->flush();

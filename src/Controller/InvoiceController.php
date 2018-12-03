@@ -71,8 +71,10 @@ class InvoiceController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $invoice = $invoiceManager->add($invoiceDTO, $user);
 
-            if ($invoice->getCompany()->getNextInvoiceNumber() === $invoice->getInvoiceNumber()) {
-                $invoice->getCompany()->setNextInvoiceNumber($invoice->getInvoiceNumber() + 1);
+            if ($invoice->getCompany() !== null) {
+                if ($invoice->getCompany()->getNextInvoiceNumber() === $invoice->getInvoiceNumber()) {
+                    $invoice->getCompany()->setNextInvoiceNumber($invoice->getInvoiceNumber() + 1);
+                }
             }
 
             $entityManager->flush();
