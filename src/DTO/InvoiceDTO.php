@@ -61,11 +61,11 @@ class InvoiceDTO
     public $creditPeriod;
 
     /**
-     * @var InvoiceLineItemDTO[]
+     * @var InvoiceItemDTO[]
      *
      * @Assert\Valid()
      */
-    public $lineItems;
+    public $items;
 
     /**
      * @var \DateTime|null

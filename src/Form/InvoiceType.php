@@ -91,8 +91,8 @@ class InvoiceType extends AbstractType
                 'label' => 'Credit Period',
                 'required' => false,
             ])
-            ->add('lineItems', CollectionType::class, [
-                'entry_type' => InvoiceLineItemType::class,
+            ->add('items', CollectionType::class, [
+                'entry_type' => InvoiceItemType::class,
                 'entry_options' => ['label' => false],
                 'allow_add' => true,
                 'allow_delete' => true,

@@ -78,11 +78,11 @@ class Invoice
     private $creditPeriod;
 
     /**
-     * @var InvoiceLineItem[]|Collection
+     * @var InvoiceItem[]|Collection
      *
-     * @ORM\OneToMany(targetEntity="App\Entity\InvoiceLineItem", mappedBy="invoice")
+     * @ORM\OneToMany(targetEntity="InvoiceItem", mappedBy="invoice")
      */
-    private $lineItems;
+    private $items;
 
     /**
      * @var \DateTime|null
@@ -235,11 +235,11 @@ class Invoice
     }
 
     /**
-     * @return InvoiceLineItem[]|Collection
+     * @return InvoiceItem[]|Collection
      */
-    public function getLineItems()
+    public function getItems()
     {
-        return $this->lineItems;
+        return $this->items;
     }
 
     /**
@@ -278,8 +278,8 @@ class Invoice
     {
         $netPrice = 0;
 
-        foreach ($this->getLineItems() as $lineItem) {
-            $netPrice += $lineItem->getAmount() * $lineItem->getPriceSingle();
+        foreach ($this->getItems() as $item) {
+            $netPrice += $item->getAmount() * $item->getPriceSingle();
         }
 
         return $netPrice;
@@ -289,14 +289,14 @@ class Invoice
     {
         $taxes = 0;
 
-        foreach ($this->getLineItems() as $lineItem) {
+        foreach ($this->getItems() as $item) {
             $multiplicator = 0;
 
-            if ($lineItem->getVatRate() !== null) {
-                $multiplicator += $lineItem->getVatRate()->getRate() / 100;
+            if ($item->getVatRate() !== null) {
+                $multiplicator += $item->getVatRate()->getRate() / 100;
             }
 
-            $taxes += $lineItem->getAmount() * ($lineItem->getPriceSingle() * $multiplicator);
+            $taxes += $item->getAmount() * ($item->getPriceSingle() * $multiplicator);
         }
 
         return $taxes;
@@ -306,14 +306,14 @@ class Invoice
     {
         $grossPrice = 0;
 
-        foreach ($this->getLineItems() as $lineItem) {
+        foreach ($this->getItems() as $item) {
             $multiplicator = 1;
 
-            if ($lineItem->getVatRate() !== null) {
-                $multiplicator += $lineItem->getVatRate()->getRate() / 100;
+            if ($item->getVatRate() !== null) {
+                $multiplicator += $item->getVatRate()->getRate() / 100;
             }
 
-            $grossPrice += $lineItem->getAmount() * ($lineItem->getPriceSingle() * $multiplicator);
+            $grossPrice += $item->getAmount() * ($item->getPriceSingle() * $multiplicator);
         }
 
         return $grossPrice;
@@ -323,19 +323,19 @@ class Invoice
     {
         $taxes = [];
 
-        foreach ($this->getLineItems() as $lineItem) {
-            if ($lineItem->getVatRate() === null) {
+        foreach ($this->getItems() as $item) {
+            if ($item->getVatRate() === null) {
                 continue;
             }
 
-            if (!isset($taxes[$lineItem->getVatRate()->getRate()])) {
-                $taxes[$lineItem->getVatRate()->getRate()] = 0;
+            if (!isset($taxes[$item->getVatRate()->getRate()])) {
+                $taxes[$item->getVatRate()->getRate()] = 0;
             }
 
-            $multiplicator = $lineItem->getVatRate()->getRate() / 100;
+            $multiplicator = $item->getVatRate()->getRate() / 100;
 
-            $taxes[$lineItem->getVatRate()->getRate()] +=
-                $lineItem->getAmount() * ($lineItem->getPriceSingle() * $multiplicator);
+            $taxes[$item->getVatRate()->getRate()] +=
+                $item->getAmount() * ($item->getPriceSingle() * $multiplicator);
         }
 
         uksort($taxes, function ($a, $b) {

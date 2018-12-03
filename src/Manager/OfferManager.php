@@ -81,7 +81,7 @@ class OfferManager
 
         foreach ($offerDTO->items as $itemDTO) {
             if ($itemDTO->id !== null) {
-                /** @var OfferItem|null $lineItem */
+                /** @var OfferItem|null $offerItem */
                 $offerItem = $this->entityManager
                     ->getRepository(OfferItem::class)
                     ->findOneBy(['id' => $itemDTO->id]);

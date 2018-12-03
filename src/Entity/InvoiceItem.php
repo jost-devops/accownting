@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity
  */
-class InvoiceLineItem
+class InvoiceItem
 {
     use CreatedTrait, UpdatedTrait;
 
