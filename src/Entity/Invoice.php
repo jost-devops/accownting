@@ -36,9 +36,9 @@ class Invoice
     private $customer;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="integer")
      */
     private $invoiceNumber;
 
@@ -139,17 +139,17 @@ class Invoice
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getInvoiceNumber(): string
+    public function getInvoiceNumber(): int
     {
         return $this->invoiceNumber;
     }
 
     /**
-     * @param string $invoiceNumber
+     * @param int $invoiceNumber
      */
-    public function setInvoiceNumber(string $invoiceNumber): void
+    public function setInvoiceNumber(int $invoiceNumber): void
     {
         $this->invoiceNumber = $invoiceNumber;
     }

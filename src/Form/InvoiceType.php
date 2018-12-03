@@ -61,7 +61,7 @@ class InvoiceType extends AbstractType
                 'label' => 'Country',
                 'required' => true,
             ])
-            ->add('invoiceNumber', TextType::class, [
+            ->add('invoiceNumber', IntegerType::class, [
                 'label' => 'Invoice Number',
                 'required' => true,
             ])

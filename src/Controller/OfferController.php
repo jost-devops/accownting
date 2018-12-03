@@ -63,7 +63,8 @@ class OfferController extends Controller
      */
     public function addAction(
         Request $request,
-        OfferManager $offerManager
+        OfferManager $offerManager,
+        EntityManagerInterface $entityManager
     ): Response {
         /** @var User $user */
         $user = $this->getUser();
@@ -74,7 +75,13 @@ class OfferController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $offerManager->add($offerDTO, $user);
+            $offer = $offerManager->add($offerDTO, $user);
+
+            if ($offer->getCompany()->getNextOfferNumber() === $offer->getOfferNumber()) {
+                $offer->getCompany()->setNextOfferNumber($offer->getOfferNumber() + 1);
+            }
+
+            $entityManager->flush();
 
             return $this->redirectToRoute('app_offer_index');
         }
@@ -91,7 +98,8 @@ class OfferController extends Controller
     public function editAction(
         Request $request,
         Offer $offer,
-        OfferManager $offerManager
+        OfferManager $offerManager,
+        EntityManagerInterface $entityManager
     ): Response {
         /** @var User $user */
         $user = $this->getUser();
@@ -102,7 +110,13 @@ class OfferController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $offerManager->edit($offer, $offerDTO, $user);
+            $offer = $offerManager->edit($offer, $offerDTO, $user);
+
+            if ($offer->getCompany()->getNextOfferNumber() === $offer->getOfferNumber()) {
+                $offer->getCompany()->setNextOfferNumber($offer->getOfferNumber() + 1);
+            }
+
+            $entityManager->flush();
 
             return $this->redirectToRoute('app_offer_index');
         }

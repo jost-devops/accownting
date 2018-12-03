@@ -3,6 +3,27 @@ $(function() {
     let $itemTable = $('.item-table');
 
     if ($body.hasClass('route__app_offer_add') || $body.hasClass('route__app_offer_edit')) {
+
+        let updateOfferNumber = function() {
+            let companyId = $('#offer_company').val();
+
+            $.ajax({
+                type: 'get',
+                url: '/company/' + companyId + '/next-numbers',
+                dataType: 'json',
+                success: function(response) {
+                    if (response.success) {
+                        $('#offer_offerNumber').val(response.numbers.nextOfferNumber);
+                    }
+                }
+            });
+        };
+        updateOfferNumber();
+
+        $('#offer_company').change(function() {
+            updateOfferNumber();
+        });
+
         $('.btn-add-item').click(function(e) {
             e.preventDefault();
 

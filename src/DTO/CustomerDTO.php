@@ -17,7 +17,7 @@ class CustomerDTO
     public $company;
 
     /**
-     * @var string
+     * @var int
      */
     public $customerNumber;
 

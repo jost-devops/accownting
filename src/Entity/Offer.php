@@ -36,9 +36,9 @@ class Offer
     private $customer;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="integer")
      */
     private $offerNumber;
 
@@ -111,17 +111,17 @@ class Offer
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getOfferNumber(): string
+    public function getOfferNumber(): int
     {
         return $this->offerNumber;
     }
 
     /**
-     * @param string $offerNumber
+     * @param int $offerNumber
      */
-    public function setOfferNumber(string $offerNumber): void
+    public function setOfferNumber(int $offerNumber): void
     {
         $this->offerNumber = $offerNumber;
     }

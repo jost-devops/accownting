@@ -57,7 +57,8 @@ class InvoiceController extends Controller
      */
     public function addAction(
         Request $request,
-        InvoiceManager $invoiceManager
+        InvoiceManager $invoiceManager,
+        EntityManagerInterface $entityManager
     ): Response {
         /** @var User $user */
         $user = $this->getUser();
@@ -68,7 +69,13 @@ class InvoiceController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $invoiceManager->add($invoiceDTO, $user);
+            $invoice = $invoiceManager->add($invoiceDTO, $user);
+
+            if ($invoice->getCompany()->getNextInvoiceNumber() === $invoice->getInvoiceNumber()) {
+                $invoice->getCompany()->setNextInvoiceNumber($invoice->getInvoiceNumber() + 1);
+            }
+
+            $entityManager->flush();
 
             return $this->redirectToRoute('app_invoice_index');
         }
@@ -85,7 +92,8 @@ class InvoiceController extends Controller
     public function editAction(
         Request $request,
         Invoice $invoice,
-        InvoiceManager $invoiceManager
+        InvoiceManager $invoiceManager,
+        EntityManagerInterface $entityManager
     ): Response {
         /** @var User $user */
         $user = $this->getUser();
@@ -96,7 +104,13 @@ class InvoiceController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $invoiceManager->edit($invoice, $invoiceDTO, $user);
+            $invoice = $invoiceManager->edit($invoice, $invoiceDTO, $user);
+
+            if ($invoice->getCompany()->getNextInvoiceNumber() === $invoice->getInvoiceNumber()) {
+                $invoice->getCompany()->setNextInvoiceNumber($invoice->getInvoiceNumber() + 1);
+            }
+
+            $entityManager->flush();
 
             return $this->redirectToRoute('app_invoice_index');
         }

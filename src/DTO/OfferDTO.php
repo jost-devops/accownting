@@ -23,7 +23,7 @@ class OfferDTO
     public $customer;
 
     /**
-     * @var string
+     * @var int
      *
      * @Assert\NotBlank()
      */

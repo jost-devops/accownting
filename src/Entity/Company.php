@@ -168,6 +168,20 @@ class Company
     private $logoMime;
 
     /**
+     * @var int|null
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $nextOfferNumber = 1;
+
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $nextInvoiceNumber = 1;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -520,5 +534,37 @@ class Company
     public function getLogoEncoded(): ?string
     {
         return ($this->getLogo() !== null) ? base64_encode($this->getLogo()) : null;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getNextOfferNumber(): ?int
+    {
+        return $this->nextOfferNumber;
+    }
+
+    /**
+     * @param int|null $nextOfferNumber
+     */
+    public function setNextOfferNumber(?int $nextOfferNumber): void
+    {
+        $this->nextOfferNumber = $nextOfferNumber;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getNextInvoiceNumber(): ?int
+    {
+        return $this->nextInvoiceNumber;
+    }
+
+    /**
+     * @param int|null $nextInvoiceNumber
+     */
+    public function setNextInvoiceNumber(?int $nextInvoiceNumber): void
+    {
+        $this->nextInvoiceNumber = $nextInvoiceNumber;
     }
 }

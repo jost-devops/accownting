@@ -142,4 +142,18 @@ class CompanyController extends Controller
 
         return $response;
     }
+
+    /**
+     * @Route("/{id}/next-numbers")
+     */
+    public function getNextNumbers(Company $company): Response
+    {
+        return new JsonResponse([
+            'success' => true,
+            'numbers' => [
+                'nextInvoiceNumber' => $company->getNextInvoiceNumber(),
+                'nextOfferNumber' => $company->getNextOfferNumber(),
+            ]
+        ]);
+    }
 }

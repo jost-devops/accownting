@@ -35,9 +35,9 @@ class Customer
     private $name;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="integer")
      */
     private $customerNumber;
 
@@ -122,17 +122,17 @@ class Customer
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getCustomerNumber(): string
+    public function getCustomerNumber(): int
     {
         return $this->customerNumber;
     }
 
     /**
-     * @param string $customerNumber
+     * @param int $customerNumber
      */
-    public function setCustomerNumber(string $customerNumber): void
+    public function setCustomerNumber(int $customerNumber): void
     {
         $this->customerNumber = $customerNumber;
     }

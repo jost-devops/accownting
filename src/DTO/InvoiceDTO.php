@@ -23,7 +23,7 @@ class InvoiceDTO
     public $customer;
 
     /**
-     * @var string
+     * @var int
      *
      * @Assert\NotBlank()
      */
