@@ -41,6 +41,9 @@ class CompanyManager
         $company->setBankName($companyDTO->bankName);
         $company->setBankIban($companyDTO->bankIban);
         $company->setBankBic($companyDTO->bankBic);
+        $company->setNextCustomerNumber($companyDTO->nextCustomerNumber);
+        $company->setNextOfferNumber($companyDTO->nextOfferNumber);
+        $company->setNextInvoiceNumber($companyDTO->nextInvoiceNumber);
         $company->setCreated(new \DateTime());
         $company->setCreatedBy($user);
 
@@ -74,6 +77,9 @@ class CompanyManager
         $companyDTO->bankName = $company->getBankName();
         $companyDTO->bankIban = $company->getBankIban();
         $companyDTO->bankBic = $company->getBankBic();
+        $companyDTO->nextCustomerNumber = $company->getNextCustomerNumber();
+        $companyDTO->nextOfferNumber = $company->getNextOfferNumber();
+        $companyDTO->nextInvoiceNumber = $company->getNextInvoiceNumber();
 
         return $companyDTO;
     }
@@ -99,6 +105,9 @@ class CompanyManager
         $company->setBankName($companyDTO->bankName);
         $company->setBankIban($companyDTO->bankIban);
         $company->setBankBic($companyDTO->bankBic);
+        $company->setNextCustomerNumber($companyDTO->nextCustomerNumber);
+        $company->setNextOfferNumber($companyDTO->nextOfferNumber);
+        $company->setNextInvoiceNumber($companyDTO->nextInvoiceNumber);
         $company->setUpdated(new \DateTime());
         $company->setUpdatedBy($user);
 

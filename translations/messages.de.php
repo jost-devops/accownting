@@ -127,4 +127,7 @@ return [
     'Edit Offer' => 'Angebot bearbeiten',
     'All Inclusive' => 'Pauschale',
     'All In' => 'Pauschale',
+    'Next Customer Number' => 'Nächste Kundennummer',
+    'Next Offer Number' => 'Nächste Angebotsnummer',
+    'Next Invoice Number' => 'Nächste Rechnungsnummer',
 ];

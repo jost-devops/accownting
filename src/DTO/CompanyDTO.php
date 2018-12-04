@@ -3,6 +3,7 @@
 namespace App\DTO;
 
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class CompanyDTO
 {
@@ -110,4 +111,28 @@ class CompanyDTO
      * @var File|null
      */
     public $logo;
+
+    /**
+     * @var int
+     *
+     * @Assert\NotNull()
+     * @Assert\GreaterThan(0)
+     */
+    public $nextOfferNumber = 1;
+
+    /**
+     * @var int
+     *
+     * @Assert\NotNull()
+     * @Assert\GreaterThan(0)
+     */
+    public $nextInvoiceNumber = 1;
+
+    /**
+     * @var int
+     *
+     * @Assert\NotNull()
+     * @Assert\GreaterThan(0)
+     */
+    public $nextCustomerNumber = 1;
 }

@@ -6,6 +6,7 @@ use App\DTO\CompanyDTO;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
@@ -99,6 +100,18 @@ class CompanyType extends AbstractType
             ->add('logo', FileType::class, [
                 'label' => 'Logo',
                 'required' => false,
+            ])
+            ->add('nextCustomerNumber', IntegerType::class, [
+                'label' => 'Next Customer Number',
+                'required' => true,
+            ])
+            ->add('nextOfferNumber', IntegerType::class, [
+                'label' => 'Next Offer Number',
+                'required' => true,
+            ])
+            ->add('nextInvoiceNumber', IntegerType::class, [
+                'label' => 'Next Invoice Number',
+                'required' => true,
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Save',
