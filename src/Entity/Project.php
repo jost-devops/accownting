@@ -71,6 +71,13 @@ class Project
     private $lastUsed;
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean", options={"default": "0"})
+     */
+    private $archived = false;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -180,5 +187,21 @@ class Project
     public function setLastUsed(?\DateTime $lastUsed): void
     {
         $this->lastUsed = $lastUsed;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isArchived(): bool
+    {
+        return $this->archived;
+    }
+
+    /**
+     * @param bool $archived
+     */
+    public function setArchived(bool $archived): void
+    {
+        $this->archived = $archived;
     }
 }

@@ -130,4 +130,5 @@ return [
     'Next Customer Number' => 'Nächste Kundennummer',
     'Next Offer Number' => 'Nächste Angebotsnummer',
     'Next Invoice Number' => 'Nächste Rechnungsnummer',
+    'Project Archive' => 'Projekt-Archiv',
 ];

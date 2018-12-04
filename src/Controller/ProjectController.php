@@ -29,14 +29,25 @@ class ProjectController extends Controller
     }
 
     /**
+     * @Route("/archive", methods={"GET"})
+     */
+    public function archiveAction(): Response
+    {
+        return $this->render('project/archive.html.twig');
+    }
+
+    /**
      * @Route("/data")
      */
     public function dataAction(
         EntityManagerInterface $entityManager,
-        ProjectNormalizer $projectNormalizer
+        ProjectNormalizer $projectNormalizer,
+        Request $request
     ): Response {
         /** @var Project[] $projects */
-        $projects = $entityManager->getRepository(Project::class)->findAll();
+        $projects = $entityManager
+            ->getRepository(Project::class)
+            ->findBy(['archived' => ($request->query->get('archive') !== null)]);
 
         $response = [
             'data' => [],
@@ -114,5 +125,19 @@ class ProjectController extends Controller
         $projectManager->delete($project);
 
         return $this->redirectToRoute('app_project_index');
+    }
+
+    /**
+     * @Route("/{id}/toggle-archive")
+     */
+    public function toggleArchiveAction(
+        Project $project,
+        EntityManagerInterface $entityManager
+    ): Response {
+        $project->setArchived(!$project->isArchived());
+
+        $entityManager->flush();
+
+        return $this->redirectToRoute(($project->isArchived()) ? 'app_project_archive' : 'app_project_index');
     }
 }
