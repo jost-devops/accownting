@@ -48,11 +48,11 @@ class ProjectNormalizer implements NormalizerInterface
             'pricePerHour' => ($object->getPricePerHour() !== null)
                 ? number_format($object->getPricePerHour(), 2)
                 : '',
-            'hoursAvailable' => $hoursAvailable,
-            'hoursSpent' => $hoursSpent,
-            'hoursSpentChargeable' => $hoursSpentChargeable,
+            'hoursAvailable' => number_format($hoursAvailable, 2),
+            'hoursSpent' => number_format($hoursSpent, 2),
+            'hoursSpentChargeable' => number_format($hoursSpentChargeable, 2),
             'hoursUsage' => ($hoursAvailable !== null && $hoursSpentChargeable !== null)
-                ? $hoursSpentChargeable / ($hoursAvailable / 100)
+                ? round($hoursSpentChargeable / ($hoursAvailable / 100))
                 : null,
         ];
     }

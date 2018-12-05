@@ -31,6 +31,7 @@ $(function() {
                 {
                     "render": function (data, type, row) {
                         let html = '';
+                        let percentage = '';
 
                         if (row.hoursUsage !== null) {
                             let bgClass = 'bg-success';
@@ -44,9 +45,11 @@ $(function() {
                             }
 
                             html += '<div class="progress progress-xl mb-2"><div class="progress-bar ' + bgClass + '" role="progressbar" aria-valuenow="' + row.hoursUsage + '" aria-valuemin="0" aria-valuemax="100" style="width: ' + row.hoursUsage + '%"></div></div>';
+
+                            percentage = ' (' + row.hoursUsage + '%)';
                         }
 
-                        html += '<div>' + row.hoursSpentChargeable + ' (' + row.hoursSpent + ') / ' + ((row.hoursAvailable !== null) ? row.hoursAvailable : '*') + ' ' + translations['Hours spent'];
+                        html += '<div>' + row.hoursSpentChargeable + ' (' + row.hoursSpent + ') / ' + ((row.hoursAvailable !== null) ? row.hoursAvailable : '*') + ' ' + translations['Hours spent'] + percentage + '</div>';
 
                         return html;
                     }
