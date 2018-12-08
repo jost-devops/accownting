@@ -47,7 +47,7 @@ class TimeTrackingController extends Controller
         $month = $timelineBegin->format('F Y');
         $days = [];
 
-        while ($timelineBegin < $timelineEnd) {
+        while ($timelineBegin <= $timelineEnd) {
             $days[] = [
                 'date' => $timelineBegin->format('Y-m-d'),
                 'day' => $timelineBegin->format('d'),
