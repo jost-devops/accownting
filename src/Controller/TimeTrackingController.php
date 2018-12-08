@@ -51,7 +51,7 @@ class TimeTrackingController extends Controller
             $days[] = [
                 'date' => $timelineBegin->format('Y-m-d'),
                 'day' => $timelineBegin->format('d'),
-                'duration' => $timeTrackItemRepository->findDurationByDate($timelineBegin),
+                'duration' => round($timeTrackItemRepository->findDurationByDate($timelineBegin), 1),
             ];
 
             $timelineBegin->add(new \DateInterval('P1D'));
