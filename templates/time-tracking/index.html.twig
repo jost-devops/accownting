@@ -26,7 +26,7 @@
                                         {{ day.day }}
                                     </div>
                                     <div class="timeline--day--duration">
-                                        {{ day.duration }}
+                                        {{ day.duration | number_format }}
                                     </div>
                                 </div>
                                 {% endfor %}
