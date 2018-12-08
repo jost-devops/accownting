@@ -1,0 +1,58 @@
+.accownting-timeline {
+  display: flex;
+  flex-direction: row;
+
+  .month-prev,
+  .month-next {
+    flex: 1;
+    text-align: center;
+    padding: 0 4px;
+
+    a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: silver;
+      padding: 5px 0;
+      color: #000;
+      font-size: 24px;
+      line-height: 45px;
+      vertical-align: middle;
+    }
+  }
+
+  .timeline--day {
+    flex: 1;
+    text-align: center;
+    padding: 0 4px;
+    cursor: pointer;
+
+    .timeline--day--number {
+      margin-bottom: 10px;
+    }
+
+    .timeline--day--duration {
+      background-color: silver;
+      padding: 5px 0;
+    }
+
+    &.current {
+      .timeline--day--number {
+        font-weight: bold;
+      }
+
+      .timeline--day--duration {
+        font-weight: bold;
+        color: #fff;
+        background-color: $primary;
+      }
+    }
+
+    &:hover {
+      .timeline--day--duration {
+        color: #fff;
+        background-color: $primary;
+      }
+    }
+  }
+}

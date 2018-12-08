@@ -131,4 +131,5 @@ return [
     'Next Offer Number' => 'Nächste Angebotsnummer',
     'Next Invoice Number' => 'Nächste Rechnungsnummer',
     'Project Archive' => 'Projekt-Archiv',
+    'No times tracked yet...' => 'Noch keine Zeiten erfasst...',
 ];

@@ -12,16 +12,34 @@
                 </div>
                 <div class="card-body">
                     <div class="row mb-2">
-                        <div class="col-6">
-                            <div class="filter-form">
-                                {{ form_start(filterForm) }}
-                                    {{ form_widget(filterForm.date) }}
-                                {{ form_end(filterForm) }}
+                        <div class="col-10">
+                            <h3>{{ date | date('F Y') }}</h3>
+                            <div class="accownting-timeline">
+                                <div class="month-prev">
+                                    <a href="{{ path('app_timetracking_index') }}?date={{ prevMonth | date('Y-m-d') }}">
+                                        <i class="fa fa-caret-left"></i>
+                                    </a>
+                                </div>
+                                {% for day in days %}
+                                <div class="timeline--day {% if day.day == date | date('d') %}current{% endif %}" data-date="{{ day.date }}">
+                                    <div class="timeline--day--number">
+                                        {{ day.day }}
+                                    </div>
+                                    <div class="timeline--day--duration">
+                                        {{ day.duration }}
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                <div class="month-next">
+                                    <a href="{{ path('app_timetracking_index') }}?date={{ nextMonth | date('Y-m-d') }}">
+                                        <i class="fa fa-caret-right"></i>
+                                    </a>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-6">
+                        <div class="col-2">
                             <div class="text-right">
-                                <a href="{{ path('app_timetracking_add') }}?moment={{ filterForm.vars.value.date|date('Y-m-d') }}" class="btn btn-primary">{% trans %}Add Time Track Item{% endtrans %}</a>
+                                <a href="{{ path('app_timetracking_add') }}?moment={{ date|date('Y-m-d') }}" class="btn btn-primary">{% trans %}Add Time Track Item{% endtrans %}</a>
                             </div>
                         </div>
                     </div>
@@ -38,34 +56,40 @@
                         </tr>
                         </thead>
                         <tbody>
-                        {% for item in timeTrackItems %}
-                        <tr>
-                            <td>
-                                {{ item.project.name }}<br>
-                                <small>{{ item.project.customer.name }}</small>
-                            </td>
-                            <td>{{ item.moment|date('d.m.Y') }}</td>
-                            <td>{{ item.description }}</td>
-                            <td class="text-right">
-                                {% if not item.chargeable %}
-                                    ({{ item.duration|number_format }})
-                                {% else %}
-                                    {{ item.duration|number_format }}
-                                {% endif %}
-                            </td>
-                            <td>
-                                {% if item.person is not null %}{{ item.person.name }}{% endif %}
-                            </td>
-                            <td>
-                                <div class="btn-group">
-                                    <a href="{{ path('app_timetracking_edit', {id: item.id}) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
-                                    <a href="{{ path('app_timetracking_delete', {id: item.id}) }}" class="btn btn-danger btn-sm btn-delete">
-                                        <i class="fa fa-remove"></i>
-                                    </a>
-                                </div>
-                            </td>
-                        </tr>
-                        {% endfor %}
+                        {% if timeTrackItems | length > 0 %}
+                            {% for item in timeTrackItems %}
+                            <tr>
+                                <td>
+                                    {{ item.project.name }}<br>
+                                    <small>{{ item.project.customer.name }}</small>
+                                </td>
+                                <td>{{ item.moment|date('d.m.Y') }}</td>
+                                <td>{{ item.description }}</td>
+                                <td class="text-right">
+                                    {% if not item.chargeable %}
+                                        ({{ item.duration|number_format }})
+                                    {% else %}
+                                        {{ item.duration|number_format }}
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if item.person is not null %}{{ item.person.name }}{% endif %}
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="{{ path('app_timetracking_edit', {id: item.id}) }}" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>
+                                        <a href="{{ path('app_timetracking_delete', {id: item.id}) }}" class="btn btn-danger btn-sm btn-delete">
+                                            <i class="fa fa-remove"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="6">{% trans %}No times tracked yet...{% endtrans %}</td>
+                            </tr>
+                        {% endif %}
                         </tbody>
                         <tfoot>
                         <tr>
