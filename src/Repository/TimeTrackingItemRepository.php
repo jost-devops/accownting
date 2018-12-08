@@ -26,6 +26,18 @@ class TimeTrackingItemRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findDurationByDate(\DateTime $date): float
+    {
+        return (float)$this->createQueryBuilder('i')
+            ->select('SUM(i.duration)')
+            ->where('i.moment BETWEEN :start AND :end')
+            ->setParameter('start', (clone $date)->setTime(0, 0))
+            ->setParameter('end', (clone $date)->setTime(23, 59, 59))
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
+    }
+
     public function findOpenByProject(Project $project): array
     {
         return $this->createQueryBuilder('i')

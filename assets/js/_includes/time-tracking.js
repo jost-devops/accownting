@@ -1,9 +1,11 @@
 $(function() {
     if ($('body').hasClass('route__app_timetracking_index')) {
-        let $filterForm = $('form[name=time_track_filter]');
+        $('.accownting-timeline').each(function(index, timeline) {
+            $(timeline).find('.timeline--day').click(function(e) {
+                e.preventDefault();
 
-        $filterForm.change(function(e) {
-            $filterForm.submit();
+                document.location = '/time-tracking?date=' + $(this).data('date');
+            });
         });
     }
 

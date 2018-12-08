@@ -30,20 +30,35 @@ class TimeTrackingController extends Controller
         Request $request,
         EntityManagerInterface $entityManager
     ): Response {
-        $timeTrackingFilterDTO = new TimeTrackingFilterDTO();
-
-        $form = $this->createForm(TimeTrackFilterType::class, $timeTrackingFilterDTO);
-        $form->handleRequest($request);
-
-        if ($timeTrackingFilterDTO->date === null) {
-            $timeTrackingFilterDTO->date = new \DateTime();
-        }
-
         /** @var TimeTrackingItemRepository $timeTrackItemRepository */
         $timeTrackItemRepository = $entityManager->getRepository(TimeTrackItem::class);
 
+        $date = $request->query->get('date');
+
+        if ($date === null) {
+            $date = new \DateTime();
+        } else {
+            $date = new \DateTime($date);
+        }
+
+        $timelineBegin = (clone $date)->modify('first day of this month');
+        $timelineEnd = (clone $date)->modify('last day of this month');
+
+        $month = $timelineBegin->format('F Y');
+        $days = [];
+
+        while ($timelineBegin < $timelineEnd) {
+            $days[] = [
+                'date' => $timelineBegin->format('Y-m-d'),
+                'day' => $timelineBegin->format('d'),
+                'duration' => $timeTrackItemRepository->findDurationByDate($timelineBegin),
+            ];
+
+            $timelineBegin->add(new \DateInterval('P1D'));
+        }
+
         /** @var TimeTrackItem[] $timeTrackItems */
-        $timeTrackItems = $timeTrackItemRepository->findByDate($timeTrackingFilterDTO->date);
+        $timeTrackItems = $timeTrackItemRepository->findByDate($date);
 
         $totalTime = 0;
         $totalTimeChargeable = 0;
@@ -57,10 +72,14 @@ class TimeTrackingController extends Controller
         }
 
         return $this->render('time-tracking/index.html.twig', [
-            'filterForm' => $form->createView(),
+            'date' => $date,
             'timeTrackItems' => $timeTrackItems,
             'totalTime' => $totalTime,
             'totalTimeChargeable' => $totalTimeChargeable,
+            'month' => $month,
+            'days' => $days,
+            'prevMonth' => (clone $date)->sub(new \DateInterval('P1M')),
+            'nextMonth' => (clone $date)->add(new \DateInterval('P1M')),
         ]);
     }
 
