@@ -2,22 +2,15 @@
 
 namespace App\Controller;
 
-use App\DTO\InvoiceDTO;
 use App\DTO\OfferDTO;
-use App\Entity\Invoice;
 use App\Entity\Offer;
 use App\Entity\User;
-use App\Form\InvoiceSetPaidType;
-use App\Form\InvoiceType;
 use App\Form\OfferType;
-use App\Generator\InvoiceGenerator;
 use App\Generator\OfferGenerator;
-use App\Manager\InvoiceManager;
 use App\Manager\OfferManager;
-use App\Normalizer\InvoiceNormalizer;
 use App\Normalizer\OfferNormalizer;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,7 +20,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 /**
  * @Route("/offer")
  */
-class OfferController extends Controller
+class OfferController extends AbstractController
 {
     /**
      * @Route("/", methods={"GET"})

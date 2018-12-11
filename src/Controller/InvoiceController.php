@@ -11,7 +11,7 @@ use App\Generator\InvoiceGenerator;
 use App\Manager\InvoiceManager;
 use App\Normalizer\InvoiceNormalizer;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,7 +21,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 /**
  * @Route("/invoice")
  */
-class InvoiceController extends Controller
+class InvoiceController extends AbstractController
 {
     /**
      * @Route("/", methods={"GET"})

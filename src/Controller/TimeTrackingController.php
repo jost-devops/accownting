@@ -2,17 +2,15 @@
 
 namespace App\Controller;
 
-use App\DTO\TimeTrackingFilterDTO;
 use App\DTO\TimeTrackItemDTO;
 use App\Entity\Project;
 use App\Entity\TimeTrackItem;
 use App\Entity\User;
-use App\Form\TimeTrackFilterType;
 use App\Form\TimeTrackItemType;
 use App\Manager\TimeTrackItemManager;
 use App\Repository\TimeTrackingItemRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -21,7 +19,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/time-tracking")
  */
-class TimeTrackingController extends Controller
+class TimeTrackingController extends AbstractController
 {
     /**
      * @Route("/", methods={"GET", "POST"})

@@ -2,29 +2,22 @@
 
 namespace App\Controller;
 
-use App\DTO\CompanyDTO;
 use App\DTO\UserDTO;
-use App\Entity\Company;
 use App\Entity\User;
-use App\Form\CompanyType;
 use App\Form\UserType;
-use App\Manager\CompanyManager;
 use App\Manager\UserManager;
-use App\Normalizer\CompanyNormalizer;
 use App\Normalizer\UserNormalizer;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\File\MimeType\MimeTypeExtensionGuesser;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/user")
  */
-class UserController extends Controller
+class UserController extends AbstractController
 {
     /**
      * @Route("/", methods={"GET"})

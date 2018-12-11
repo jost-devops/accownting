@@ -2,30 +2,23 @@
 
 namespace App\Controller;
 
-use App\DTO\CompanyDTO;
 use App\DTO\CustomerDTO;
-use App\Entity\Company;
 use App\Entity\Customer;
 use App\Entity\User;
-use App\Form\CompanyType;
 use App\Form\CustomerType;
-use App\Manager\CompanyManager;
 use App\Manager\CustomerManager;
-use App\Normalizer\CompanyNormalizer;
 use App\Normalizer\CustomerNormalizer;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\File\MimeType\MimeTypeExtensionGuesser;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/customer")
  */
-class CustomerController extends Controller
+class CustomerController extends AbstractController
 {
     /**
      * @Route("/", methods={"GET"})

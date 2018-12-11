@@ -9,7 +9,7 @@ use App\Form\VatRateType;
 use App\Manager\VatRateManager;
 use App\Normalizer\VatRateNormalizer;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,7 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/vat-rate")
  */
-class VatRateController extends Controller
+class VatRateController extends AbstractController
 {
     /**
      * @Route("/", methods={"GET"})

@@ -9,7 +9,7 @@ use App\Form\CompanyType;
 use App\Manager\CompanyManager;
 use App\Normalizer\CompanyNormalizer;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\MimeType\MimeTypeExtensionGuesser;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -20,7 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/company")
  */
-class CompanyController extends Controller
+class CompanyController extends AbstractController
 {
     /**
      * @Route("/", methods={"GET"})
