@@ -30,7 +30,7 @@ class OfferGenerator
             'margin_top' => 95,
             'margin_bottom' => 40,
             'margin_header' => 20,
-            'margin_footer' => 0,
+            'margin_footer' => 3,
             'tempDir' => '/tmp',
         ]);
 
