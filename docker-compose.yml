@@ -22,8 +22,11 @@ services:
       - "8083:80"
     volumes:
       - "./:/var/www"
+      - "./vendor/:/var/www/vendor/:cached"
     networks:
       - "internal"
+    tmpfs:
+      - "/var/www/var/"
 
 networks:
   "internal":
