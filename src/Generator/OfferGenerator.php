@@ -28,9 +28,9 @@ class OfferGenerator
             'margin_left' => 23,
             'margin_right' => 23,
             'margin_top' => 95,
-            'margin_bottom' => 50,
+            'margin_bottom' => 40,
             'margin_header' => 20,
-            'margin_footer' => 9,
+            'margin_footer' => 0,
             'tempDir' => '/tmp',
         ]);
 
