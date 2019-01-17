@@ -326,6 +326,9 @@
     "symfony/serializer-pack": {
         "version": "v1.0.1"
     },
+    "symfony/stopwatch": {
+        "version": "v4.2.2"
+    },
     "symfony/translation": {
         "version": "3.3",
         "recipe": {
