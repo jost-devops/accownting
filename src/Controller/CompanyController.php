@@ -154,6 +154,7 @@ class CompanyController extends AbstractController
                 'nextInvoiceNumber' => $company->getNextInvoiceNumber(),
                 'nextOfferNumber' => $company->getNextOfferNumber(),
                 'nextCustomerNumber' => $company->getNextCustomerNumber(),
+                'nextProjectNumber' => $company->getNextProjectNumber(),
             ]
         ]);
     }

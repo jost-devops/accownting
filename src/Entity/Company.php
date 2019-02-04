@@ -189,6 +189,13 @@ class Company
     private $nextCustomerNumber = 1;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(type="integer", options={"default": "0"})
+     */
+    private $nextProjectNumber = 1;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -589,5 +596,21 @@ class Company
     public function setNextCustomerNumber(int $nextCustomerNumber): void
     {
         $this->nextCustomerNumber = $nextCustomerNumber;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNextProjectNumber(): int
+    {
+        return $this->nextProjectNumber;
+    }
+
+    /**
+     * @param int $nextProjectNumber
+     */
+    public function setNextProjectNumber(int $nextProjectNumber): void
+    {
+        $this->nextProjectNumber = $nextProjectNumber;
     }
 }

@@ -9,7 +9,7 @@ $(function() {
             "processing": true,
             "ajax": "/project/data",
             "columns": [
-                {"data": "id"},
+                {"data": "projectNumber"},
                 {"data": "name"},
                 {
                     "data": "customer",
@@ -76,7 +76,7 @@ $(function() {
             "processing": true,
             "ajax": "/project/data?archive=1",
             "columns": [
-                {"data": "id"},
+                {"data": "projectNumber"},
                 {"data": "name"},
                 {
                     "data": "customer",

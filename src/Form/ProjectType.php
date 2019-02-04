@@ -7,6 +7,7 @@ use App\Entity\Company;
 use App\Entity\Customer;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -34,6 +35,10 @@ class ProjectType extends AbstractType
                 'class' => Customer::class,
                 'choice_label' => 'name',
                 'label' => 'Customer',
+                'required' => true,
+            ])
+            ->add('projectNumber', IntegerType::class, [
+                'label' => 'Project Number',
                 'required' => true,
             ])
             ->add('name', TextType::class, [

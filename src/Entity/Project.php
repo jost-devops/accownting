@@ -36,6 +36,13 @@ class Project
     private $customer;
 
     /**
+     * @var int|null
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $projectNumber;
+
+    /**
      * @var string
      *
      * @ORM\Column(type="string")
@@ -115,6 +122,22 @@ class Project
     public function setCustomer(?Customer $customer): void
     {
         $this->customer = $customer;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getProjectNumber(): ?int
+    {
+        return $this->projectNumber;
+    }
+
+    /**
+     * @param int|null $projectNumber
+     */
+    public function setProjectNumber(?int $projectNumber): void
+    {
+        $this->projectNumber = $projectNumber;
     }
 
     /**

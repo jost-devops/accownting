@@ -38,7 +38,7 @@ class ProjectNormalizer implements NormalizerInterface
         }
 
         return [
-            'id' => $object->getId(),
+            'projectNumber' => $object->getProjectNumber(),
             'name' => $object->getName(),
             'company' => ($object->getCompany() !== null) ? $object->getCompany()->getName() : '',
             'customer' => ($object->getCustomer() !== null) ? $object->getCustomer()->getName() : '',

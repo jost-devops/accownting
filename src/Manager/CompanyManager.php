@@ -44,6 +44,7 @@ class CompanyManager
         $company->setNextCustomerNumber($companyDTO->nextCustomerNumber);
         $company->setNextOfferNumber($companyDTO->nextOfferNumber);
         $company->setNextInvoiceNumber($companyDTO->nextInvoiceNumber);
+        $company->setNextProjectNumber($companyDTO->nextProjectNumber);
         $company->setCreated(new \DateTime());
         $company->setCreatedBy($user);
 
@@ -80,6 +81,7 @@ class CompanyManager
         $companyDTO->nextCustomerNumber = $company->getNextCustomerNumber();
         $companyDTO->nextOfferNumber = $company->getNextOfferNumber();
         $companyDTO->nextInvoiceNumber = $company->getNextInvoiceNumber();
+        $companyDTO->nextProjectNumber = $company->getNextProjectNumber();
 
         return $companyDTO;
     }
@@ -108,6 +110,7 @@ class CompanyManager
         $company->setNextCustomerNumber($companyDTO->nextCustomerNumber);
         $company->setNextOfferNumber($companyDTO->nextOfferNumber);
         $company->setNextInvoiceNumber($companyDTO->nextInvoiceNumber);
+        $company->setNextProjectNumber($companyDTO->nextProjectNumber);
         $company->setUpdated(new \DateTime());
         $company->setUpdatedBy($user);
 

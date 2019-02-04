@@ -113,6 +113,10 @@ class CompanyType extends AbstractType
                 'label' => 'Next Invoice Number',
                 'required' => true,
             ])
+            ->add('nextProjectNumber', IntegerType::class, [
+                'label' => 'Next Project Number',
+                'required' => true,
+            ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Save',
             ])

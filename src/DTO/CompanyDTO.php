@@ -135,4 +135,12 @@ class CompanyDTO
      * @Assert\GreaterThan(0)
      */
     public $nextCustomerNumber = 1;
+
+    /**
+     * @var int
+     *
+     * @Assert\NotNull()
+     * @Assert\GreaterThan(0)
+     */
+    public $nextProjectNumber = 1;
 }

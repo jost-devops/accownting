@@ -23,6 +23,13 @@ class ProjectDTO
     public $customer;
 
     /**
+     * @var int
+     *
+     * @Assert\NotBlank()
+     */
+    public $projectNumber;
+
+    /**
      * @var string
      *
      * @Assert\NotBlank()

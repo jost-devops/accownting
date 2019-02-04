@@ -24,6 +24,7 @@ class ProjectManager
         $project = new Project();
         $project->setCompany($projectDTO->company);
         $project->setCustomer($projectDTO->customer);
+        $project->setProjectNumber($projectDTO->projectNumber);
         $project->setName($projectDTO->name);
         $project->setBudget($projectDTO->budget);
         $project->setPricePerHour($projectDTO->pricePerHour);
@@ -41,6 +42,7 @@ class ProjectManager
         $projectDTO = new ProjectDTO();
         $projectDTO->company = $project->getCompany();
         $projectDTO->customer = $project->getCustomer();
+        $projectDTO->projectNumber = $project->getProjectNumber();
         $projectDTO->name = $project->getName();
         $projectDTO->budget = $project->getBudget();
         $projectDTO->pricePerHour = $project->getPricePerHour();
@@ -55,6 +57,7 @@ class ProjectManager
     ): Project {
         $project->setCompany($projectDTO->company);
         $project->setCustomer($projectDTO->customer);
+        $project->setProjectNumber($projectDTO->projectNumber);
         $project->setName($projectDTO->name);
         $project->setBudget($projectDTO->budget);
         $project->setPricePerHour($projectDTO->pricePerHour);
