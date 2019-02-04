@@ -23,7 +23,7 @@ class ProjectDTO
     public $customer;
 
     /**
-     * @var int
+     * @var int|null
      *
      * @Assert\NotBlank()
      */
