@@ -139,7 +139,7 @@
                             </td>
                             <td width="25%">
                                 <p class="text-smaller text-muted">
-                                    USt-ID: {{ offer.company.vatNumber }}<br />
+                                    {% if invoice.company.vatNumber %}USt-ID: {{ invoice.company.vatNumber }}<br />{% endif %}
                                     {% if offer.company.taxNumber %}Steuer-Nr.: {{ offer.company.taxNumber }}<br />{% endif %}
                                     {% if offer.company.districtCourt %}{{ offer.company.districtCourt }}, {% endif %}
                                     {% if offer.company.companyRegisterId %}{{ offer.company.companyRegisterId }}<br>{% endif %}
