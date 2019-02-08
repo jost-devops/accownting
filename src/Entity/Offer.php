@@ -71,6 +71,13 @@ class Offer
     private $country;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $additionalText;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -180,6 +187,22 @@ class Offer
     public function setCountry(string $country): void
     {
         $this->country = $country;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getAdditionalText(): ?string
+    {
+        return $this->additionalText;
+    }
+
+    /**
+     * @param string|null $additionalText
+     */
+    public function setAdditionalText(?string $additionalText): void
+    {
+        $this->additionalText = $additionalText;
     }
 
     public function getTotalNetPrice(): float

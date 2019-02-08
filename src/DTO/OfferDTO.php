@@ -55,6 +55,11 @@ class OfferDTO
      */
     public $country;
 
+    /**
+     * @var string|null
+     */
+    public $additionalText;
+
     public function __construct()
     {
         $this->offerDate = new \DateTime();
