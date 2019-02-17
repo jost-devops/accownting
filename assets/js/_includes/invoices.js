@@ -42,7 +42,7 @@ $(function() {
             ],
             "stateSave": true,
             "select": true,
-            "order": [[1, "desc"]],
+            "order": [[1, "asc"]],
         });
     }
 });
