@@ -12,7 +12,7 @@ $(function() {
                 {"data": "invoiceNumber"},
                 {
                     "data": "invoiceDate",
-                    "type": "date-de"
+                    "type": "de_date"
                 },
                 {"data": "company"},
                 {"data": "customer"},

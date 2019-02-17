@@ -12,7 +12,7 @@ $(function() {
                 {"data": "offerNumber"},
                 {
                     "data": "offerDate",
-                    "type": "date-de"
+                    "type": "de_date"
                 },
                 {"data": "company"},
                 {"data": "customer"},
