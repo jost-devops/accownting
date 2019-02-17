@@ -6,6 +6,7 @@ require('popper.js');
 require('bootstrap');
 require('admin-lte');
 require('datatables');
+require('datatables.net-plugins/sorting/date-de');
 require('admin-lte/plugins/datatables/dataTables.bootstrap4');
 require('moment');
 
