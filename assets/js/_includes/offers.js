@@ -10,7 +10,10 @@ $(function() {
             "ajax": "/offer/data",
             "columns": [
                 {"data": "offerNumber"},
-                {"data": "offerDate"},
+                {
+                    "data": "offerDate",
+                    "type": "date-de"
+                },
                 {"data": "company"},
                 {"data": "customer"},
                 {"data": "subject"},
