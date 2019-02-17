@@ -10,7 +10,10 @@ $(function() {
             "ajax": "/invoice/data",
             "columns": [
                 {"data": "invoiceNumber"},
-                {"data": "invoiceDate"},
+                {
+                    "data": "invoiceDate",
+                    "type": "date-de"
+                },
                 {"data": "company"},
                 {"data": "customer"},
                 {"data": "subject"},
@@ -39,6 +42,7 @@ $(function() {
             ],
             "stateSave": true,
             "select": true,
+            "order": [[1, "desc"]],
         });
     }
 });
