@@ -44,7 +44,7 @@ class InvoiceType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $company =  $options['company'];
+        $company = $options['company'];
 
         $builder
             ->add('customer', EntityType::class, [
