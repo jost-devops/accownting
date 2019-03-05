@@ -2,29 +2,7 @@ $(function() {
     let $body = $('body');
     let $itemTable = $('.item-table');
 
-    if ($body.hasClass('route__app_offer_add')) {
-        let updateOfferNumber = function() {
-            let companyId = $('#offer_company').val();
-
-            $.ajax({
-                type: 'get',
-                url: '/company/' + companyId + '/next-numbers',
-                dataType: 'json',
-                success: function(response) {
-                    if (response.success) {
-                        $('#offer_offerNumber').val(response.numbers.nextOfferNumber);
-                    }
-                }
-            });
-        };
-        updateOfferNumber();
-
-        $('#offer_company').change(function() {
-            updateOfferNumber();
-        });
-    }
-
-    if ($body.hasClass('route__app_offer_add') || $body.hasClass('route__app_offer_edit')) {
+    if ($body.hasClass('route__app_offer_add2') || $body.hasClass('route__app_offer_edit')) {
 
         $('.btn-add-item').click(function(e) {
             e.preventDefault();
