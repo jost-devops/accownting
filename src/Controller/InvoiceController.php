@@ -23,6 +23,8 @@ use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * @Route("/invoice")
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class InvoiceController extends AbstractController
 {
@@ -61,9 +63,6 @@ class InvoiceController extends AbstractController
     public function addAction(
         Request $request
     ): Response {
-        /** @var User $user */
-        $user = $this->getUser();
-
         $form = $this->createFormBuilder()
             ->add('company', EntityType::class, [
                 'class' => Company::class,
