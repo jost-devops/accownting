@@ -139,7 +139,7 @@ class InvoiceController extends AbstractController
 
         $invoiceDTO = $invoiceManager->getEdit($invoice);
 
-        $form = $this->createForm(InvoiceType::class, $invoiceDTO);
+        $form = $this->createForm(InvoiceType::class, $invoiceDTO, ['company' => $invoiceDTO->company]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

@@ -138,7 +138,7 @@ class OfferController extends AbstractController
 
         $offerDTO = $offerManager->getEdit($offer);
 
-        $form = $this->createForm(OfferType::class, $offerDTO);
+        $form = $this->createForm(OfferType::class, $offerDTO, ['company' => $offerDTO->company]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
