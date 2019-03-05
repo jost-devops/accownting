@@ -100,7 +100,7 @@ class OfferController extends AbstractController
 
         $offerDTO = new OfferDTO();
         $offerDTO->company = $company;
-        $offerDTO->offerNumber = $company->getNextInvoiceNumber();
+        $offerDTO->offerNumber = $company->getNextOfferNumber();
 
         $form = $this->createForm(OfferType::class, $offerDTO, ['company' => $company]);
         $form->handleRequest($request);
