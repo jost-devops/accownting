@@ -22,6 +22,8 @@ use Symfony\Component\Translation\TranslatorInterface;
 
 /**
  * @Route("/offer")
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class OfferController extends AbstractController
 {
