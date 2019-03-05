@@ -5,6 +5,7 @@ namespace App\Form;
 use App\DTO\InvoiceDTO;
 use App\Entity\Company;
 use App\Entity\Customer;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -43,15 +44,18 @@ class InvoiceType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $company =  $options['company'];
+
         $builder
-            ->add('company', EntityType::class, [
-                'class' => Company::class,
-                'choice_label' => 'name',
-                'label' => 'Company',
-                'required' => true,
-            ])
             ->add('customer', EntityType::class, [
                 'class' => Customer::class,
+                'query_builder' => function (EntityRepository $er) use ($company) {
+                    return $er->createQueryBuilder('c')
+                        ->where('c.company = :company')
+                        ->setParameter('company', $company)
+                        ->orderBy('c.name', 'ASC')
+                    ;
+                },
                 'choice_label' => 'name',
                 'label' => 'Customer',
                 'required' => true,
@@ -108,6 +112,7 @@ class InvoiceType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => InvoiceDTO::class,
+            'company' => null,
         ]);
     }
 }

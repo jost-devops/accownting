@@ -2,29 +2,7 @@ $(function() {
     let $body = $('body');
     let $lineItemTable = $('.line-item-table');
 
-    if ($body.hasClass('route__app_invoice_add')) {
-        let updateInvoiceNumber = function() {
-            let companyId = $('#invoice_company').val();
-
-            $.ajax({
-                type: 'get',
-                url: '/company/' + companyId + '/next-numbers',
-                dataType: 'json',
-                success: function(response) {
-                    if (response.success) {
-                        $('#invoice_invoiceNumber').val(response.numbers.nextInvoiceNumber);
-                    }
-                }
-            });
-        };
-        updateInvoiceNumber();
-
-        $('#invoice_company').change(function() {
-            updateInvoiceNumber();
-        });
-    }
-
-    if ($body.hasClass('route__app_invoice_add') || $body.hasClass('route__app_invoice_edit')) {
+    if ($body.hasClass('route__app_invoice_add2') || $body.hasClass('route__app_invoice_edit')) {
 
         $('.btn-add-line-item').click(function(e) {
             e.preventDefault();

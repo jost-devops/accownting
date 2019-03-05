@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\DTO\InvoiceDTO;
+use App\Entity\Company;
 use App\Entity\Invoice;
 use App\Entity\User;
 use App\Form\InvoiceSetPaidType;
@@ -11,7 +12,9 @@ use App\Generator\InvoiceGenerator;
 use App\Manager\InvoiceManager;
 use App\Normalizer\InvoiceNormalizer;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -56,16 +59,52 @@ class InvoiceController extends AbstractController
      * @Route("/add")
      */
     public function addAction(
+        Request $request
+    ): Response {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        $form = $this->createFormBuilder()
+            ->add('company', EntityType::class, [
+                'class' => Company::class,
+                'label' => 'Company',
+                'choice_label' => 'name',
+            ])
+            ->add('submit', SubmitType::class, [
+                'label' => 'Continue',
+            ])
+            ->getForm()
+        ;
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            return $this->redirectToRoute('app_invoice_add2', ['id' => $form->getData()['company']->getId()]);
+        }
+
+        return $this->render('invoice/add.html.twig', [
+            'title' => 'New Invoice',
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/add/{id}")
+     */
+    public function add2Action(
         Request $request,
         InvoiceManager $invoiceManager,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        Company $company
     ): Response {
         /** @var User $user */
         $user = $this->getUser();
 
         $invoiceDTO = new InvoiceDTO();
+        $invoiceDTO->company = $company;
+        $invoiceDTO->invoiceNumber = $company->getNextInvoiceNumber();
 
-        $form = $this->createForm(InvoiceType::class, $invoiceDTO);
+        $form = $this->createForm(InvoiceType::class, $invoiceDTO, ['company' => $company]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
