@@ -109,7 +109,9 @@ class TimeTrackingController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $timeTrackItemManager->add($timeTrackItemDTO, $user);
 
-            return $this->redirectToRoute('app_timetracking_index');
+            return $this->redirectToRoute('app_timetracking_index', [
+                'date' => $timeTrackItemDTO->moment->format('Y-m-d'),
+            ]);
         }
 
         return $this->render('time-tracking/form.html.twig', [
