@@ -139,7 +139,9 @@ class TimeTrackingController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $timeTrackItemManager->edit($timeTrackItem, $timeTrackItemDTO, $user);
 
-            return $this->redirectToRoute('app_timetracking_index');
+            return $this->redirectToRoute('app_timetracking_index', [
+                'date' => $timeTrackItemDTO->moment->format('Y-m-d'),
+            ]);
         }
 
         return $this->render('time-tracking/form.html.twig', [
@@ -155,9 +157,13 @@ class TimeTrackingController extends AbstractController
         TimeTrackItem $timeTrackItem,
         TimeTrackItemManager $timeTrackItemManager
     ): Response {
+        $moment = $timeTrackItem->getMoment();
+
         $timeTrackItemManager->delete($timeTrackItem);
 
-        return $this->redirectToRoute('app_timetracking_index');
+        return $this->redirectToRoute('app_timetracking_index', [
+            'date' => $moment->format('Y-m-d'),
+        ]);
     }
 
     /**
