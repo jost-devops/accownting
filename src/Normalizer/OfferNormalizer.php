@@ -32,7 +32,7 @@ class OfferNormalizer implements NormalizerInterface
             'id' => $object->getId(),
             'offerNumber' => $object->getOfferNumber(),
             'offerDate' => ($object->getOfferDate() !== null) ?
-                $object->getOfferDate()->format($this->translator->trans('date_format')) :
+                $object->getOfferDate()->format('Y-m-d') :
                 null,
             'company' => ($object->getCompany() !== null) ? $object->getCompany()->getName() : '',
             'customer' => ($object->getCustomer() !== null) ? $object->getCustomer()->getName() : '',

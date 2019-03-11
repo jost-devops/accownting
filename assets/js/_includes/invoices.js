@@ -1,4 +1,5 @@
-var language = require('../de.json');
+let moment = require('moment');
+let language = require('../de.json');
 
 $(function() {
     if ($('body').hasClass('route__app_invoice_index')) {
@@ -12,7 +13,10 @@ $(function() {
                 {"data": "invoiceNumber"},
                 {
                     "data": "invoiceDate",
-                    "type": "de_date"
+                    "type": "date",
+                    "render": function (data, type, row, meta) {
+                        return moment(data).format('DD.MM.YYYY');
+                    },
                 },
                 {"data": "company"},
                 {"data": "customer"},
@@ -27,7 +31,7 @@ $(function() {
                 {
                     "data": "paid",
                     "render": function (data, type, row) {
-                        return (data !== null) ? '<span class="badge badge-success">' + data + '</span>' : '<span class="badge badge-danger">' + translations.no + '</span>';
+                        return (data !== null) ? '<span class="badge badge-success">' + moment(data).format('DD.MM.YYYY') + '</span>' : '<span class="badge badge-danger">' + translations.no + '</span>';
                     }
                 },
                 {

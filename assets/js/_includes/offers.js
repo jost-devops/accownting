@@ -1,3 +1,4 @@
+let moment = require('moment');
 var language = require('../de.json');
 
 $(function() {
@@ -12,7 +13,10 @@ $(function() {
                 {"data": "offerNumber"},
                 {
                     "data": "offerDate",
-                    "type": "de_date"
+                    "type": "date",
+                    "render": function (data, type, row, meta) {
+                        return moment(data).format('DD.MM.YYYY');
+                    },
                 },
                 {"data": "company"},
                 {"data": "customer"},

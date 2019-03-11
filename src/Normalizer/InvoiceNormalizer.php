@@ -32,7 +32,7 @@ class InvoiceNormalizer implements NormalizerInterface
             'id' => $object->getId(),
             'invoiceNumber' => $object->getInvoiceNumber(),
             'invoiceDate' => ($object->getInvoiceDate() !== null) ?
-                $object->getInvoiceDate()->format($this->translator->trans('date_format')) :
+                $object->getInvoiceDate()->format('Y-m-d') :
                 null,
             'company' => ($object->getCompany() !== null) ? $object->getCompany()->getName() : '',
             'customer' => ($object->getCustomer() !== null) ? $object->getCustomer()->getName() : '',
@@ -40,7 +40,7 @@ class InvoiceNormalizer implements NormalizerInterface
             'totalNetPrice' => number_format($object->getTotalNetPrice(), 2),
             'totalGrossPrice' => number_format($object->getTotalGrossPrice(), 2),
             'paid' => ($object->getPaid() !== null) ?
-                $object->getPaid()->format($this->translator->trans('date_format')) :
+                $object->getPaid()->format('Y-m-d') :
                 null,
         ];
     }
