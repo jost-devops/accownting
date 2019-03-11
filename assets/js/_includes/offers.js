@@ -15,7 +15,7 @@ $(function() {
                     "data": "offerDate",
                     "type": "date",
                     "render": function (data, type, row, meta) {
-                        return moment(data).format('DD.MM.YYYY');
+                        return moment(data, 'YYYY-MM-DD').format('DD.MM.YYYY');
                     },
                 },
                 {"data": "company"},

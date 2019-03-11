@@ -15,7 +15,7 @@ $(function() {
                     "data": "invoiceDate",
                     "type": "date",
                     "render": function (data, type, row, meta) {
-                        return moment(data).format('DD.MM.YYYY');
+                        return moment(data, 'YYYY-MM-DD').format('DD.MM.YYYY');
                     },
                 },
                 {"data": "company"},
@@ -31,7 +31,7 @@ $(function() {
                 {
                     "data": "paid",
                     "render": function (data, type, row) {
-                        return (data !== null) ? '<span class="badge badge-success">' + moment(data).format('DD.MM.YYYY') + '</span>' : '<span class="badge badge-danger">' + translations.no + '</span>';
+                        return (data !== null) ? '<span class="badge badge-success">' + moment(data, 'YYYY-MM-DD').format('DD.MM.YYYY') + '</span>' : '<span class="badge badge-danger">' + translations.no + '</span>';
                     }
                 },
                 {
