@@ -13,7 +13,6 @@ $(function() {
                 {"data": "invoiceNumber"},
                 {
                     "data": "invoiceDate",
-                    "type": "date",
                     "render": function (data, type, row, meta) {
                         return moment(data, 'YYYY-MM-DD').format('DD.MM.YYYY');
                     },

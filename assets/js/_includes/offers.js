@@ -13,7 +13,6 @@ $(function() {
                 {"data": "offerNumber"},
                 {
                     "data": "offerDate",
-                    "type": "date",
                     "render": function (data, type, row, meta) {
                         return moment(data, 'YYYY-MM-DD').format('DD.MM.YYYY');
                     },
