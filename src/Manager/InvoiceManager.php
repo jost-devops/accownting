@@ -3,6 +3,7 @@
 namespace App\Manager;
 
 use App\DTO\InvoiceDTO;
+use App\Entity\Company;
 use App\Entity\Invoice;
 use App\Entity\InvoiceItem;
 use App\Entity\User;
@@ -135,6 +136,7 @@ class InvoiceManager
     {
         $this->entityManager->beginTransaction();
 
+        /** @var Company $company */
         $company = $invoice->getCompany();
 
         $newInvoice = clone $invoice;
