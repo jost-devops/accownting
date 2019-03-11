@@ -213,4 +213,19 @@ class InvoiceController extends AbstractController
 
         return $response;
     }
+
+    /**
+     * @Route("/{id}/duplicate")
+     */
+    public function duplicateAction(
+        Invoice $invoice,
+        InvoiceManager $invoiceManager
+    ): Response {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        $invoiceManager->duplicate($invoice, $user);
+
+        return $this->redirectToRoute('app_invoice_index');
+    }
 }

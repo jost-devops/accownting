@@ -130,4 +130,30 @@ class InvoiceManager
         $this->entityManager->remove($invoice);
         $this->entityManager->flush();
     }
+
+    public function duplicate(Invoice $invoice, User $user): void
+    {
+        $this->entityManager->beginTransaction();
+
+        $company = $invoice->getCompany();
+
+        $newInvoice = clone $invoice;
+        $newInvoice->setCreated(new \DateTime());
+        $newInvoice->setCreatedBy($user);
+        $newInvoice->setPaid(null);
+        $newInvoice->setInvoiceNumber($company->getNextInvoiceNumber());
+        $newInvoice->setInvoiceDate(new \DateTime());
+
+        $this->entityManager->persist($newInvoice);
+
+        $company->setNextInvoiceNumber($company->getNextInvoiceNumber() + 1);
+
+        $this->entityManager->flush();
+
+        foreach ($invoice->getItems() as $item) {
+            $this->invoiceItemManager->duplicate($item, $newInvoice, $user);
+        }
+
+        $this->entityManager->commit();
+    }
 }

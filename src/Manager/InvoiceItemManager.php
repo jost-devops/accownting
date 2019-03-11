@@ -77,4 +77,15 @@ class InvoiceItemManager
         $this->entityManager->remove($invoiceItem);
         $this->entityManager->flush();
     }
+
+    public function duplicate(InvoiceItem $invoiceItem, Invoice $newInvoice, User $user): void
+    {
+        $newInvoiceItem = clone $invoiceItem;
+        $newInvoiceItem->setCreated(new \DateTime());
+        $newInvoiceItem->setCreatedBy($user);
+        $newInvoiceItem->setInvoice($newInvoice);
+
+        $this->entityManager->persist($newInvoiceItem);
+        $this->entityManager->flush();
+    }
 }
