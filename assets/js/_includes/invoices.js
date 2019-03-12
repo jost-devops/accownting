@@ -50,7 +50,7 @@ $(function() {
             ],
             "stateSave": true,
             "select": true,
-            "order": [[1, "asc"]],
+            "order": [[1, "desc"]],
         });
     }
 });

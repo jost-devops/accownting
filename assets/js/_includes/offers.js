@@ -17,7 +17,7 @@ $(function() {
                         if (type === 'sort' || type === 'type') {
                             return data;
                         }
-                        
+
                         return moment(data, 'YYYY-MM-DD').format('DD.MM.YYYY');
                     },
                 },
