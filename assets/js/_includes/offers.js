@@ -14,6 +14,10 @@ $(function() {
                 {
                     "data": "offerDate",
                     "render": function (data, type, row, meta) {
+                        if (type === 'sort' || type === 'type') {
+                            return data;
+                        }
+                        
                         return moment(data, 'YYYY-MM-DD').format('DD.MM.YYYY');
                     },
                 },
