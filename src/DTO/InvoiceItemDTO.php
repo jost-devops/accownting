@@ -52,4 +52,11 @@ class InvoiceItemDTO
      * @Assert\NotNull()
      */
     public $vatRate;
+
+    /**
+     * @var integer
+     *
+     * @Assert\NotNull()
+     */
+    public $position;
 }

@@ -7,6 +7,8 @@ use App\Entity\Unit;
 use App\Entity\VatRate;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\CallbackTransformer;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -53,7 +55,17 @@ class InvoiceItemType extends AbstractType
                     return ['data-rate' => $choiceValue->getRate()];
                 },
             ])
+            ->add('position', HiddenType::class)
         ;
+
+        $builder->get('position')->addModelTransformer(new CallbackTransformer(
+            function ($numberAsNumber) {
+                return (string)$numberAsNumber;
+            },
+            function ($numberAsString) {
+                return (int)$numberAsString;
+            }
+        ));
     }
 
     public function configureOptions(OptionsResolver $resolver)

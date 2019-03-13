@@ -81,6 +81,7 @@ class Invoice
      * @var InvoiceItem[]|Collection
      *
      * @ORM\OneToMany(targetEntity="InvoiceItem", mappedBy="invoice")
+     * @ORM\OrderBy({"position"="ASC", "id"="ASC"})
      */
     private $items;
 

@@ -71,6 +71,13 @@ class InvoiceItem
     private $vatRate;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(type="integer", options={"default": "1"})
+     */
+    private $position;
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -193,5 +200,21 @@ class InvoiceItem
     public function getPriceTotal(): float
     {
         return $this->getAmount() * $this->getPriceSingle();
+    }
+
+    /**
+     * @return int
+     */
+    public function getPosition(): int
+    {
+        return $this->position;
+    }
+
+    /**
+     * @param int $position
+     */
+    public function setPosition(int $position): void
+    {
+        $this->position = $position;
     }
 }
