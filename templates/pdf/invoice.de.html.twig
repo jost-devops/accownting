@@ -224,13 +224,13 @@ mpdf-->
                     {% endif %}
                 </td>
                 <td class="number">
-                    {% if not item.unit.allIn %}{{ item.amount | number_format }} {% endif %}{{ item.unit.name }}
+                    <span style="white-space: nowrap">{% if not item.unit.allIn %}{{ item.amount | number_format }} {% endif %}{{ item.unit.name }}</span>
                 </td>
                 <td class="number">
-                    {{ item.priceSingle | number_format }} EUR
+                    <span style="white-space: nowrap">{{ item.priceSingle | number_format }} EUR</span>
                 </td>
                 <td class="number">
-                    {{ item.priceTotal | number_format }} EUR
+                    <span style="white-space: nowrap">{{ item.priceTotal | number_format }} EUR</span>
                 </td>
             </tr>
         {% endfor %}
