@@ -7,6 +7,7 @@ use App\Entity\Unit;
 use App\Entity\VatRate;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -52,6 +53,9 @@ class OfferItemType extends AbstractType
                 'choice_attr' => function (VatRate $choiceValue, $key, $value) {
                     return ['data-rate' => $choiceValue->getRate()];
                 },
+            ])
+            ->add('position', IntegerType::class, [
+                'label' => 'Position',
             ])
         ;
     }

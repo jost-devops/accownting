@@ -37,6 +37,7 @@
                             <thead>
                             <tr>
                                 <th>{% trans %}Pos{% endtrans %}</th>
+                                <th>{% trans %}Pos{% endtrans %}</th>
                                 <th>{% trans %}Title / Description{% endtrans %}</th>
                                 <th>{% trans %}Amount{% endtrans %}</th>
                                 <th>{% trans %}Unit{% endtrans %}</th>
@@ -50,6 +51,7 @@
                             {% for lineItem in form.items %}
                             <tr class="item">
                                 <td>{{ loop.index }}</td>
+                                <td>{{ form_row(lineItem.position) }}</td>
                                 <td>
                                     {{ form_row(lineItem.title) }}
                                     {{ form_row(lineItem.description) }}
@@ -71,6 +73,7 @@
                             {% endfor %}
                             <tr class="prototype item d-none">
                                 <td class="item--index"></td>
+                                <td>{{ form_row(form.items.vars.prototype.position) }}</td>
                                 <td>
                                     {{ form_row(form.items.vars.prototype.title) }}
                                     {{ form_row(form.items.vars.prototype.description) }}

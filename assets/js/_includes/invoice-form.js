@@ -14,7 +14,6 @@ $(function() {
 
             $prototype.removeClass('prototype').removeClass('d-none');
             $prototype.find('.line-item--index').html(newItemIndex);
-            $prototype.find('#invoice_items_new_' + newItemIndex + '_position').val(newItemIndex);
             $prototype.appendTo($lineItemTable.find('tbody'));
         });
 
