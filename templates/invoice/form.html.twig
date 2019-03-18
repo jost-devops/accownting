@@ -51,7 +51,7 @@
                         <tbody>
                         {% for item in form.items %}
                         <tr class="line-item">
-                            <td>{{ loop.index }}</td>
+                            <td>{{ loop.index }}{{ form_row(item.position) }}</td>
                             <td>
                                 {{ form_row(item.title) }}
                                 {{ form_row(item.description) }}
@@ -74,6 +74,7 @@
                         <tr class="prototype line-item d-none">
                             <td class="line-item--index"></td>
                             <td>
+                                {{ form_row(form.items.vars.prototype.position) }}
                                 {{ form_row(form.items.vars.prototype.title) }}
                                 {{ form_row(form.items.vars.prototype.description) }}
                             </td>

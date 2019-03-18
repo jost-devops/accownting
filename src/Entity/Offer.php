@@ -60,6 +60,7 @@ class Offer
      * @var OfferItem[]|Collection
      *
      * @ORM\OneToMany(targetEntity="App\Entity\OfferItem", mappedBy="offer")
+     * @ORM\OrderBy({"position"="ASC", "id"="ASC"})
      */
     private $items;
 

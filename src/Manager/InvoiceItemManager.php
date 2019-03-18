@@ -30,6 +30,7 @@ class InvoiceItemManager
         $invoiceItem->setUnit($invoiceItemDTO->unit);
         $invoiceItem->setPriceSingle($invoiceItemDTO->priceSingle);
         $invoiceItem->setVatRate($invoiceItemDTO->vatRate);
+        $invoiceItem->setPosition($invoiceItemDTO->position);
         $invoiceItem->setCreated(new \DateTime());
         $invoiceItem->setCreatedBy($user);
 
@@ -49,6 +50,7 @@ class InvoiceItemManager
         $invoiceItemDTO->unit = $invoiceItem->getUnit();
         $invoiceItemDTO->priceSingle = $invoiceItem->getPriceSingle();
         $invoiceItemDTO->vatRate = $invoiceItem->getVatRate();
+        $invoiceItemDTO->position = $invoiceItem->getPosition();
 
         return $invoiceItemDTO;
     }
@@ -64,6 +66,7 @@ class InvoiceItemManager
         $invoiceItem->setUnit($invoiceItemDTO->unit);
         $invoiceItem->setPriceSingle($invoiceItemDTO->priceSingle);
         $invoiceItem->setVatRate($invoiceItemDTO->vatRate);
+        $invoiceItem->setPosition($invoiceItemDTO->position);
         $invoiceItem->setUpdated(new \DateTime());
         $invoiceItem->setUpdatedBy($user);
 

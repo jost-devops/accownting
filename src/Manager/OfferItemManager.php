@@ -30,6 +30,7 @@ class OfferItemManager
         $offerItem->setUnit($offerItemDTO->unit);
         $offerItem->setPriceSingle($offerItemDTO->priceSingle);
         $offerItem->setVatRate($offerItemDTO->vatRate);
+        $offerItem->setPosition($offerItemDTO->position);
         $offerItem->setCreated(new \DateTime());
         $offerItem->setCreatedBy($user);
 
@@ -49,6 +50,7 @@ class OfferItemManager
         $offerItemDTO->unit = $offerItem->getUnit();
         $offerItemDTO->priceSingle = $offerItem->getPriceSingle();
         $offerItemDTO->vatRate = $offerItem->getVatRate();
+        $offerItemDTO->position = $offerItem->getPosition();
 
         return $offerItemDTO;
     }
@@ -64,6 +66,7 @@ class OfferItemManager
         $offerItem->setUnit($offerItemDTO->unit);
         $offerItem->setPriceSingle($offerItemDTO->priceSingle);
         $offerItem->setVatRate($offerItemDTO->vatRate);
+        $offerItem->setPosition($offerItemDTO->position);
         $offerItem->setUpdated(new \DateTime());
         $offerItem->setUpdatedBy($user);
 
