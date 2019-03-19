@@ -14,6 +14,7 @@ $(function() {
 
             $prototype.removeClass('prototype').removeClass('d-none');
             $prototype.find('.item--index').html(newItemIndex);
+            $prototype.find('#offer_items_new_' + newItemIndex + '_position').val(newItemIndex);
             $prototype.appendTo($itemTable.find('tbody'));
         });
 

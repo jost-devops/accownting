@@ -7,7 +7,6 @@ use App\Entity\Unit;
 use App\Entity\VatRate;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -59,15 +58,6 @@ class InvoiceItemType extends AbstractType
                 'label' => 'Position',
             ])
         ;
-
-        $builder->get('position')->addModelTransformer(new CallbackTransformer(
-            function ($numberAsNumber) {
-                return (string)$numberAsNumber;
-            },
-            function ($numberAsString) {
-                return (int)$numberAsString;
-            }
-        ));
     }
 
     public function configureOptions(OptionsResolver $resolver)
