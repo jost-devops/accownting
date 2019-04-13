@@ -34,7 +34,7 @@ $(function() {
             ],
             "stateSave": true,
             "select": true,
-            "order": [[1, "desc"]],
+            "order": [[2, "desc"]],
         });
     }
 });
