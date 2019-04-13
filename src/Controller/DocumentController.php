@@ -64,7 +64,7 @@ class DocumentController extends AbstractController
         $documentDTO = new DocumentDTO();
         $documentDTO->date = new \DateTime();
 
-        $form = $this->createForm(DocumentType::class, $documentDTO);
+        $form = $this->createForm(DocumentType::class, $documentDTO, ['file_required' => false]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

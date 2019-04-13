@@ -50,7 +50,7 @@ class DocumentType extends AbstractType
             ])
             ->add('file', FileType::class, [
                 'label' => 'Document',
-                'required' => true,
+                'required' => $options['file_required'],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Save',
@@ -62,6 +62,7 @@ class DocumentType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => DocumentDTO::class,
+            'file_required' => true,
         ]);
     }
 }
