@@ -11,6 +11,7 @@ $(function() {
             "ajax": "/document/data",
             "columns": [
                 {"data": "id"},
+                {"data": "company"},
                 {
                     "data": "date",
                     "render": function (data, type, row, meta) {
