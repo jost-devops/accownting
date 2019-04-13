@@ -35,6 +35,14 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ path('app_document_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_document_~' %}active{% endif %}">
+                        <i class="nav-icon fa fa-file-text"></i>
+                        <p>
+                            {% trans %}Documents{% endtrans %}
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ path('app_customer_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_customer_~' %}active{% endif %}">
                         <i class="nav-icon fa fa-address-book"></i>
                         <p>

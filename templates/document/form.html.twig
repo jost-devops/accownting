@@ -1,0 +1,37 @@
+{% extends "base.html.twig" %}
+
+{% block pageTitle %}{{ title|trans }}{% endblock %}
+
+{% block body %}
+<section class="content">
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">{% trans %}Document Information{% endtrans %}</h4>
+                </div>
+                <div class="card-body">
+                    {{ form_row(form.company) }}
+                    {{ form_row(form.date) }}
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.file) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-right">
+                        {{ form_row(form.submit) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{ form_end(form) }}
+</section>
+{% endblock %}

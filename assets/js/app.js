@@ -24,3 +24,4 @@ require('./_includes/time-tracking');
 require('./_includes/offers');
 require('./_includes/offer-form');
 require('./_includes/project-form');
+require('./_includes/documents');

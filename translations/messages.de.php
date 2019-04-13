@@ -134,4 +134,9 @@ return [
     'No times tracked yet...' => 'Noch keine Zeiten erfasst...',
     'Project Number' => 'Projektnummer',
     'Additional Text' => 'Zusätzlicher Text',
+    'Manage Documents' => 'Dokumente verwalten',
+    'Add Document' => 'Dokument hochladen',
+    'Document' => 'Dokument',
+    'Documents' => 'Dokumente',
+    'Document Information' => 'Dokument-Informationen',
 ];
