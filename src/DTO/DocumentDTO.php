@@ -3,8 +3,7 @@
 namespace App\DTO;
 
 use App\Entity\Company;
-use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class DocumentDTO
 {
@@ -14,7 +13,7 @@ class DocumentDTO
     public $id;
 
     /**
-     * @var Company
+     * @var Company|null
      */
     public $company;
 
@@ -29,7 +28,7 @@ class DocumentDTO
     public $title;
 
     /**
-     * @var File
+     * @var UploadedFile
      */
     public $file;
 }

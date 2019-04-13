@@ -71,11 +71,13 @@ class DocumentManager
     {
         if ($documentDTO->file !== null) {
             $fileContents = file_get_contents($documentDTO->file->getPathname());
+            $fileMimeType = $documentDTO->file->getMimeType();
+            $fileName = $documentDTO->file->getClientOriginalName();
 
-            if ($fileContents !== false && $documentDTO->file->getMimeType() !== null) {
-                $document->setFileName($documentDTO->file->getClientOriginalName());
+            if ($fileContents !== false && $fileMimeType !== null && $fileName !== null) {
+                $document->setFileName($fileName);
+                $document->setFileMime($fileMimeType);
                 $document->setFileContents($fileContents);
-                $document->setFileMime($documentDTO->file->getMimeType());
             }
         }
     }

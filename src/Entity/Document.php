@@ -42,21 +42,21 @@ class Document
     private $title;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @ORM\Column(type="string")
      */
     private $fileName;
 
     /**
-     * @var resource|string
+     * @var resource|string|null
      *
      * @ORM\Column(type="blob")
      */
     private $fileContents;
 
     /**
-     * @var string
+     * @var string|null
      *
      * @ORM\Column(type="string")
      */
@@ -119,9 +119,9 @@ class Document
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFileName(): string
+    public function getFileName(): ?string
     {
         return $this->fileName;
     }
@@ -135,7 +135,7 @@ class Document
     }
 
     /**
-     * @return resource|string
+     * @return resource|string|null
      */
     public function getFileContents()
     {
@@ -157,9 +157,9 @@ class Document
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getFileMime(): string
+    public function getFileMime(): ?string
     {
         return $this->fileMime;
     }
