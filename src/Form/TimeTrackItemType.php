@@ -43,6 +43,7 @@ class TimeTrackItemType extends AbstractType
                 'class' => Project::class,
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('p')
+                        ->where('p.archived = false')
                         ->orderBy('p.lastUsed', 'DESC')
                     ;
                 },
