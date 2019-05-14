@@ -210,8 +210,8 @@ mpdf-->
                 <td>{{ loop.index }}.</td>
                 <td>
                     <b>{{ item.title }}</b>
-                    {% if item.description|nl2br %}
-                    <p>{{ item.description }}</p>
+                    {% if item.description %}
+                    <p>{{ item.description|nl2br }}</p>
                     {% endif %}
                 </td>
                 <td class="number">
