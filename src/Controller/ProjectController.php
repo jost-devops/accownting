@@ -77,9 +77,12 @@ class ProjectController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $project = $projectManager->add($projectDTO, $user);
+            $company = $project->getCompany();
 
-            if ($project->getCompany()->getNextProjectNumber() === $project->getProjectNumber()) {
-                $project->getCompany()->setNextProjectNumber($project->getProjectNumber() + 1);
+            if ($company !== null) {
+                if ($company->getNextProjectNumber() === $project->getProjectNumber()) {
+                    $company->setNextProjectNumber($project->getProjectNumber() + 1);
+                }
             }
 
             return $this->redirectToRoute('app_project_index');
