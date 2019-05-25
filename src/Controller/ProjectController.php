@@ -65,7 +65,8 @@ class ProjectController extends AbstractController
      */
     public function addAction(
         Request $request,
-        ProjectManager $projectManager
+        ProjectManager $projectManager,
+        EntityManagerInterface $entityManager
     ): Response {
         /** @var User $user */
         $user = $this->getUser();
@@ -82,6 +83,8 @@ class ProjectController extends AbstractController
             if ($company !== null) {
                 if ($company->getNextProjectNumber() === $project->getProjectNumber()) {
                     $company->setNextProjectNumber($project->getProjectNumber() + 1);
+
+                    $entityManager->flush();
                 }
             }
 
