@@ -146,9 +146,6 @@
     "psr/log": {
         "version": "1.0.2"
     },
-    "psr/simple-cache": {
-        "version": "1.0.1"
-    },
     "sensio/framework-extra-bundle": {
         "version": "5.2",
         "recipe": {
@@ -263,6 +260,9 @@
     "symfony/intl": {
         "version": "v4.1.6"
     },
+    "symfony/mime": {
+        "version": "v4.3.0"
+    },
     "symfony/options-resolver": {
         "version": "v4.1.6"
     },
@@ -281,11 +281,17 @@
     "symfony/polyfill-intl-icu": {
         "version": "v1.9.0"
     },
+    "symfony/polyfill-intl-idn": {
+        "version": "v1.11.0"
+    },
     "symfony/polyfill-mbstring": {
         "version": "v1.9.0"
     },
     "symfony/polyfill-php72": {
         "version": "v1.10.0"
+    },
+    "symfony/polyfill-php73": {
+        "version": "v1.11.0"
     },
     "symfony/property-access": {
         "version": "v4.1.6"
