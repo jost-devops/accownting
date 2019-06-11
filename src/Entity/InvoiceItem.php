@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -76,6 +77,21 @@ class InvoiceItem
      * @ORM\Column(type="integer", options={"default": "1"})
      */
     private $position;
+
+    /**
+     * @var InvoiceItem|null
+     *
+     * @ORM\ManyToOne(targetEntity="InvoiceItem", inversedBy="subItems")
+     */
+    private $parentItem;
+
+    /**
+     * @var InvoiceItem[]|Collection
+     *
+     * @ORM\OneToMany(targetEntity="InvoiceItem", mappedBy="parentItem")
+     * @ORM\OrderBy({"position"="ASC", "id"="ASC"})
+     */
+    private $subItems;
 
     /**
      * @return int
@@ -216,5 +232,29 @@ class InvoiceItem
     public function setPosition(int $position): void
     {
         $this->position = $position;
+    }
+
+    /**
+     * @return InvoiceItem|null
+     */
+    public function getParentItem(): ?InvoiceItem
+    {
+        return $this->parentItem;
+    }
+
+    /**
+     * @param InvoiceItem|null $parentItem
+     */
+    public function setParentItem(?InvoiceItem $parentItem): void
+    {
+        $this->parentItem = $parentItem;
+    }
+
+    /**
+     * @return InvoiceItem[]|Collection
+     */
+    public function getSubItems(): Collection
+    {
+        return $this->subItems;
     }
 }

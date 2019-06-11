@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -76,6 +77,21 @@ class OfferItem
      * @ORM\Column(type="integer", options={"default": "1"})
      */
     private $position;
+
+    /**
+     * @var OfferItem|null
+     *
+     * @ORM\ManyToOne(targetEntity="OfferItem", inversedBy="subItems")
+     */
+    private $parentItem;
+
+    /**
+     * @var OfferItem[]|Collection
+     *
+     * @ORM\OneToMany(targetEntity="OfferItem", mappedBy="parentItem")
+     * @ORM\OrderBy({"position"="ASC", "id"="ASC"})
+     */
+    private $subItems;
 
     /**
      * @return int
@@ -216,5 +232,29 @@ class OfferItem
     public function setPosition(int $position): void
     {
         $this->position = $position;
+    }
+
+    /**
+     * @return OfferItem|null
+     */
+    public function getParentItem(): ?OfferItem
+    {
+        return $this->parentItem;
+    }
+
+    /**
+     * @param OfferItem|null $parentItem
+     */
+    public function setParentItem(?OfferItem $parentItem): void
+    {
+        $this->parentItem = $parentItem;
+    }
+
+    /**
+     * @return OfferItem[]|Collection
+     */
+    public function getSubItems(): Collection
+    {
+        return $this->subItems;
     }
 }
