@@ -10,7 +10,7 @@
 
     {% include "_partials/translations.html.twig" %}
 </head>
-<body class="{% block bodyClass %}hold-transition sidebar-mini route__{{ app.request.attributes.get("_route") }} sidebar-collapse{% endblock %}">
+<body class="{% block bodyClass %}hold-transition sidebar-mini sidebar-open route__{{ app.request.attributes.get("_route") }}{% endblock %}">
 {% block main %}
 <div class="wrapper">
     {% include "_partials/header.html.twig" %}
