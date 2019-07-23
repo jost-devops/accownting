@@ -10,6 +10,7 @@
                         </p>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a href="{{ path('app_timetracking_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_timetracking_~' %}active{% endif %}">
                         <i class="nav-icon fa fa-clock-o"></i>
@@ -18,6 +19,7 @@
                         </p>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a href="{{ path('app_offer_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_offer_~' %}active{% endif %}">
                         <i class="nav-icon fa fa-send"></i>
@@ -26,6 +28,7 @@
                         </p>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a href="{{ path('app_invoice_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_invoice_~' %}active{% endif %}">
                         <i class="nav-icon fa fa-envelope"></i>
@@ -34,6 +37,7 @@
                         </p>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a href="{{ path('app_document_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_document_~' %}active{% endif %}">
                         <i class="nav-icon fa fa-file-text"></i>
@@ -42,6 +46,7 @@
                         </p>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a href="{{ path('app_customer_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_customer_~' %}active{% endif %}">
                         <i class="nav-icon fa fa-address-book"></i>
@@ -50,6 +55,7 @@
                         </p>
                     </a>
                 </li>
+
                 <li class="nav-item">
                     <a href="{{ path('app_project_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_project_~' %}active{% endif %}">
                         <i class="nav-icon fa fa-plane"></i>
@@ -58,37 +64,53 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ path('app_unit_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_unit_~' %}active{% endif %}">
-                        <i class="nav-icon fa fa-balance-scale"></i>
+
+                <li class="nav-item has-treeview">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fa fa-key"></i>
                         <p>
-                            {% trans %}Units{% endtrans %}
+                            {% trans %}Settings{% endtrans %}
+                            <i class="fa fa-angle-right right"></i>
                         </p>
                     </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ path('app_vatrate_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_vatrate_~' %}active{% endif %}">
-                        <i class="nav-icon fa fa-money"></i>
-                        <p>
-                            {% trans %}VAT Rates{% endtrans %}
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ path('app_company_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_company_~' %}active{% endif %}">
-                        <i class="nav-icon fa fa-briefcase"></i>
-                        <p>
-                            {% trans %}Companies{% endtrans %}
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ path('app_user_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_user_~' %}active{% endif %}">
-                        <i class="nav-icon fa fa-users"></i>
-                        <p>
-                            {% trans %}Users{% endtrans %}
-                        </p>
-                    </a>
+
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ path('app_user_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_user_~' %}active{% endif %}">
+                                <i class="nav-icon fa fa-users"></i>
+                                <p>
+                                    {% trans %}Users{% endtrans %}
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ path('app_company_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_company_~' %}active{% endif %}">
+                                <i class="nav-icon fa fa-briefcase"></i>
+                                <p>
+                                    {% trans %}Companies{% endtrans %}
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ path('app_vatrate_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_vatrate_~' %}active{% endif %}">
+                                <i class="nav-icon fa fa-money"></i>
+                                <p>
+                                    {% trans %}VAT Rates{% endtrans %}
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="{{ path('app_unit_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_unit_~' %}active{% endif %}">
+                                <i class="nav-icon fa fa-balance-scale"></i>
+                                <p>
+                                    {% trans %}Units{% endtrans %}
+                                </p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="{{ path('app_security_logout') }}" class="nav-link">

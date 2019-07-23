@@ -139,4 +139,5 @@ return [
     'Document' => 'Dokument',
     'Documents' => 'Dokumente',
     'Document Information' => 'Dokument-Informationen',
+    'Settings' => 'Einstellungen',
 ];
