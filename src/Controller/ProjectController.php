@@ -21,6 +21,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/project")
+ *
+ * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
  */
 class ProjectController extends AbstractController
 {
@@ -160,7 +162,6 @@ class ProjectController extends AbstractController
      */
     public function timeTrackingExportAction(
         Project $project,
-        EntityManagerInterface $entityManager,
         TimeTrackingTableGenerator $timeTrackingTableGenerator,
         TranslatorInterface $translator,
         Request $request
