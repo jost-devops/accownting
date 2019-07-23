@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use App\DTO\ProjectDTO;
+use App\DTO\TimeTrackingExportDTO;
 use App\Entity\Project;
 use App\Entity\User;
 use App\Form\ProjectType;
+use App\Form\TimeTrackingExportType;
+use App\Generator\TimeTrackingTableGenerator;
 use App\Manager\ProjectManager;
 use App\Normalizer\ProjectNormalizer;
 use Doctrine\ORM\EntityManagerInterface;
@@ -14,6 +17,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @Route("/project")
@@ -149,5 +153,40 @@ class ProjectController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute(($project->isArchived()) ? 'app_project_archive' : 'app_project_index');
+    }
+
+    /**
+     * @Route("/{id}/time-tracking-export")
+     */
+    public function timeTrackingExportAction(
+        Project $project,
+        EntityManagerInterface $entityManager,
+        TimeTrackingTableGenerator $timeTrackingTableGenerator,
+        TranslatorInterface $translator,
+        Request $request
+    ): Response {
+        $timeTrackingExportDTO = new TimeTrackingExportDTO();
+
+        $form = $this->createForm(TimeTrackingExportType::class, $timeTrackingExportDTO);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $pdf = $timeTrackingTableGenerator->generate($project, $timeTrackingExportDTO);
+
+            $response = new Response();
+            $response->headers->set('Content-Type', 'application/pdf');
+            $response->headers->set(
+                'Content-Disposition',
+                'inline; filename=' . $translator->trans('Time-Tracking-Export') . '.pdf'
+            );
+            $response->setContent($pdf);
+
+            return $response;
+        }
+
+        return $this->render('project/time-tracking-export.html.twig', [
+            'title' => 'Export time tracking to PDF',
+            'form' => $form->createView(),
+        ]);
     }
 }

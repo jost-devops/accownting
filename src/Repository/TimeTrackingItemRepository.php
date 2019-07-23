@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\DTO\TimeTrackingExportDTO;
 use App\Entity\Project;
 use App\Entity\TimeTrackItem;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -59,5 +60,27 @@ class TimeTrackingItemRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult()
         ;
+    }
+
+    public function findByProjectForExport(Project $project, TimeTrackingExportDTO $timeTrackingExportDTO): array
+    {
+        $queryBuilder = $this->createQueryBuilder('i')
+            ->where('i.project = :project')
+            ->setParameter('project', $project)
+            ->andWhere('i.cleared = false')
+            ->andWhere('i.moment BETWEEN :begin AND :end')
+            ->setParameter('begin', $timeTrackingExportDTO->begin)
+            ->setParameter('end', $timeTrackingExportDTO->end)
+            ->orderBy('i.moment', 'ASC')
+        ;
+
+        if (!$timeTrackingExportDTO->includeNonChargeable) {
+            $queryBuilder
+                ->andWhere('i.chargeable = true');
+        }
+
+        return $queryBuilder
+            ->getQuery()
+            ->getResult();
     }
 }

@@ -140,4 +140,5 @@ return [
     'Documents' => 'Dokumente',
     'Document Information' => 'Dokument-Informationen',
     'Settings' => 'Einstellungen',
+    'Time-Tracking-Export' => 'Stundenauszug',
 ];

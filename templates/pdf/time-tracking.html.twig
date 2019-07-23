@@ -1,0 +1,140 @@
+<style type="text/css">
+    .text-smaller {
+        font-size: 0.7em;
+        font-weight: 400;
+    }
+
+    .text-bigger {
+        font-size: 1.2em;
+        font-weight: 400;
+    }
+
+    .text-muted {
+        color: #666;
+        font-weight: 400;
+    }
+
+    table {
+        border-spacing: 0;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    thead th, thead td {
+        padding: 2mm;
+    }
+    tbody th, tbody td {
+        padding: 1mm 2mm;
+    }
+
+    th,td {
+        font-size: 0.8em;
+        text-align: left;
+        font-family: freesans, sans-serif;
+        vertical-align: top;
+    }
+
+    th.number, td.number {
+        text-align: right;
+    }
+
+    tr.odd th, tr.odd td {
+        background: #efefef;
+    }
+
+    .container {
+        /*font-size: 0.9em;*/
+    }
+
+    #logo {
+        text-align: right;
+    }
+
+    #logo__img {
+        display: inline-block;
+        height: auto;
+        width: 70mm;
+        margin-bottom: 10mm;
+        margin-right: 0;
+    }
+    #header {
+        padding-top: 5mm;
+    }
+    #footer {
+        padding-bottom: 5mm;
+    }
+</style>
+
+<!--mpdf
+<htmlpageheader name="header">
+    <div id="header">
+        <table class="container">
+            <tr>
+                <td id="logo">
+                    <img id="logo__img" src="data:{{ project.company.logoMime }};base64,{{ project.company.logoEncoded }}" alt="{{ project.company.name }}">
+                </td>
+            </tr>
+        </table>
+    </div>
+</htmlpageheader>
+<htmlpagefooter name="footer">
+    <div id="footer">
+    </div>
+</htmlpagefooter>
+mpdf-->
+
+<!--mpdf
+<sethtmlpageheader name="header" page="1" value="1" show-this-page="1" />
+<sethtmlpagefooter name="footer" page="ALL" value="1" />
+mpdf-->
+
+<div id="content">
+    <h3>Stundenauszug  für Projekt "{{ project.name }}"</h3>
+    <h4>Zeitraum: {{ timeTrackingExportDTO.begin | date('d.m.Y') }} bis {{ timeTrackingExportDTO.end | date('d.m.Y') }}</h4>
+
+    <table>
+        <thead>
+            <tr class="odd">
+                <th>Nr.</th>
+                <th>Zeitpunkt</th>
+                <th>Person</th>
+                <th>Beschreibung</th>
+                <th class="number">Abrechenbar?</th>
+                <th class="number">Dauer / Std.</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+            <tr>
+                <td>{{ loop.index }}.</td>
+                <td>{{ item.moment | date('d.m.Y') }}</td>
+                <td>{{ item.person.name }}</td>
+                <td>{{ item.description }}</td>
+                <td class="number">{{ (item.chargeable) ? 'ja' : 'nein' }}</td>
+                <td class="number">
+                    {% if item.chargeable %}
+                        {{ item.duration | number_format }} Std.
+                    {% else %}
+                        ({{ item.duration | number_format }} Std.)
+                    {% endif %}
+                </td>
+            </tr>
+        {% endfor %}
+            <tr>
+                <td colspan="6"><hr></td>
+            </tr>
+            <tr>
+                <td colspan="5" class="number"><strong>Gesamt:</strong></td>
+                <td class="number"><strong>{{ totalDuration | number_format }} Std.</strong></td>
+            </tr>
+            <tr>
+                <td colspan="5" class="number"><strong>Abrechenbar:</strong></td>
+                <td class="number"><strong>{{ chargeableDuration | number_format }} Std.</strong></td>
+            </tr>
+            <tr>
+                <td colspan="5" class="number"><strong>Nicht abrechenbar:</strong></td>
+                <td class="number"><strong>({{ notChargeableDuration | number_format }} Std.)</strong></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
