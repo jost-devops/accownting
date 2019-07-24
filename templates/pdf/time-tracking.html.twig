@@ -109,7 +109,7 @@ mpdf-->
                 <td>{{ loop.index }}.</td>
                 <td>{{ item.moment | date('d.m.Y') }}</td>
                 <td>{{ item.person.name }}</td>
-                <td>{{ item.description }}</td>
+                <td>{{ item.description | nl2br }}</td>
                 <td class="number">{{ (item.chargeable) ? 'ja' : 'nein' }}</td>
                 <td class="number">
                     {% if item.chargeable %}

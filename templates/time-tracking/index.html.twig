@@ -64,7 +64,7 @@
                                     <small>{{ item.project.customer.name }}</small>
                                 </td>
                                 <td>{{ item.moment|date('d.m.Y') }}</td>
-                                <td>{{ item.description }}</td>
+                                <td>{{ item.description | nl2br  }}</td>
                                 <td class="text-right">
                                     {% if not item.chargeable %}
                                         ({{ item.duration|number_format }})
