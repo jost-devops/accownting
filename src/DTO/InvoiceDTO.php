@@ -37,6 +37,11 @@ class InvoiceDTO
     public $subject;
 
     /**
+     * @var string|null
+     */
+    public $text;
+
+    /**
      * @var \DateTime
      *
      * @Assert\NotBlank()

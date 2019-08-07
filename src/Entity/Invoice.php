@@ -50,6 +50,13 @@ class Invoice
     private $subject;
 
     /**
+     * @var string|null
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $text;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(type="date")
@@ -169,6 +176,22 @@ class Invoice
     public function setSubject(string $subject): void
     {
         $this->subject = $subject;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getText(): ?string
+    {
+        return $this->text;
+    }
+
+    /**
+     * @param string|null $text
+     */
+    public function setText(?string $text): void
+    {
+        $this->text = $text;
     }
 
     /**

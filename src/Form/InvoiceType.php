@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -70,6 +71,10 @@ class InvoiceType extends AbstractType
             ])
             ->add('subject', TextType::class, [
                 'label' => 'Subject',
+                'required' => true,
+            ])
+            ->add('text', TextareaType::class, [
+                'label' => 'Text',
                 'required' => true,
             ])
             ->add('invoiceDate', DateType::class, [

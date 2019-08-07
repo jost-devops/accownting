@@ -35,6 +35,7 @@ class InvoiceManager
         $invoice->setCountry($invoiceDTO->country);
         $invoice->setInvoiceNumber($invoiceDTO->invoiceNumber);
         $invoice->setSubject($invoiceDTO->subject);
+        $invoice->setText($invoiceDTO->text);
         $invoice->setInvoiceDate($invoiceDTO->invoiceDate);
         $invoice->setTimeOfSupply($invoiceDTO->timeOfSupply);
         $invoice->setTimeOfSupplyEnd($invoiceDTO->timeOfSupplyEnd);
@@ -61,6 +62,7 @@ class InvoiceManager
         $invoiceDTO->country = $invoice->getCountry();
         $invoiceDTO->invoiceNumber = $invoice->getInvoiceNumber();
         $invoiceDTO->subject = $invoice->getSubject();
+        $invoiceDTO->text = $invoice->getText();
         $invoiceDTO->invoiceDate = $invoice->getInvoiceDate();
         $invoiceDTO->timeOfSupply = $invoice->getTimeOfSupply();
         $invoiceDTO->timeOfSupplyEnd = $invoice->getTimeOfSupplyEnd();
@@ -84,6 +86,7 @@ class InvoiceManager
         $invoice->setCountry($invoiceDTO->country);
         $invoice->setInvoiceNumber($invoiceDTO->invoiceNumber);
         $invoice->setSubject($invoiceDTO->subject);
+        $invoice->setText($invoiceDTO->text);
         $invoice->setInvoiceDate($invoiceDTO->invoiceDate);
         $invoice->setTimeOfSupply($invoiceDTO->timeOfSupply);
         $invoice->setTimeOfSupplyEnd($invoiceDTO->timeOfSupplyEnd);
