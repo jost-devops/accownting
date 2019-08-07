@@ -266,9 +266,10 @@ mpdf-->
         <tr>
             <td>
                 {% if invoice.creditPeriod is not null %}
-                Zahlungsbedingungen: Zahlbar innerhalb von {{ invoice.creditPeriod }} Tagen ab Rechnungseingang ohne Abzüge.
+                Bitte überweisen Sie den Betrag unter Angabe der Rechnungsnummer innerhalb von
+                {{ invoice.creditPeriod }} Tagen auf unser unten genanntes Konto.
                 {% else %}
-                Zahlungsbedingungen: Zahlbar sofort nach Rechnungseingang ohne Abzüge.
+                Bitte überweisen Sie den Betrag unter Angabe der Rechnungsnummer auf unser unten genanntes Konto.
                 {% endif %}
             </td>
         </tr>
