@@ -192,9 +192,11 @@ mpdf-->
                             <h2>
                                 {{ invoice.subject }}
                             </h2>
+                            {% if invoice.text %}
                             <p>
                                 {{ invoice.text | nl2br }}
                             </p>
+                            {% endif %}
                         </td>
                         <td class="number">
                         </td>
