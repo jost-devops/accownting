@@ -22,6 +22,7 @@ class TimeTrackingItemRepository extends ServiceEntityRepository
             ->setParameter('start', (clone $date)->setTime(0, 0))
             ->setParameter('end', (clone $date)->setTime(23, 59, 59))
             ->orderBy('i.moment', 'ASC')
+            ->addOrderBy('i.id', 'ASC')
             ->getQuery()
             ->getResult()
         ;
