@@ -83,7 +83,7 @@ class UserController extends AbstractController
         User $user,
         UserManager $userManager
     ): Response {
-        /** @var User $user */
+        /** @var User $actingUser */
         $actingUser = $this->getUser();
 
         $userDTO = $userManager->getEdit($user);
