@@ -6,9 +6,10 @@
     <section class="content">
         <div class="row">
             <div class="col-12">
+                {% if currentCompany() %}
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Dashboard</h3>
+                        <h3 class="card-title">Kennzahlen {{ currentCompany().name }}</h3>
                     </div>
                     <div class="card-body">
                         <p>Umsatz (netto) der letzten 12 Monate: {{ salesLastYear | number_format }} €</p>
@@ -17,6 +18,7 @@
                         <p>Auftragsreichweite: {{ projectRange }} Tage</p>
                     </div>
                 </div>
+                {% endif %}
             </div>
         </div>
     </section>

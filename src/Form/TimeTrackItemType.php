@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\DTO\TimeTrackItemDTO;
+use App\Entity\Company;
 use App\Entity\Project;
 use App\Entity\User;
 use Doctrine\ORM\EntityRepository;
@@ -15,7 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * @SuppressWarnings(PHPMD.CouplingBetweenObjects)
@@ -38,12 +39,17 @@ class TimeTrackItemType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        /** @var Company $company */
+        $company = $options['company'];
+
         $builder
             ->add('project', EntityType::class, [
                 'class' => Project::class,
-                'query_builder' => function (EntityRepository $er) {
+                'query_builder' => function (EntityRepository $er) use ($company) {
                     return $er->createQueryBuilder('p')
                         ->where('p.archived = false')
+                        ->andWhere('p.company = :company')
+                        ->setParameter('company', $company)
                         ->orderBy('p.lastUsed', 'DESC')
                     ;
                 },
@@ -64,7 +70,7 @@ class TimeTrackItemType extends AbstractType
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('u')
                         ->orderBy('u.lastUsed', 'DESC')
-                        ;
+                    ;
                 },
                 'choice_label' => 'name',
                 'label' => 'Person',
@@ -98,6 +104,7 @@ class TimeTrackItemType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => TimeTrackItemDTO::class,
+            'company' => null,
         ]);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\DTO\TimeTrackingExportDTO;
+use App\Entity\Company;
 use App\Entity\Project;
 use App\Entity\TimeTrackItem;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -15,12 +16,15 @@ class TimeTrackingItemRepository extends ServiceEntityRepository
         parent::__construct($registry, TimeTrackItem::class);
     }
 
-    public function findByDate(\DateTime $date): array
+    public function findByDate(Company $company, \DateTime $date): array
     {
         return $this->createQueryBuilder('i')
+            ->join('i.project', 'p')
             ->where('i.moment BETWEEN :start AND :end')
             ->setParameter('start', (clone $date)->setTime(0, 0))
             ->setParameter('end', (clone $date)->setTime(23, 59, 59))
+            ->andWhere('p.company = :company')
+            ->setParameter('company', $company)
             ->orderBy('i.moment', 'ASC')
             ->addOrderBy('i.id', 'ASC')
             ->getQuery()
@@ -28,13 +32,16 @@ class TimeTrackingItemRepository extends ServiceEntityRepository
         ;
     }
 
-    public function findDurationByDate(\DateTime $date): float
+    public function findDurationByDate(Company $company, \DateTime $date): float
     {
         return (float)$this->createQueryBuilder('i')
             ->select('SUM(i.duration)')
+            ->join('i.project', 'p')
             ->where('i.moment BETWEEN :start AND :end')
             ->setParameter('start', (clone $date)->setTime(0, 0))
             ->setParameter('end', (clone $date)->setTime(23, 59, 59))
+            ->andWhere('p.company = :company')
+            ->setParameter('company', $company)
             ->getQuery()
             ->getSingleScalarResult()
         ;

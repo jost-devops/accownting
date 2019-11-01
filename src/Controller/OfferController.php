@@ -8,6 +8,7 @@ use App\Entity\Offer;
 use App\Entity\User;
 use App\Form\OfferType;
 use App\Generator\OfferGenerator;
+use App\Helper\CurrentCompanyHelper;
 use App\Manager\OfferManager;
 use App\Normalizer\OfferNormalizer;
 use Doctrine\ORM\EntityManagerInterface;
@@ -40,10 +41,16 @@ class OfferController extends AbstractController
      */
     public function dataAction(
         EntityManagerInterface $entityManager,
-        OfferNormalizer $offerNormalizer
+        OfferNormalizer $offerNormalizer,
+        CurrentCompanyHelper $currentCompanyHelper
     ): Response {
+        /** @var Company $company */
+        $company = $currentCompanyHelper->get();
+
         /** @var Offer[] $offers */
-        $offers = $entityManager->getRepository(Offer::class)->findBy([], ['offerDate' => 'DESC']);
+        $offers = $entityManager
+            ->getRepository(Offer::class)
+            ->findBy(['company' => $company], ['offerDate' => 'DESC']);
 
         $response = [
             'data' => [],
@@ -60,41 +67,14 @@ class OfferController extends AbstractController
      * @Route("/add")
      */
     public function addAction(
-        Request $request
-    ): Response {
-        $form = $this->createFormBuilder()
-            ->add('company', EntityType::class, [
-                'class' => Company::class,
-                'label' => 'Company',
-                'choice_label' => 'name',
-            ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Continue',
-            ])
-            ->getForm()
-        ;
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            return $this->redirectToRoute('app_offer_add2', ['id' => $form->getData()['company']->getId()]);
-        }
-
-        return $this->render('offer/add.html.twig', [
-            'title' => 'New Offer',
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/add/{id}")
-     */
-    public function add2Action(
         Request $request,
         OfferManager $offerManager,
         EntityManagerInterface $entityManager,
-        Company $company
+        CurrentCompanyHelper $currentCompanyHelper
     ): Response {
+        /** @var Company $company */
+        $company = $currentCompanyHelper->get();
+
         /** @var User $user */
         $user = $this->getUser();
 

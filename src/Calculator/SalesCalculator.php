@@ -2,6 +2,7 @@
 
 namespace App\Calculator;
 
+use App\Entity\Company;
 use App\Entity\Invoice;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -15,7 +16,7 @@ class SalesCalculator
         $this->entityManager = $entityManager;
     }
 
-    public function calculate(\DateTime $begin, \DateTime $end)
+    public function calculate(Company $company, \DateTime $begin, \DateTime $end)
     {
         /** @var Invoice[] $invoices */
         $invoices = $this->entityManager
@@ -25,6 +26,8 @@ class SalesCalculator
             ->where('i.invoiceDate BETWEEN :begin and :end')
             ->setParameter('begin', $begin)
             ->setParameter('end', $end)
+            ->andWhere('i.company = :company')
+            ->setParameter('company', $company)
             ->getQuery()
             ->getResult();
 

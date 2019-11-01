@@ -3,6 +3,20 @@
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <li class="nav-item">
+                    <form action="{{ path('app_dashboard_switchcompany') }}" method="post">
+                        <div class="form-group">
+                            <label>Firma:</label>
+                            <select name="company" class="form-control" onchange="this.form.submit()">
+                                <option value=""></option>
+                                {% for company in companies() %}
+                                    {{ dump(currentCompany()) }}
+                                <option value="{{ company.id }}" {% if currentCompany() and currentCompany().id == company.id %}selected{% endif %}>{{ company.name }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </form>
+                </li>
+                <li class="nav-item">
                     <a href="{{ path('app_dashboard_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_dashboard_~' %}active{% endif %}">
                         <i class="nav-icon fa fa-dashboard"></i>
                         <p>
@@ -11,6 +25,7 @@
                     </a>
                 </li>
 
+                {% if currentCompany() %}
                 <li class="nav-item">
                     <a href="{{ path('app_timetracking_index') }}" class="nav-link {% if app.request.attributes.get('_route') matches '~^app_timetracking_~' %}active{% endif %}">
                         <i class="nav-icon fa fa-clock-o"></i>
@@ -64,6 +79,7 @@
                         </p>
                     </a>
                 </li>
+                {% endif %}
 
                 <li class="nav-item has-treeview">
                     <a href="#" class="nav-link">

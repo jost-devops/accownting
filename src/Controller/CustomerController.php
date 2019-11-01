@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\DTO\CustomerDTO;
+use App\Entity\Company;
 use App\Entity\Customer;
 use App\Entity\User;
 use App\Form\CustomerType;
+use App\Helper\CurrentCompanyHelper;
 use App\Manager\CustomerManager;
 use App\Normalizer\CustomerNormalizer;
 use Doctrine\ORM\EntityManagerInterface;
@@ -33,10 +35,14 @@ class CustomerController extends AbstractController
      */
     public function dataAction(
         EntityManagerInterface $entityManager,
-        CustomerNormalizer $customerNormalizer
+        CustomerNormalizer $customerNormalizer,
+        CurrentCompanyHelper $currentCompanyHelper
     ): Response {
+        /** @var Company $company */
+        $company = $currentCompanyHelper->get();
+
         /** @var Customer[] $customers */
-        $customers = $entityManager->getRepository(Customer::class)->findAll();
+        $customers = $entityManager->getRepository(Customer::class)->findBy(['company' => $company]);
 
         $response = [
             'data' => [],
@@ -55,17 +61,23 @@ class CustomerController extends AbstractController
     public function addAction(
         Request $request,
         CustomerManager $customerManager,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        CurrentCompanyHelper $currentCompanyHelper
     ): Response {
+        /** @var Company $company */
+        $company = $currentCompanyHelper->get();
+
         /** @var User $user */
         $user = $this->getUser();
 
         $customerDTO = new CustomerDTO();
+        $customerDTO->customerNumber = $company->getNextCustomerNumber();
 
         $form = $this->createForm(CustomerType::class, $customerDTO);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $customerDTO->company = $company;
             $customer = $customerManager->add($customerDTO, $user);
 
             if ($customer->getCompany() !== null) {

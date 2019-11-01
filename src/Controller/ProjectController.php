@@ -4,11 +4,13 @@ namespace App\Controller;
 
 use App\DTO\ProjectDTO;
 use App\DTO\TimeTrackingExportDTO;
+use App\Entity\Company;
 use App\Entity\Project;
 use App\Entity\User;
 use App\Form\ProjectType;
 use App\Form\TimeTrackingExportType;
 use App\Generator\TimeTrackingTableGenerator;
+use App\Helper\CurrentCompanyHelper;
 use App\Manager\ProjectManager;
 use App\Normalizer\ProjectNormalizer;
 use Doctrine\ORM\EntityManagerInterface;
@@ -48,12 +50,16 @@ class ProjectController extends AbstractController
     public function dataAction(
         EntityManagerInterface $entityManager,
         ProjectNormalizer $projectNormalizer,
-        Request $request
+        Request $request,
+        CurrentCompanyHelper $currentCompanyHelper
     ): Response {
+        /** @var Company $company */
+        $company = $currentCompanyHelper->get();
+
         /** @var Project[] $projects */
         $projects = $entityManager
             ->getRepository(Project::class)
-            ->findBy(['archived' => ($request->query->get('archive') !== null)]);
+            ->findBy(['company' => $company, 'archived' => ($request->query->get('archive') !== null)]);
 
         $response = [
             'data' => [],
@@ -72,19 +78,24 @@ class ProjectController extends AbstractController
     public function addAction(
         Request $request,
         ProjectManager $projectManager,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        CurrentCompanyHelper $currentCompanyHelper
     ): Response {
+        /** @var Company $company */
+        $company = $currentCompanyHelper->get();
+
         /** @var User $user */
         $user = $this->getUser();
 
         $projectDTO = new ProjectDTO();
+        $projectDTO->company = $company;
+        $projectDTO->projectNumber = $company->getNextProjectNumber();
 
-        $form = $this->createForm(ProjectType::class, $projectDTO);
+        $form = $this->createForm(ProjectType::class, $projectDTO, ['company' => $company]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $project = $projectManager->add($projectDTO, $user);
-            $company = $project->getCompany();
 
             if ($company !== null) {
                 if ($company->getNextProjectNumber() === $project->getProjectNumber()) {

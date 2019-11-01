@@ -9,6 +9,7 @@ use App\Entity\User;
 use App\Form\InvoiceSetPaidType;
 use App\Form\InvoiceType;
 use App\Generator\InvoiceGenerator;
+use App\Helper\CurrentCompanyHelper;
 use App\Manager\InvoiceManager;
 use App\Normalizer\InvoiceNormalizer;
 use Doctrine\ORM\EntityManagerInterface;
@@ -41,10 +42,16 @@ class InvoiceController extends AbstractController
      */
     public function dataAction(
         EntityManagerInterface $entityManager,
-        InvoiceNormalizer $invoiceNormalizer
+        InvoiceNormalizer $invoiceNormalizer,
+        CurrentCompanyHelper $currentCompanyHelper
     ): Response {
+        /** @var Company $company */
+        $company = $currentCompanyHelper->get();
+
         /** @var Invoice[] $invoices */
-        $invoices = $entityManager->getRepository(Invoice::class)->findBy([], ['invoiceDate' => 'DESC']);
+        $invoices = $entityManager
+            ->getRepository(Invoice::class)
+            ->findBy(['company' => $company], ['invoiceDate' => 'DESC']);
 
         $response = [
             'data' => [],
@@ -61,41 +68,14 @@ class InvoiceController extends AbstractController
      * @Route("/add")
      */
     public function addAction(
-        Request $request
-    ): Response {
-        $form = $this->createFormBuilder()
-            ->add('company', EntityType::class, [
-                'class' => Company::class,
-                'label' => 'Company',
-                'choice_label' => 'name',
-            ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Continue',
-            ])
-            ->getForm()
-        ;
-
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            return $this->redirectToRoute('app_invoice_add2', ['id' => $form->getData()['company']->getId()]);
-        }
-
-        return $this->render('invoice/add.html.twig', [
-            'title' => 'New Invoice',
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/add/{id}")
-     */
-    public function add2Action(
         Request $request,
         InvoiceManager $invoiceManager,
         EntityManagerInterface $entityManager,
-        Company $company
+        CurrentCompanyHelper $currentCompanyHelper
     ): Response {
+        /** @var Company $company */
+        $company = $currentCompanyHelper->get();
+
         /** @var User $user */
         $user = $this->getUser();
 

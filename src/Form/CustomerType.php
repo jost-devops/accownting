@@ -20,12 +20,6 @@ class CustomerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('company', EntityType::class, [
-                'class' => Company::class,
-                'choice_label' => 'name',
-                'label' => 'Company',
-                'required' => true,
-            ])
             ->add('customerNumber', IntegerType::class, [
                 'label' => 'Customer Number',
                 'required' => true,

@@ -3,9 +3,11 @@
 namespace App\Controller;
 
 use App\DTO\DocumentDTO;
+use App\Entity\Company;
 use App\Entity\Document;
 use App\Entity\User;
 use App\Form\DocumentType;
+use App\Helper\CurrentCompanyHelper;
 use App\Manager\DocumentManager;
 use App\Normalizer\DocumentNormalizer;
 use Doctrine\ORM\EntityManagerInterface;
@@ -34,10 +36,14 @@ class DocumentController extends AbstractController
      */
     public function dataAction(
         EntityManagerInterface $entityManager,
-        DocumentNormalizer $documentNormalizer
+        DocumentNormalizer $documentNormalizer,
+        CurrentCompanyHelper $currentCompanyHelper
     ): Response {
+        /** @var Company $company */
+        $company = $currentCompanyHelper->get();
+
         /** @var Document[] $documents */
-        $documents = $entityManager->getRepository(Document::class)->findAll();
+        $documents = $entityManager->getRepository(Document::class)->findBy(['company' => $company]);
 
         $response = [
             'data' => [],
@@ -56,12 +62,17 @@ class DocumentController extends AbstractController
     public function addAction(
         Request $request,
         DocumentManager $documentManager,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        CurrentCompanyHelper $currentCompanyHelper
     ): Response {
+        /** @var Company $company */
+        $company = $currentCompanyHelper->get();
+
         /** @var User $user */
         $user = $this->getUser();
 
         $documentDTO = new DocumentDTO();
+        $documentDTO->company = $company;
         $documentDTO->date = new \DateTime();
 
         $form = $this->createForm(DocumentType::class, $documentDTO, ['file_required' => false]);

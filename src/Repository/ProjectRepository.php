@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Company;
 use App\Entity\Project;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
@@ -13,11 +14,13 @@ class ProjectRepository extends ServiceEntityRepository
         parent::__construct($registry, Project::class);
     }
 
-    public function getActiveCount(): int
+    public function getActiveCount(Company $company): int
     {
         return (int) $this->createQueryBuilder('p')
             ->select('COUNT(p)')
             ->where('p.archived = false')
+            ->andWhere('p.company = :company')
+            ->setParameter('company', $company)
             ->getQuery()
             ->getSingleScalarResult()
         ;

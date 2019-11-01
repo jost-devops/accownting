@@ -2,6 +2,7 @@
 
 namespace App\Calculator;
 
+use App\Entity\Company;
 use App\Entity\Project;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -21,12 +22,12 @@ class ProjectRangeCalculator
         $this->salesCalculator = $salesCalculator;
     }
 
-    public function calculate()
+    public function calculate(Company $company)
     {
         $begin = (new \DateTime())->sub(new \DateInterval('P1Y'))->setTime(0, 0);
         $end = (new \DateTime());
 
-        $salesLastYear = $this->salesCalculator->calculate($begin, $end);
+        $salesLastYear = $this->salesCalculator->calculate($company, $begin, $end);
 
         /** @var Project[] $projects */
         $projects = $this->entityManager
@@ -35,6 +36,8 @@ class ProjectRangeCalculator
             ->from(Project::class, 'p')
             ->where('p.archived = 0')
             ->andWhere('p.budget > 0')
+            ->andWhere('p.company = :company')
+            ->setParameter('company', $company)
             ->getQuery()
             ->getResult();
 

@@ -2,6 +2,7 @@
 
 namespace App\Calculator;
 
+use App\Entity\Company;
 use App\Entity\Project;
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -15,7 +16,7 @@ class ProjectVolumeCalculator
         $this->entityManager = $entityManager;
     }
 
-    public function calculate()
+    public function calculate(Company $company)
     {
         /** @var Project[] $projects */
         $projects = $this->entityManager
@@ -24,6 +25,8 @@ class ProjectVolumeCalculator
             ->from(Project::class, 'p')
             ->where('p.archived = 0')
             ->andWhere('p.budget > 0')
+            ->andWhere('p.company = :company')
+            ->setParameter('company', $company)
             ->getQuery()
             ->getResult();
 

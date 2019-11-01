@@ -3,10 +3,12 @@
 namespace App\Controller;
 
 use App\DTO\TimeTrackItemDTO;
+use App\Entity\Company;
 use App\Entity\Project;
 use App\Entity\TimeTrackItem;
 use App\Entity\User;
 use App\Form\TimeTrackItemType;
+use App\Helper\CurrentCompanyHelper;
 use App\Manager\TimeTrackItemManager;
 use App\Repository\TimeTrackingItemRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -26,8 +28,12 @@ class TimeTrackingController extends AbstractController
      */
     public function indexAction(
         Request $request,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        CurrentCompanyHelper $currentCompanyHelper
     ): Response {
+        /** @var Company $company */
+        $company = $currentCompanyHelper->get();
+
         /** @var TimeTrackingItemRepository $timeTrackItemRepository */
         $timeTrackItemRepository = $entityManager->getRepository(TimeTrackItem::class);
 
@@ -49,14 +55,14 @@ class TimeTrackingController extends AbstractController
             $days[] = [
                 'date' => $timelineBegin->format('Y-m-d'),
                 'day' => $timelineBegin->format('d'),
-                'duration' => round($timeTrackItemRepository->findDurationByDate($timelineBegin), 1),
+                'duration' => round($timeTrackItemRepository->findDurationByDate($company, $timelineBegin), 1),
             ];
 
             $timelineBegin->add(new \DateInterval('P1D'));
         }
 
         /** @var TimeTrackItem[] $timeTrackItems */
-        $timeTrackItems = $timeTrackItemRepository->findByDate($date);
+        $timeTrackItems = $timeTrackItemRepository->findByDate($company, $date);
 
         $totalTime = 0;
         $totalTimeChargeable = 0;
@@ -86,8 +92,12 @@ class TimeTrackingController extends AbstractController
      */
     public function addAction(
         Request $request,
-        TimeTrackItemManager $timeTrackItemManager
+        TimeTrackItemManager $timeTrackItemManager,
+        CurrentCompanyHelper $currentCompanyHelper
     ): Response {
+        /** @var Company $company */
+        $company = $currentCompanyHelper->get();
+
         /** @var User $user */
         $user = $this->getUser();
 
@@ -103,7 +113,7 @@ class TimeTrackingController extends AbstractController
             }
         }
 
-        $form = $this->createForm(TimeTrackItemType::class, $timeTrackItemDTO);
+        $form = $this->createForm(TimeTrackItemType::class, $timeTrackItemDTO, ['company' => $company]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -126,14 +136,18 @@ class TimeTrackingController extends AbstractController
     public function editAction(
         Request $request,
         TimeTrackItem $timeTrackItem,
-        TimeTrackItemManager $timeTrackItemManager
+        TimeTrackItemManager $timeTrackItemManager,
+        CurrentCompanyHelper $currentCompanyHelper
     ): Response {
+        /** @var Company $company */
+        $company = $currentCompanyHelper->get();
+
         /** @var User $user */
         $user = $this->getUser();
 
         $timeTrackItemDTO = $timeTrackItemManager->getEdit($timeTrackItem);
 
-        $form = $this->createForm(TimeTrackItemType::class, $timeTrackItemDTO);
+        $form = $this->createForm(TimeTrackItemType::class, $timeTrackItemDTO, ['company' => $company]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
