@@ -9,7 +9,6 @@
                             <select name="company" class="form-control" onchange="this.form.submit()">
                                 <option value=""></option>
                                 {% for company in companies() %}
-                                    {{ dump(currentCompany()) }}
                                 <option value="{{ company.id }}" {% if currentCompany() and currentCompany().id == company.id %}selected{% endif %}>{{ company.name }}</option>
                                 {% endfor %}
                             </select>
