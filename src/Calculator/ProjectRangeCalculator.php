@@ -52,6 +52,6 @@ class ProjectRangeCalculator
         }
 
 
-        return $projectRange;
+        return floor($projectRange);
     }
 }
