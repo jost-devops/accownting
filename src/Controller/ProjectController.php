@@ -120,14 +120,18 @@ class ProjectController extends AbstractController
     public function editAction(
         Request $request,
         Project $project,
-        ProjectManager $projectManager
+        ProjectManager $projectManager,
+        CurrentCompanyHelper $currentCompanyHelper
     ): Response {
+        /** @var Company $company */
+        $company = $currentCompanyHelper->get();
+
         /** @var User $user */
         $user = $this->getUser();
 
         $projectDTO = $projectManager->getEdit($project);
 
-        $form = $this->createForm(ProjectType::class, $projectDTO);
+        $form = $this->createForm(ProjectType::class, $projectDTO, ['company' => $company]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
