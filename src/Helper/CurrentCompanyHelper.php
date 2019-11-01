@@ -25,9 +25,14 @@ class CurrentCompanyHelper
         /** @var int|null $currentCompany */
         $currentCompany = $this->session->get('currentCompany');
 
-        return ($currentCompany !== null) ?
-            $this->entityManager->getRepository(Company::class)->findOneBy(['id' => $currentCompany]) :
-            null;
+        $company = null;
+
+        if ($currentCompany !== null) {
+            /** @var Company|null $company */
+            $company = $this->entityManager->getRepository(Company::class)->findOneBy(['id' => $currentCompany]);
+        }
+
+        return $company;
     }
 
     public function set(?Company $company): void
