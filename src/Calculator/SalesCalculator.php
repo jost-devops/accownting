@@ -31,7 +31,7 @@ class SalesCalculator
         $sales = 0;
 
         foreach ($invoices as $invoice) {
-            $sales += $invoice->getTotalGrossPrice();
+            $sales += $invoice->getTotalNetPrice();
         }
 
         return $sales;

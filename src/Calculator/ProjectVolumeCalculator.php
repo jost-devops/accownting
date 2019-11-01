@@ -30,7 +30,7 @@ class ProjectVolumeCalculator
         $projectVolume = 0;
 
         foreach ($projects as $project) {
-            $projectVolume += $project->getBudget();
+            $projectVolume += $project->getBudget() - ($project->getBudgetBilled() ?: 0);
         }
 
         return $projectVolume;

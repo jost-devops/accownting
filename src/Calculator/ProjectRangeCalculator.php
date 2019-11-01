@@ -27,7 +27,6 @@ class ProjectRangeCalculator
         $end = (new \DateTime());
 
         $salesLastYear = $this->salesCalculator->calculate($begin, $end);
-        $salesPerDay = $salesLastYear / 365;
 
         /** @var Project[] $projects */
         $projects = $this->entityManager
@@ -45,8 +44,8 @@ class ProjectRangeCalculator
             $projectBudgetToBeBilled += $project->getBudget() - ($project->getBudgetBilled() ?: 0);
         }
 
-        if ($salesPerDay > 0) {
-            $projectRange = $projectBudgetToBeBilled / $salesPerDay;
+        if ($salesLastYear > 0) {
+            $projectRange = $projectBudgetToBeBilled / $salesLastYear * 360;
         } else {
             $projectRange = 999999999;
         }
