@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ProjectRepository")
  */
 class Project
 {
@@ -83,6 +83,13 @@ class Project
      * @ORM\Column(type="boolean", options={"default": "0"})
      */
     private $archived = false;
+
+    /**
+     * @var float|null
+     *
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $budgetBilled;
 
     /**
      * @return int
@@ -226,5 +233,21 @@ class Project
     public function setArchived(bool $archived): void
     {
         $this->archived = $archived;
+    }
+
+    /**
+     * @return float|null
+     */
+    public function getBudgetBilled(): ?float
+    {
+        return $this->budgetBilled;
+    }
+
+    /**
+     * @param float|null $budgetBilled
+     */
+    public function setBudgetBilled(?float $budgetBilled): void
+    {
+        $this->budgetBilled = $budgetBilled;
     }
 }
