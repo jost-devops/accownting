@@ -53,6 +53,10 @@ class ProjectType extends AbstractType
                 'label' => 'Price per Hour',
                 'required' => false,
             ])
+            ->add('budgetBilled', MoneyType::class, [
+                'label' => 'Budget billed',
+                'required' => false,
+            ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Save',
             ])

@@ -45,4 +45,9 @@ class ProjectDTO
      * @var float|null
      */
     public $pricePerHour;
+
+    /**
+     * @var float|null
+     */
+    public $budgetBilled;
 }

@@ -17,7 +17,7 @@ class ProjectRepository extends ServiceEntityRepository
     {
         return (int) $this->createQueryBuilder('p')
             ->select('COUNT(p)')
-            ->where('p.archived IS NULL')
+            ->where('p.archived = false')
             ->getQuery()
             ->getSingleScalarResult()
         ;

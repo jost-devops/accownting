@@ -28,6 +28,7 @@ class ProjectManager
         $project->setName($projectDTO->name);
         $project->setBudget($projectDTO->budget);
         $project->setPricePerHour($projectDTO->pricePerHour);
+        $project->setBudgetBilled($projectDTO->budgetBilled);
         $project->setCreated(new \DateTime());
         $project->setCreatedBy($user);
 
@@ -46,6 +47,7 @@ class ProjectManager
         $projectDTO->name = $project->getName();
         $projectDTO->budget = $project->getBudget();
         $projectDTO->pricePerHour = $project->getPricePerHour();
+        $projectDTO->budgetBilled = $project->getBudgetBilled();
 
         return $projectDTO;
     }
@@ -61,6 +63,7 @@ class ProjectManager
         $project->setName($projectDTO->name);
         $project->setBudget($projectDTO->budget);
         $project->setPricePerHour($projectDTO->pricePerHour);
+        $project->setBudgetBilled($projectDTO->budgetBilled);
         $project->setUpdated(new \DateTime());
         $project->setUpdatedBy($user);
 
