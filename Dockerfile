@@ -1,4 +1,4 @@
-FROM php:7.3-apache
+FROM php:7.4-apache
 
 ENV APACHE_RUN_USER www-data
 ENV APACHE_RUN_GROUP www-data
@@ -18,9 +18,8 @@ RUN echo "memory_limit = 256M" > /usr/local/etc/php/conf.d/memory_limit.ini
 
 RUN apt update && apt install -y mariadb-client unzip libzip-dev libc-client-dev libkrb5-dev zlib1g-dev libpng-dev && apt clean \
  && docker-php-source extract \
- && docker-php-ext-configure imap --with-imap-ssl --with-kerberos \
  && docker-php-ext-install -j$(nproc) \
-    pdo_mysql zip imap gd \
+    pdo_mysql zip gd \
  && a2enmod rewrite \
  && docker-php-source delete
 
