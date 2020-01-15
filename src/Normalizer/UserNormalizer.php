@@ -25,6 +25,10 @@ class UserNormalizer implements NormalizerInterface
     }
 
     /**
+     * @param mixed $data
+     * @param string|null $format
+     * @return bool
+     *
      * @SuppressWarnings("unused")
      * @codeCoverageIgnore
      */

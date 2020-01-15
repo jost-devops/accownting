@@ -31,9 +31,7 @@ class OfferNormalizer implements NormalizerInterface
         return [
             'id' => $object->getId(),
             'offerNumber' => $object->getOfferNumber(),
-            'offerDate' => ($object->getOfferDate() !== null) ?
-                $object->getOfferDate()->format('Y-m-d') :
-                null,
+            'offerDate' => $object->getOfferDate()->format('Y-m-d'),
             'company' => ($object->getCompany() !== null) ? $object->getCompany()->getName() : '',
             'customer' => ($object->getCustomer() !== null) ? $object->getCustomer()->getName() : '',
             'subject' => $object->getSubject(),
@@ -43,6 +41,10 @@ class OfferNormalizer implements NormalizerInterface
     }
 
     /**
+     * @param mixed $data
+     * @param string|null $format
+     * @return bool
+     *
      * @SuppressWarnings("unused")
      * @codeCoverageIgnore
      */

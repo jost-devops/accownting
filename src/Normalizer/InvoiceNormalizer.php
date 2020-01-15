@@ -31,9 +31,7 @@ class InvoiceNormalizer implements NormalizerInterface
         return [
             'id' => $object->getId(),
             'invoiceNumber' => $object->getInvoiceNumber(),
-            'invoiceDate' => ($object->getInvoiceDate() !== null) ?
-                $object->getInvoiceDate()->format('Y-m-d') :
-                null,
+            'invoiceDate' => $object->getInvoiceDate()->format('Y-m-d'),
             'company' => ($object->getCompany() !== null) ? $object->getCompany()->getName() : '',
             'customer' => ($object->getCustomer() !== null) ? $object->getCustomer()->getName() : '',
             'subject' => $object->getSubject(),
@@ -46,6 +44,10 @@ class InvoiceNormalizer implements NormalizerInterface
     }
 
     /**
+     * @param mixed $data
+     * @param string|null $format
+     * @return bool
+     *
      * @SuppressWarnings("unused")
      * @codeCoverageIgnore
      */

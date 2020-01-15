@@ -20,15 +20,17 @@ class DocumentNormalizer implements NormalizerInterface
         return [
             'id' => $object->getId(),
             'company' => ($object->getCompany() !== null) ? $object->getCompany()->getName() : null,
-            'date' => ($object->getDate() !== null) ?
-                $object->getDate()->format('Y-m-d') :
-                null,
+            'date' => $object->getDate()->format('Y-m-d'),
             'title' => $object->getTitle(),
             'filename' => $object->getFileName(),
         ];
     }
 
     /**
+     * @param mixed $data
+     * @param string|null $format
+     * @return bool
+     *
      * @SuppressWarnings("unused")
      * @codeCoverageIgnore
      */
