@@ -7,7 +7,7 @@ require('bootstrap');
 require('admin-lte');
 require('datatables');
 require('datatables.net-plugins/sorting/date-de');
-require('admin-lte/plugins/datatables/dataTables.bootstrap4');
+require('admin-lte/plugins/datatables-bs4/js/dataTables.bootstrap4');
 require('moment');
 
 require('./_includes/delete');
