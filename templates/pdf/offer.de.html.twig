@@ -202,6 +202,7 @@ mpdf-->
             <th class="number">Menge</th>
             <th class="number">Einzelpreis</th>
             <th class="number">Gesamtpreis</th>
+            <th class="number">zzgl. MwSt.</th>
         </tr>
         </thead>
         <tbody>
@@ -222,6 +223,9 @@ mpdf-->
                 </td>
                 <td class="number">
                     <span style="white-space: nowrap">{{ item.priceTotal | number_format }} EUR</span>
+                </td>
+                <td class="number">
+                    {{ item.vatRate.rate }}%
                 </td>
             </tr>
         {% endfor %}
