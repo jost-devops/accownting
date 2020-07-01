@@ -60,6 +60,10 @@ $(function() {
             calculateTotals();
         });
 
+        $itemTable.on('change', '.item--vat-rate', function() {
+            calculateTotals();
+        });
+
         $('form[name=offer]').submit(function(e) {
             $(this).find('.prototype').remove();
         });

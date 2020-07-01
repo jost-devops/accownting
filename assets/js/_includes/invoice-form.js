@@ -60,6 +60,10 @@ $(function() {
             calculateTotals();
         });
 
+        $lineItemTable.on('change', '.line-item--vat-rate', function() {
+            calculateTotals();
+        });
+
         $('form[name=invoice]').submit(function(e) {
             $(this).find('.prototype').remove();
         });
