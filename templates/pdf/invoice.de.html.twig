@@ -252,7 +252,7 @@ mpdf-->
         </tr>
         {% for rate, taxes in invoice.taxesByRate %}
         <tr>
-            <td colspan="5" class="number">zzgl. Umsatzsteuer {{ rate }}%:</td>
+            <td colspan="5" class="number">zzgl. MwSt. {{ rate }}%:</td>
             <td class="number">{{ taxes | number_format }} EUR</td>
         </tr>
         {% endfor %}
