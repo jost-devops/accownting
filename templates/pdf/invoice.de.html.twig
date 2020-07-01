@@ -214,9 +214,9 @@ mpdf-->
             <th>Pos.</th>
             <th>Beschreibung</th>
             <th class="number">Menge</th>
+            <th class="number">zzgl. MwSt.</th>
             <th class="number">Einzelpreis</th>
             <th class="number">Gesamtpreis</th>
-            <th class="number">zzgl. MwSt.</th>
         </tr>
         </thead>
         <tbody>
@@ -233,31 +233,31 @@ mpdf-->
                     <span style="white-space: nowrap">{% if not item.unit.allIn %}{{ item.amount | number_format }} {% endif %}{{ item.unit.name }}</span>
                 </td>
                 <td class="number">
+                    {{ item.vatRate.rate }}%
+                </td>
+                <td class="number">
                     <span style="white-space: nowrap">{{ item.priceSingle | number_format }} EUR</span>
                 </td>
                 <td class="number">
                     <span style="white-space: nowrap">{{ item.priceTotal | number_format }} EUR</span>
                 </td>
-                <td class="number">
-                    {{ item.vatRate.rate }}%
-                </td>
             </tr>
         {% endfor %}
         <tr>
-            <td colspan="5">&nbsp;</td>
+            <td colspan="6">&nbsp;</td>
         </tr>
         <tr class="odd">
-            <td colspan="4" class="number">Gesamtsumme netto:</td>
+            <td colspan="5" class="number">Gesamtsumme netto:</td>
             <td class="number">{{ invoice.totalNetPrice | number_format }} EUR</td>
         </tr>
         {% for rate, taxes in invoice.taxesByRate %}
         <tr>
-            <td colspan="4" class="number">zzgl. Umsatzsteuer {{ rate }}%:</td>
+            <td colspan="5" class="number">zzgl. Umsatzsteuer {{ rate }}%:</td>
             <td class="number">{{ taxes | number_format }} EUR</td>
         </tr>
         {% endfor %}
         <tr class="odd">
-            <th colspan="4" class="number">Gesamtsumme brutto:</th>
+            <th colspan="5" class="number">Gesamtsumme brutto:</th>
             <th class="number">{{ invoice.totalGrossPrice | number_format }} EUR</th>
         </tr>
         </tbody>
