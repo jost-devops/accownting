@@ -102,7 +102,7 @@
                                         <td class="number">{{ invoice.invoiceDate | date ('d.m.Y') }}</td>
                                     </tr>
                                     <tr>
-                                        <td>{% if invoice.timeOfSupplyEnd is null %}Lieferdatum{% else %}Lieferzeitraum{% endif %}</td>
+                                        <td>{% if invoice.timeOfSupplyEnd is null %}Leistungsdatum{% else %}Leistungszeitraum{% endif %}</td>
                                         <td class="number">
                                             {{ invoice.timeOfSupply | date ('d.m.Y') }}
                                             {% if invoice.timeOfSupplyEnd is not null %}
