@@ -3,6 +3,7 @@
 namespace App\Manager;
 
 use App\DTO\OfferDTO;
+use App\Entity\Company;
 use App\Entity\Offer;
 use App\Entity\OfferItem;
 use App\Entity\User;
@@ -120,5 +121,31 @@ class OfferManager
     {
         $this->entityManager->remove($offer);
         $this->entityManager->flush();
+    }
+
+    public function duplicate(Offer $offer, User $user): void
+    {
+        $this->entityManager->beginTransaction();
+
+        /** @var Company $company */
+        $company = $offer->getCompany();
+
+        $newOffer = clone $offer;
+        $newOffer->setCreated(new \DateTime());
+        $newOffer->setCreatedBy($user);
+        $newOffer->setOfferNumber($company->getNextOfferNumber());
+        $newOffer->setOfferDate(new \DateTime());
+
+        $this->entityManager->persist($newOffer);
+
+        $company->setNextOfferNumber($company->getNextOfferNumber() + 1);
+
+        $this->entityManager->flush();
+
+        foreach ($offer->getItems() as $item) {
+            $this->offerItemManager->duplicate($item, $newOffer, $user);
+        }
+
+        $this->entityManager->commit();
     }
 }

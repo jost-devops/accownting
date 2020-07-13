@@ -80,4 +80,15 @@ class OfferItemManager
         $this->entityManager->remove($offerItem);
         $this->entityManager->flush();
     }
+
+    public function duplicate(OfferItem $offerItem, Offer $newOffer, User $user): void
+    {
+        $newOfferItem = clone $offerItem;
+        $newOfferItem->setCreated(new \DateTime());
+        $newOfferItem->setCreatedBy($user);
+        $newOfferItem->setOffer($newOffer);
+
+        $this->entityManager->persist($newOfferItem);
+        $this->entityManager->flush();
+    }
 }
