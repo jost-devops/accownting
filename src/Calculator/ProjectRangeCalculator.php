@@ -27,7 +27,7 @@ class ProjectRangeCalculator
         $begin = (new \DateTime())->sub(new \DateInterval('P1Y'))->setTime(0, 0);
         $end = (new \DateTime());
 
-        $salesLastYear = $this->salesCalculator->calculate($company, $begin, $end);
+        $salesLastYear = $this->salesCalculator->calculateNet($company, $begin, $end);
 
         /** @var Project[] $projects */
         $projects = $this->entityManager
