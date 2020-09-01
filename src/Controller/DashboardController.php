@@ -27,7 +27,8 @@ class DashboardController extends AbstractController
         ProjectVolumeCalculator $projectVolumeCalculator,
         ProjectRangeCalculator $projectRangeCalculator
     ): Response {
-        $salesLastYear = 0;
+        $netSalesLastYear = 0;
+        $grossSalesLastYear = 0;
         $projectsActive = 0;
         $projectVolume = 0;
         $projectRange = 0;
@@ -41,14 +42,16 @@ class DashboardController extends AbstractController
             /** @var ProjectRepository $projectRepository */
             $projectRepository = $entityManager->getRepository(Project::class);
 
-            $salesLastYear = $salesCalculator->calculate($currentCompany, $begin, $end);
+            $netSalesLastYear = $salesCalculator->calculateNet($currentCompany, $begin, $end);
+            $grossSalesLastYear = $salesCalculator->calculateGross($currentCompany, $begin, $end);
             $projectsActive = $projectRepository->getActiveCount($currentCompany);
             $projectVolume = $projectVolumeCalculator->calculate($currentCompany);
             $projectRange = $projectRangeCalculator->calculate($currentCompany);
         }
 
         return $this->render('dashboard/index.html.twig', [
-            'salesLastYear' => $salesLastYear,
+            'netSalesLastYear' => $netSalesLastYear,
+            'grossSalesLastYear' => $grossSalesLastYear,
             'projectsActive' => $projectsActive,
             'projectVolume' => $projectVolume,
             'projectRange' => $projectRange
