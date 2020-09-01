@@ -165,4 +165,19 @@ class OfferController extends AbstractController
 
         return $response;
     }
+
+    /**
+     * @Route("/{id}/duplicate")
+     */
+    public function duplicateAction(
+        Offer $offer,
+        OfferManager $offerManager
+    ): Response {
+        /** @var User $user */
+        $user = $this->getUser();
+
+        $offerManager->duplicate($offer, $user);
+
+        return $this->redirectToRoute('app_offer_index');
+    }
 }
