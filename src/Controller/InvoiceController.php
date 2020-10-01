@@ -51,7 +51,7 @@ class InvoiceController extends AbstractController
         /** @var Invoice[] $invoices */
         $invoices = $entityManager
             ->getRepository(Invoice::class)
-            ->findBy(['company' => $company], ['invoiceDate' => 'DESC']);
+            ->findBy(['company' => $company], ['invoiceDate' => 'DESC', 'id' => 'DESC']);
 
         $response = [
             'data' => [],
