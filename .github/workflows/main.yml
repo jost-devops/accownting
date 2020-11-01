@@ -1,0 +1,19 @@
+name: Build docker image
+
+on:
+  push:
+    branches: master
+  schedule:
+    - cron:  '1 0 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Build the Docker image
+        run: docker build . --tag jostdevops/accownting:dev
+      - name: Login to Docker registry
+        run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - name: Publish Docker image
+        run: docker push jostdevops/accownting:dev
