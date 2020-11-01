@@ -2,6 +2,9 @@
     "composer/ca-bundle": {
         "version": "1.1.3"
     },
+    "composer/package-versions-deprecated": {
+        "version": "1.11.99"
+    },
     "composer/xdebug-handler": {
         "version": "1.4.0"
     },
@@ -65,9 +68,6 @@
     "doctrine/persistence": {
         "version": "v1.0.1"
     },
-    "doctrine/reflection": {
-        "version": "v1.0.0"
-    },
     "doctrine/sql-formatter": {
         "version": "1.1.0"
     },
@@ -115,9 +115,6 @@
     },
     "nikic/php-parser": {
         "version": "v4.2.5"
-    },
-    "ocramius/package-versions": {
-        "version": "1.3.0"
     },
     "ocramius/proxy-manager": {
         "version": "2.2.2"
@@ -262,6 +259,9 @@
             "version": "3.3",
             "ref": "1717e67afa995e4f01a25ba9ae7aca5b2327bcaa"
         }
+    },
+    "symfony/http-client-contracts": {
+        "version": "v2.3.1"
     },
     "symfony/http-foundation": {
         "version": "v4.1.6"
