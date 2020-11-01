@@ -76,10 +76,16 @@ class InvoiceDTO
      * @var \DateTime|null
      */
     public $paid;
+
     /**
      * @var string
      */
     public $country;
+
+    /**
+     * @var string
+     */
+    public $paymentMethod = 'bankwire';
 
     public function __construct()
     {

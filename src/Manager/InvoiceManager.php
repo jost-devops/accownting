@@ -43,6 +43,7 @@ class InvoiceManager
         $invoice->setPaid($invoiceDTO->paid);
         $invoice->setCreated(new \DateTime());
         $invoice->setCreatedBy($user);
+        $invoice->setPaymentMethod($invoiceDTO->paymentMethod);
 
         $this->entityManager->persist($invoice);
         $this->entityManager->flush();
@@ -68,6 +69,7 @@ class InvoiceManager
         $invoiceDTO->timeOfSupplyEnd = $invoice->getTimeOfSupplyEnd();
         $invoiceDTO->creditPeriod = $invoice->getCreditPeriod();
         $invoiceDTO->paid = $invoice->getPaid();
+        $invoiceDTO->paymentMethod = $invoice->getPaymentMethod();
 
         foreach ($invoice->getItems() as $item) {
             $invoiceDTO->items[] = $this->invoiceItemManager->getEdit($item);
@@ -94,6 +96,7 @@ class InvoiceManager
         $invoice->setPaid($invoiceDTO->paid);
         $invoice->setUpdated(new \DateTime());
         $invoice->setUpdatedBy($user);
+        $invoice->setPaymentMethod($invoiceDTO->paymentMethod);
 
         foreach ($invoiceDTO->items as $itemDTO) {
             if ($itemDTO->id !== null) {

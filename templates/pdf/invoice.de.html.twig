@@ -269,11 +269,15 @@ mpdf-->
         </tr>
         <tr>
             <td>
-                {% if invoice.creditPeriod is not null %}
-                Bitte überweisen Sie den Betrag unter Angabe der Rechnungsnummer innerhalb von
-                {{ invoice.creditPeriod }} Tagen auf unser unten genanntes Konto.
-                {% else %}
-                Bitte überweisen Sie den Betrag unter Angabe der Rechnungsnummer auf unser unten genanntes Konto.
+                {% if invoice.paymentMethod == 'bankwire' %}
+                    {% if invoice.creditPeriod is not null %}
+                    Bitte überweisen Sie den Betrag unter Angabe der Rechnungsnummer innerhalb von
+                    {{ invoice.creditPeriod }} Tagen auf unser unten genanntes Konto.
+                    {% else %}
+                    Bitte überweisen Sie den Betrag unter Angabe der Rechnungsnummer auf unser unten genanntes Konto.
+                    {% endif %}
+                {% elseif invoice.paymentMethod == 'paypal' %}
+                    Sie haben diese Rechnung bereits per PayPal beglichen.
                 {% endif %}
             </td>
         </tr>

@@ -99,6 +99,14 @@ class InvoiceType extends AbstractType
                 'label' => 'Credit Period',
                 'required' => false,
             ])
+            ->add('paymentMethod', ChoiceType::class, [
+                'label' => 'Payment Method',
+                'required' => true,
+                'choices' => [
+                    'Bankwire' => 'bankwire',
+                    'PayPal' => 'paypal',
+                ],
+            ])
             ->add('items', CollectionType::class, [
                 'entry_type' => InvoiceItemType::class,
                 'entry_options' => ['label' => false],

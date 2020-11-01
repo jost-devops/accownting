@@ -107,6 +107,13 @@ class Invoice
     private $country;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", options={"default": "bankwire"})
+     */
+    private $paymentMethod = 'bankwire';
+
+    /**
      * @return int
      */
     public function getId(): int
@@ -296,6 +303,16 @@ class Invoice
     public function setCountry(string $country): void
     {
         $this->country = $country;
+    }
+
+    public function getPaymentMethod(): string
+    {
+        return $this->paymentMethod;
+    }
+
+    public function setPaymentMethod(string $paymentMethod): void
+    {
+        $this->paymentMethod = $paymentMethod;
     }
 
     public function getTotalNetPrice(): float
