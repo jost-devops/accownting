@@ -1,0 +1,242 @@
+<style type="text/css">
+    .text-smaller {
+        font-size: 0.7em;
+        font-weight: 400;
+    }
+
+    .text-bigger {
+        font-size: 1.2em;
+        font-weight: 400;
+    }
+
+    .text-muted {
+        color: #666;
+        font-weight: 400;
+    }
+
+    table {
+        border-spacing: 0;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    thead th, thead td {
+        padding: 2mm;
+    }
+    tbody th, tbody td {
+        padding: 1mm 2mm;
+    }
+
+    th,td {
+        font-size: 0.8em;
+        text-align: left;
+        font-family: freesans, sans-serif;
+        vertical-align: top;
+    }
+
+    th.number, td.number {
+        text-align: right;
+    }
+
+    tr.odd th, tr.odd td {
+        background: #efefef;
+    }
+
+    .container {
+        /*font-size: 0.9em;*/
+    }
+
+    #logo {
+        text-align: right;
+    }
+
+    #logo__img {
+        display: inline-block;
+        height: auto;
+        width: 70mm;
+        margin-bottom: 10mm;
+        margin-right: 0;
+    }
+    #header {
+        padding-top: 5mm;
+    }
+    #footer {
+        padding-bottom: 5mm;
+    }
+</style>
+
+<!--mpdf
+<htmlpageheader name="header">
+    <div id="header">
+        <table class="container">
+            <tr>
+                <td id="logo">
+                    <img id="logo__img" src="data:{{ invoice.company.logoMime }};base64,{{ invoice.company.logoEncoded }}" alt="{{ invoice.company.name }}">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td width="55%">
+                                <p class="text-muted text-smaller">{{ invoice.company.name }}{% if invoice.company.additionalName %} - {{ invoice.company.additionalName }}{% endif %} - {{ invoice.company.street }} - {{ invoice.company.zip }} {{ invoice.company.city }}</p>
+                                <br />
+                                <br />
+                                <p>
+                                    {% if invoice.customer.name %}{{ invoice.customer.name }}<br />{% endif %}
+                                    {% if invoice.customer.additionalName %}{{ invoice.customer.additionalName }}<br />{% endif %}
+                                    {% if invoice.customer.salutation %}{{ invoice.customer.salutation }} {{ invoice.customer.firstName }} {{ invoice.customer.lastName }}<br />{% endif %}
+                                    {{ invoice.customer.street }}<br />
+                                    {{ invoice.customer.zip }} {{ invoice.customer.city }}<br />
+                                    {{ invoice.customer.country }}
+                                </p>
+                            </td>
+                            <td>
+                                <table style="text-align: right; margin-top: 7mm">
+                                    <tr>
+                                        <td>Datum</td>
+                                        <td class="number">{{ "now" | date ('d.m.Y') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="2"><hr /></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-bigger">Rechnungs-Nr.</td>
+                                        <td class="number text-bigger">{{ invoice.invoiceNumber }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Rechnungsdatum</td>
+                                        <td class="number">{{ invoice.invoiceDate | date ('d.m.Y') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>{% if invoice.timeOfSupplyEnd is null %}Leistungsdatum{% else %}Leistungszeitraum{% endif %}</td>
+                                        <td class="number">
+                                            {{ invoice.timeOfSupply | date ('d.m.Y') }}
+                                            {% if invoice.timeOfSupplyEnd is not null %}
+                                            - {{ invoice.timeOfSupplyEnd | date ('d.m.Y') }}
+                                            {% endif %}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Ihre Kundennummer</td>
+                                        <td class="number">{{ invoice.customer.customerNumber }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Seite</td>
+                                        <td class="number">{PAGENO} von {nbpg}</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</htmlpageheader>
+<htmlpagefooter name="footer">
+    <div id="footer">
+        <table class="container">
+            <tr>
+                <td>
+                    <table>
+                        <tr>
+                            <td width="23%">
+                                <p class="text-smaller text-muted">
+                                    {{ invoice.company.name }}<br />
+                                    {% if invoice.company.additionalName %}{{ invoice.company.additionalName }}<br>{% endif %}
+                                    {{ invoice.company.street }}<br />
+                                    {{ invoice.company.zip }} {{ invoice.company.city }}<br />
+                                    {{ invoice.company.country }}
+                                </p>
+                            </td>
+                            <td width="25%">
+                                <p class="text-smaller text-muted">
+                                    Tel: {{ invoice.company.phone }}<br />
+                                    Fax: {{ invoice.company.fax }}<br />
+                                    E-Mail: {{ invoice.company.email }}<br />
+                                    {{ invoice.company.website }}
+                                </p>
+                            </td>
+                            <td width="25%">
+                                <p class="text-smaller text-muted">
+                                    {% if invoice.company.vatNumber %}USt-ID: {{ invoice.company.vatNumber }}<br />{% endif %}
+                                    {% if invoice.company.taxNumber %}Steuer-Nr.: {{ invoice.company.taxNumber }}<br />{% endif %}
+                                    {% if invoice.company.districtCourt %}{{ invoice.company.districtCourt }}, {% endif %}
+                                    {% if invoice.company.companyRegisterId %}{{ invoice.company.companyRegisterId }}<br>{% endif %}
+
+                                    {{ invoice.company.titleOfManagingDirector }}: {{ invoice.company.managingDirector }}
+                                </p>
+                            </td>
+                            <td width="27%">
+                                <p class="text-smaller text-muted">
+                                    {{ invoice.company.bankName }}<br />
+                                    IBAN: {{ invoice.company.bankIban }}<br />
+                                    BIC: {{ invoice.company.bankBic }}
+                                </p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </div>
+</htmlpagefooter>
+mpdf-->
+
+<!--mpdf
+<sethtmlpageheader name="header" page="ALL" value="1" show-this-page="1" />
+<sethtmlpagefooter name="footer" page="ALL" value="1" />
+mpdf-->
+
+<div id="content">
+    <table class="container">
+        <tr>
+            <td>
+                <table>
+                    <tr>
+                        <td>
+                            <h2>
+                                Mahnung {{ level }} - {{ invoice.subject }}
+                            </h2>
+                        </td>
+                        <td class="number">
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+    <table>
+        <tbody>
+        <tr class="odd">
+            <td colspan="5">Gesamtbetrag der Rechnung:</td>
+            <td class="number">{{ invoice.totalGrossPrice | number_format }} EUR</td>
+        </tr>
+        <tr>
+            <td colspan="5">Bereits geleistete Zahlungen:</td>
+            <td class="number">0,00 EUR</td>
+        </tr>
+        <tr class="odd">
+            <th colspan="5">Noch offener Betrag:</th>
+            <th class="number">{{ invoice.totalGrossPrice | number_format }} EUR</th>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <table>
+        <tr>
+            <td></td>
+        </tr>
+        <tr>
+            <td>
+                {% if invoice.paymentMethod == 'bankwire' %}
+                    Bitte überweisen Sie den Betrag umgehend unter Angabe der Rechnungsnummer auf unser unten genanntes Konto.
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+</div>

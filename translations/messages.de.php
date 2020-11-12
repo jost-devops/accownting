@@ -141,4 +141,5 @@ return [
     'Document Information' => 'Dokument-Informationen',
     'Settings' => 'Einstellungen',
     'Time-Tracking-Export' => 'Stundenauszug',
+    'Invoice-Reminder' => 'Mahnung',
 ];

@@ -40,11 +40,24 @@ $(function() {
                 {
                     "data": "id",
                     "render": function (data, type, row) {
+                        let invoiceReminderDropdown = '<div class="dropdown">' +
+                          '  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                          '    <i class="fa fa-crosshairs"></i>' +
+                          '  </button>' +
+                          '  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">' +
+                          '    <a class="dropdown-item" href="/invoice/' + data + '/reminder/1" target="_blank">Mahnung 1</a>' +
+                          '    <a class="dropdown-item" href="/invoice/' + data + '/reminder/2" target="_blank">Mahnung 2</a>' +
+                          '  </div>' +
+                          '</div>'
+
                         return '<div class="btn-group"><a href="/invoice/' + data + '/edit" class="btn btn-primary btn-sm"><i class="fa fa-edit"></i></a>' +
                             '<a href="/invoice/' + data + '/delete" class="btn btn-danger btn-sm btn-delete"><i class="fa fa-remove"></i></a>' +
                             '<a href="/invoice/' + data + '/pdf" class="btn btn-primary btn-sm" target="_blank"><i class="fa fa-eye"></i></a>' +
                             '<a href="/invoice/' + data + '/duplicate" class="btn btn-primary btn-sm"><i class="fa fa-files-o"></i></a>' +
-                            '<a href="/invoice/' + data + '/set-paid" class="btn btn-success btn-sm"><i class="fa fa-money"></i></a></div>';
+                            '<a href="/invoice/' + data + '/set-paid" class="btn btn-success btn-sm"><i class="fa fa-money"></i></a>' +
+                            invoiceReminderDropdown +
+                            '</div>'
+                        ;
                     },
                 },
             ],

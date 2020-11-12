@@ -187,7 +187,7 @@ class InvoiceController extends AbstractController
         $response->headers->set('Content-Type', 'application/pdf');
         $response->headers->set(
             'Content-Disposition',
-            'inline; filename=' . $translator->trans('Invoice') . '-' . $invoice->getInvoiceNumber() . '.pdf'
+            'inline; filename=' . $translator->trans('Invoice') . '-' . sprintf('%05u', $invoice->getInvoiceNumber()) . '.pdf'
         );
         $response->setContent($pdf);
 
@@ -207,5 +207,27 @@ class InvoiceController extends AbstractController
         $invoiceManager->duplicate($invoice, $user);
 
         return $this->redirectToRoute('app_invoice_index');
+    }
+
+    /**
+     * @Route("/{id}/reminder/{level}")
+     */
+    public function reminderAction(
+        Invoice $invoice,
+        InvoiceGenerator $invoiceGenerator,
+        TranslatorInterface $translator,
+        int $level
+    ): Response {
+        $pdf = $invoiceGenerator->generateReminder($invoice, $level);
+
+        $response = new Response();
+        $response->headers->set('Content-Type', 'application/pdf');
+        $response->headers->set(
+            'Content-Disposition',
+            'inline; filename=' . $translator->trans('Invoice-Reminder') . '-' . sprintf('%05u', $invoice->getInvoiceNumber()) . '-' . sprintf('%03u', $level)  . '.pdf'
+        );
+        $response->setContent($pdf);
+
+        return $response;
     }
 }
