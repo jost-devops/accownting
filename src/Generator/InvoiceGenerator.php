@@ -53,7 +53,7 @@ class InvoiceGenerator
             'default_font' => 'freesans',
             'margin_left' => 23,
             'margin_right' => 23,
-            'margin_top' => 95,
+            'margin_top' => 105,
             'margin_bottom' => 50,
             'margin_header' => 20,
             'margin_footer' => 9,
