@@ -44,6 +44,7 @@ class InvoiceItemType extends AbstractType
             ->add('priceSingle', MoneyType::class, [
                 'label' => 'Single Price',
                 'required' => true,
+                'scale' => 3,
             ])
             ->add('vatRate', EntityType::class, [
                 'class' => VatRate::class,
