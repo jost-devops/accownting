@@ -184,9 +184,11 @@ mpdf-->
                                 {{ offer.subject }}
                             </h2>
 
+                            {% if offer.introText %}
                             <p>
                                 {{ offer.introText }}
                             </p>
+                            {% endif %}
                         </td>
                         <td class="number">
                         </td>
