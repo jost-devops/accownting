@@ -21,7 +21,7 @@ services:
     ports:
       - "8083:80"
     volumes:
-      - "./:/var/www:cached"
+      - "./:/var/www"
     networks:
       - "internal"
 
