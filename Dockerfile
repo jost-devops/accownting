@@ -36,7 +36,7 @@ RUN curl -o /usr/local/bin/wait-for-it https://raw.githubusercontent.com/vishnub
 
 COPY ./ /var/www
 
-RUN cd /var/www ; curl -s https://getcomposer.org/installer | php ; mv composer.phar /usr/local/bin/composer ; APP_ENV=prod composer install --no-progress --no-dev --optimize-autoloader ; yarn ; yarn run encore production ; rm -Rf node_modules/ ; chmod -R 777 /var/www/var/
+RUN cd /var/www ; curl -s https://getcomposer.org/installer | php ; mv composer.phar /usr/local/bin/composer ; composer clear-cache ; APP_ENV=prod composer install --no-progress --no-dev --optimize-autoloader ; yarn ; yarn run encore production ; rm -Rf node_modules/ ; chmod -R 777 /var/www/var/
 
 WORKDIR /var/www/public
 
