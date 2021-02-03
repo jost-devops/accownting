@@ -70,15 +70,19 @@ class OfferType extends AbstractType
                 'label' => 'Offer Number',
                 'required' => true,
             ])
-            ->add('subject', TextType::class, [
-                'label' => 'Subject',
-                'required' => true,
-            ])
             ->add('offerDate', DateType::class, [
                 'label' => 'Offer Date',
                 'required' => true,
                 'widget' => 'single_text',
                 'format' => $this->translator->trans('date_format_form'),
+            ])
+            ->add('subject', TextType::class, [
+                'label' => 'Subject',
+                'required' => true,
+            ])
+            ->add('introText', TextareaType::class, [
+                'label' => 'Intro Text',
+                'required' => false,
             ])
             ->add('items', CollectionType::class, [
                 'entry_type' => OfferItemType::class,

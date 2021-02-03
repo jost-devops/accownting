@@ -76,91 +76,65 @@ class Offer
      *
      * @ORM\Column(type="text", nullable=true)
      */
-    private $additionalText;
+    private $introText;
 
     /**
-     * @return int
+     * @var string|null
+     *
+     * @ORM\Column(type="text", nullable=true)
      */
+    private $additionalText;
+
     public function getId(): int
     {
         return $this->id;
     }
 
-    /**
-     * @return Company|null
-     */
     public function getCompany(): ?Company
     {
         return $this->company;
     }
 
-    /**
-     * @param Company|null $company
-     */
     public function setCompany(?Company $company): void
     {
         $this->company = $company;
     }
 
-    /**
-     * @return Customer|null
-     */
     public function getCustomer(): ?Customer
     {
         return $this->customer;
     }
 
-    /**
-     * @param Customer|null $customer
-     */
     public function setCustomer(?Customer $customer): void
     {
         $this->customer = $customer;
     }
 
-    /**
-     * @return int
-     */
     public function getOfferNumber(): int
     {
         return $this->offerNumber;
     }
 
-    /**
-     * @param int $offerNumber
-     */
     public function setOfferNumber(int $offerNumber): void
     {
         $this->offerNumber = $offerNumber;
     }
 
-    /**
-     * @return string
-     */
     public function getSubject(): string
     {
         return $this->subject;
     }
 
-    /**
-     * @param string $subject
-     */
     public function setSubject(string $subject): void
     {
         $this->subject = $subject;
     }
 
-    /**
-     * @return \DateTime
-     */
     public function getOfferDate(): \DateTime
     {
         return $this->offerDate;
     }
 
-    /**
-     * @param \DateTime $offerDate
-     */
     public function setOfferDate(\DateTime $offerDate): void
     {
         $this->offerDate = $offerDate;
@@ -174,33 +148,31 @@ class Offer
         return $this->items;
     }
 
-    /**
-     * @return string
-     */
     public function getCountry(): string
     {
         return $this->country;
     }
 
-    /**
-     * @param string $country
-     */
     public function setCountry(string $country): void
     {
         $this->country = $country;
     }
 
-    /**
-     * @return string|null
-     */
+    public function getIntroText(): ?string
+    {
+        return $this->introText;
+    }
+
+    public function setIntroText(?string $introText): void
+    {
+        $this->introText = $introText;
+    }
+
     public function getAdditionalText(): ?string
     {
         return $this->additionalText;
     }
 
-    /**
-     * @param string|null $additionalText
-     */
     public function setAdditionalText(?string $additionalText): void
     {
         $this->additionalText = $additionalText;

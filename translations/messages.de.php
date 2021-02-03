@@ -142,4 +142,5 @@ return [
     'Settings' => 'Einstellungen',
     'Time-Tracking-Export' => 'Stundenauszug',
     'Invoice-Reminder' => 'Mahnung',
+    'Intro Text' => 'Einleitungstext',
 ];

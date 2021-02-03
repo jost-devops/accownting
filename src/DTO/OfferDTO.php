@@ -58,6 +58,11 @@ class OfferDTO
     /**
      * @var string|null
      */
+    public $introText;
+
+    /**
+     * @var string|null
+     */
     public $additionalText;
 
     public function __construct()

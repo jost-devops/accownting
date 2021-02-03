@@ -36,6 +36,7 @@ class OfferManager
         $offer->setOfferNumber($offerDTO->offerNumber);
         $offer->setSubject($offerDTO->subject);
         $offer->setOfferDate($offerDTO->offerDate);
+        $offer->setIntroText($offerDTO->introText);
         $offer->setAdditionalText($offerDTO->additionalText);
         $offer->setCreated(new \DateTime());
         $offer->setCreatedBy($user);
@@ -59,6 +60,7 @@ class OfferManager
         $offerDTO->offerNumber = $offer->getOfferNumber();
         $offerDTO->subject = $offer->getSubject();
         $offerDTO->offerDate = $offer->getOfferDate();
+        $offerDTO->introText = $offer->getIntroText();
         $offerDTO->additionalText = $offer->getAdditionalText();
 
         foreach ($offer->getItems() as $item) {
@@ -79,6 +81,7 @@ class OfferManager
         $offer->setOfferNumber($offerDTO->offerNumber);
         $offer->setSubject($offerDTO->subject);
         $offer->setOfferDate($offerDTO->offerDate);
+        $offer->setIntroText($offerDTO->introText);
         $offer->setAdditionalText($offerDTO->additionalText);
         $offer->setUpdated(new \DateTime());
         $offer->setUpdatedBy($user);
