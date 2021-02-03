@@ -180,12 +180,12 @@ mpdf-->
                 <table>
                     <tr>
                         <td>
-                            <h2>
+                            <h2 style="{% if offer.introText %}margin-bottom: 20mm{% endif %}">
                                 {{ offer.subject }}
                             </h2>
 
                             {% if offer.introText %}
-                            <p style="margin-top: 20mm">
+                            <p>
                                 {{ offer.introText|nl2br }}
                             </p>
                             {% endif %}
