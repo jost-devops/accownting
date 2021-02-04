@@ -180,14 +180,15 @@ mpdf-->
                 <table>
                     <tr>
                         <td>
-                            <h2 style="{% if offer.introText %}padding-bottom: 20mm{% endif %}">
+                            <h2>
                                 {{ offer.subject }}
                             </h2>
 
                             {% if offer.introText %}
-                            <p>
+                            <div>
+                                <br />
                                 {{ offer.introText|nl2br }}
-                            </p>
+                            </div>
                             {% endif %}
                         </td>
                         <td class="number">
