@@ -50,7 +50,7 @@ class OfferController extends AbstractController
         /** @var Offer[] $offers */
         $offers = $entityManager
             ->getRepository(Offer::class)
-            ->findBy(['company' => $company], ['offerDate' => 'DESC']);
+            ->findBy(['company' => $company], ['offerDate' => 'DESC', 'id' => 'DESC']);
 
         $response = [
             'data' => [],
