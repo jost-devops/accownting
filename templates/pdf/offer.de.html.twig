@@ -81,9 +81,8 @@
                             <td width="55%">
                                 <p class="text-muted text-smaller">{{ offer.company.name }}{% if offer.company.additionalName %} - {{ offer.company.additionalName }}{% endif %} - {{ offer.company.street }} - {{ offer.company.zip }} {{ offer.company.city }}</p>
                                 <br />
-                                <br />
                                 <p>
-                                    {% if offer.customer.name %}{{ offer.customer.name }}<br />{% endif %}
+                                    {% if offer.customer.name %}<strong>{{ offer.customer.name }}</strong><br />{% endif %}
                                     {% if offer.customer.additionalName %}{{ offer.customer.additionalName }}<br />{% endif %}
                                     {% if offer.customer.salutation %}{{ offer.customer.salutation }} {{ offer.customer.firstName }} {{ offer.customer.lastName }}<br />{% endif %}
                                     {{ offer.customer.street }}<br />
