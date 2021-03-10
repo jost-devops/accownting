@@ -45,6 +45,7 @@ class VatController extends AbstractController
                 ->setTime(23, 59, 59);
 
             $row = [
+                'net' => $salesCalculator->calculateNet($currentCompany, $begin, $monthEnd),
                 'gross' => $salesCalculator->calculateGross($currentCompany, $begin, $monthEnd),
             ];
 

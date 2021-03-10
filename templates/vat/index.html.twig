@@ -16,6 +16,7 @@
                             <thead>
                             <tr>
                                 <th>Monat</th>
+                                <th>Netto-Umsatz</th>
                                 <th>Brutto-Umsatz</th>
                                 {% for vatRate in vatRates %}
                                 <th>USt. {{ vatRate.name }}</th>
@@ -26,6 +27,7 @@
                                 {% for month, sales in rows %}
                                 <tr>
                                     <td>{{ month }}</td>
+                                    <td>{{ sales.net | number_format }} EUR</td>
                                     <td>{{ sales.gross | number_format }} EUR</td>
                                     {% for vatRate in vatRates %}
                                     <td>{{ sales[vatRate.id] | number_format }} EUR</td>
