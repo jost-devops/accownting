@@ -29,12 +29,10 @@ class VatController extends AbstractController
             ->findAll();
 
         $begin = (new \DateTime())
-            ->sub(new \DateInterval('P12M'))
+            ->sub(new \DateInterval('P13M'))
             ->modify('first day of this month')
             ->setTime(0, 0, 0);
-        $end = (new \DateTime('first day of this month'))
-            ->sub(new \DateInterval('P1D'))
-            ->setTime(23, 59, 59);
+        $end = (new \DateTime());
 
         $rows = [];
 
