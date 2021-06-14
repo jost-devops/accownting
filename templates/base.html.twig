@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <title>{% block title %}accownting{% endblock %}</title>
     {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+        {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ encore_entry_script_tags('app') }}
     {% endblock %}
 
     {% include "_partials/translations.html.twig" %}
@@ -46,10 +50,6 @@
 
     {% include "_partials/footer.html.twig" %}
 </div>
-
-{% block javascripts %}
-    <script src="{{ asset('build/app.js') }}"></script>
-{% endblock %}
 </body>
 {% endblock %}
 </html>
