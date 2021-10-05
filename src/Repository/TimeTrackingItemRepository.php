@@ -75,7 +75,6 @@ class TimeTrackingItemRepository extends ServiceEntityRepository
         $queryBuilder = $this->createQueryBuilder('i')
             ->where('i.project = :project')
             ->setParameter('project', $project)
-            ->andWhere('i.cleared = false')
             ->andWhere('i.moment BETWEEN :begin AND :end')
             ->setParameter('begin', $timeTrackingExportDTO->begin)
             ->setParameter('end', $timeTrackingExportDTO->end)
