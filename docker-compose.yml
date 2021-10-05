@@ -19,7 +19,7 @@ services:
       context: "./"
       dockerfile: "./Dockerfile.dev"
     ports:
-      - "8083:80"
+      - "8082:80"
     volumes:
       - "./:/var/www"
     networks:
