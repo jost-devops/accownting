@@ -29,7 +29,7 @@ class VatController extends AbstractController
             ->findAll();
 
         $begin = (new \DateTime())
-            ->sub(new \DateInterval('P13M'))
+            ->sub(new \DateInterval('P25M'))
             ->modify('first day of this month')
             ->setTime(0, 0, 0);
         $end = (new \DateTime());
