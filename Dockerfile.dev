@@ -28,6 +28,6 @@ RUN apt install -y gnupg \
  && apt-get install -y nodejs \
  && npm install --global yarn \
  && curl -s https://getcomposer.org/installer | php ; mv composer.phar /usr/local/bin/composer \
- && curl -sS https://get.symfony.com/cli/installer | bash; mv /root/.symfony/bin/symfony /usr/local/bin/symfony
+ && curl -sS https://get.symfony.com/cli/installer | bash; mv /root/.symfony5/bin/symfony /usr/local/bin/symfony
 
 WORKDIR /var/www/public
